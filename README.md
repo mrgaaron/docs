@@ -1,4 +1,4 @@
-docs
+Docs!
 ====
 
-Public documentation for TempoIQ
+Public documentation for TempoIQ.
