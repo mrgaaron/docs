@@ -1,13 +1,13 @@
 ## Writing sensor data
 
-Now that we've covered the basics of the device and sensor objects, let's take a closer look at how to work with actual measured data in TempoIQ.
+Now that we've covered the basics of the Device and Sensor objects, let's take a closer look at how to work with actual measured data in TempoIQ.
 
 Every sensor stores its data as a sequence of data points. A data point consists of a timestamp and a value. To write a single data point, specify the sensor to write to (device key+sensor key), and the data point to write. A JSON representation of this data structure would be:
 
 ```javascript
-{ "device": "v1-123456", 
-  "sensor": "temp1", 
-  "dp": { 
+{ "device": "v1-123456",
+  "sensor": "temp1",
+  "dp": {
     "ts": "2014-08-20T00:22:30Z",
     "v": 23.5
   }
