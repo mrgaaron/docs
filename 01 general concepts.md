@@ -1,6 +1,6 @@
 # Intro to TempoIQ
 
-TempoIQ is an analytics backend for sensor data. Connected devices write data directly to TempoIQ via HTTPS, or data is aggregated through a proxy or gateway.
+TempoIQ is an analytics backend for sensor data. Connected devices write data directly to TempoIQ via HTTPS, or through an intermediate proxy or gateway.
 
 You can construct realtime and historical queries using TempoIQ's Analytics API.
 
@@ -18,7 +18,7 @@ A device generally corresponds to a discrete physical unit that has one or more 
 
 Each device is required to have a globally unique key. Good choices for device keys include serial numbers, UUIDs, and other identifiers that will not change or conflict with other devices.
 
-In addition to a key, you can define additional attributes on a device. Attributes allow you to add additional metadata to a device such as grouping, and construct powerful analytics queries by analyzing many devices at once. Examples of possible attributes include user ID, geographic region, and device model number.
+In addition to a key, you can define attributes on a device. Attributes allow you to add additional metadata to a device, and construct powerful analytics queries by analyzing many devices at once. Examples of possible attributes include user ID, geographic region, and device model number.
 
 
 ### Sensors
