@@ -1,5 +1,11 @@
-class Collection
+class Collection {
 
+}
+
+
+class Pipeline {
+
+}
 
 class PipelineBuilder<T> {
     /**
@@ -11,6 +17,17 @@ class PipelineBuilder<T> {
      * Begin a new pipeline path with a given sensor.
      */
     static PipelineBuilder<Value> getSensor(String key);
+
+    /**
+     * Begin a new pipeline path with sensors matching the given filter.
+     */
+    static PipelineBuilder getSensors(Filter f);
+
+    /**
+     * Combine pipelines with the specified CombineOperation. Some operations
+     * only support a certain number of input PipelineBuilders.
+     */
+    static PipelineBuilder combine(CombineOperation op, PipelineBuilder... pipes);
 
     /**
      * Converts this PipelineBuilder to a Pipeline object that can be
@@ -36,11 +53,10 @@ class PipelineBuilder<T> {
     PipelineBuilder<Boolean> lt(Value v);
 
     /**
-     * Computes the boolean AND of the input pipelines.
+     *
      */
-    PipelineBuilder<Boolean> and(Pipeline<Boolean>... pipelines)
-
     PipelineBuilder aggregate(Aggregation agg, Grouping grp)
+
 }
 
 class Grouping {
@@ -80,7 +96,9 @@ PipelineBuilder<Boolean> underCurrent = current.lt(2.3);
 
 PipelineBuilder<?> query = new PipelineBuilder();
 
-Pipeline<Boolean> out = query.and(overVoltage.compile(), underCurrent.compile()).compile();
+Pipeline<Boolean> out = PipelineBuilder.combine(CombineOperation.AND,
+                                                overVoltage,
+                                                underCurrent).compile();
 
 MonitorRule rule = Monitor.getBuilder()
                         .setDevices(devices)
@@ -90,13 +108,13 @@ MonitorRule rule = Monitor.getBuilder()
 
 
 // Version 2: Less verbose
-Pipeline<Boolean> out = new PipelineBuilder()
-    .and(
+Pipeline<Boolean> out = PipelineBuilder().combine(
+        CombineOperation.AND,
         PipelineBuilder.getSensor("voltage")
-            .expAvg(Period.minutes(15))
-            .gt(128).compile(),
+                .expAvg(Period.minutes(15))
+                .gt(128),
         PipelineBuilder.getSensor("current").
-            .lt(2.3).compile()
+                .lt(2.3)
     ).compile();
 
 
