@@ -2,35 +2,32 @@ class Collection {
 
 }
 
-
-class Pipeline {
-
-}
-
-class PipelineBuilder<T> {
+class Pipeline<T> {
     /**
      * Create a new empty pipeline
      */
-    public PipelineBuilder();
+    public Pipeline();
 
     /**
      * Begin a new pipeline path with a given sensor.
      */
-    static PipelineBuilder<Value> getSensor(String key);
+    static Pipeline<Value> getSensor(String key);
 
     /**
      * Begin a new pipeline path with sensors matching the given filter.
      */
-    static PipelineBuilder getSensors(Filter f);
+    static Pipeline getSensors(Filter f);
 
     /**
      * Combine pipelines with the specified CombineOperation. Some operations
-     * only support a certain number of input PipelineBuilders.
+     * only support a certain number of input Pipelines.
      */
-    static PipelineBuilder combine(CombineOperation op, PipelineBuilder... pipes);
+    static Pipeline combine(CombineOperation op, Pipeline... pipes);
+    
+    Pipeline add(Pipeline other, Grouping grp)
 
     /**
-     * Converts this PipelineBuilder to a Pipeline object that can be
+     * Converts this Pipeline to a Pipeline object that can be
      * evaluated by TempoIQ
      */
     Pipeline<T> compile();
@@ -38,24 +35,24 @@ class PipelineBuilder<T> {
     /**
      * Computes the exponential moving average of a stream.
      */
-    PipelineBuilder<Value> expAvg(Period p);
+    Pipeline<Value> expAvg(Period p);
 
     /**
      * Converts a value stream into a boolean stream, where the result will be
      * True if the input stream's value is above V.
      */
-    PipelineBuilder<Boolean> gt(Value v);
+    Pipeline<Boolean> gt(Value v);
 
     /**
      * Converts a value stream into a boolean stream, where the result will be
      * True if the input stream's value is below V.
      */
-    PipelineBuilder<Boolean> lt(Value v);
+    Pipeline<Boolean> lt(Value v);
 
     /**
      *
      */
-    PipelineBuilder aggregate(Aggregation agg, Grouping grp)
+    Pipeline aggregate(Aggregation agg, Grouping grp)
 
 }
 
@@ -86,17 +83,17 @@ enum Aggregation {
 /*** Example 1 - port blake's monitoring example ***/
 
 // Version 1 - name each pipeline stage
-PipelineBuilder<Value> voltage = PipelineBuilder.getSensor("voltage");
-PipelineBuilder<Value> vSmoo = voltage.expAvg(Period.minutes(15));
+Pipeline<Value> voltage = Pipeline.getSensor("voltage");
+Pipeline<Value> vSmoo = voltage.expAvg(Period.minutes(15));
 
-PipelineBuilder<Value> current = PipelineBuilder.getSensor("current");
+Pipeline<Value> current = Pipeline.getSensor("current");
 
-PipelineBuilder<Boolean> overVoltage = voltage.gt(128);
-PipelineBuilder<Boolean> underCurrent = current.lt(2.3);
+Pipeline<Boolean> overVoltage = voltage.gt(128);
+Pipeline<Boolean> underCurrent = current.lt(2.3);
 
-PipelineBuilder<?> query = new PipelineBuilder();
+Pipeline<?> query = new Pipeline();
 
-Pipeline<Boolean> out = PipelineBuilder.combine(CombineOperation.AND,
+Pipeline<Boolean> out = Pipeline.combine(CombineOperation.AND,
                                                 overVoltage,
                                                 underCurrent).compile();
 
@@ -108,12 +105,12 @@ MonitorRule rule = Monitor.getBuilder()
 
 
 // Version 2: Less verbose
-Pipeline<Boolean> out = PipelineBuilder().combine(
+Pipeline<Boolean> out = Pipeline().combine(
         CombineOperation.AND,
-        PipelineBuilder.getSensor("voltage")
+        Pipeline.getSensor("voltage")
                 .expAvg(Period.minutes(15))
                 .gt(128),
-        PipelineBuilder.getSensor("current").
+        Pipeline.getSensor("current").
                 .lt(2.3)
     ).compile();
 
@@ -158,7 +155,7 @@ Collection devices = Collection.getBuilder()
 
 
 
-PipelineBuilder<Value> pipeline = PipelineBuilder.getSensor("ac_power")
+Pipeline<Value> pipeline = Pipeline.getSensor("ac_power")
                             .aggregate(Aggregation.SUM,
                                        Grouping.byDeviceAttribute("installation"));
 
@@ -181,4 +178,3 @@ MonitorRule rule = Monitor.getBuilder()
                                                                 // and providing context to webhooks
                         .build();
 Response<None> = client.enableMonitor(rule);    // normal CRUD on MonitorRule objects
-

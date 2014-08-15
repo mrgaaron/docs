@@ -55,13 +55,11 @@ Device-scope computation. Sensor(s) from a single device yield a new data stream
 
 Selector s = Selector.init().filter(Filter.withDeviceAttribute("installation", "megamicro"));
 
-Pipeline pipeline = PipelineBuilder.and(
-                          PipelineBuilder.getSensor("dcPower").gt(10),
-                          PipelineBuilder.divide(
-                                PipelineBuilder.getSensor("acPower"),
-                                PipelineBuilder.getSensor("dcPower")  // binding to the same sensor in multiple places
-                          ).lt(0.8)
-                    ).compile();
+Pipeline pipeline = Pipeline.getSensor("dcPower").gt(10)
+                    .and(Pipeline.getSensor("acPower")
+                                 .divide(Pipeline.getSensor("dcPower"))
+                                 .lt(0.8)
+                    );
 
 // Same Monitor construction as above
 
@@ -73,16 +71,15 @@ If a panel's AC power is 20% below the installation's average for 30 minutes, se
 
 Selector s = Selector.init(); // All devices
 
-PipelineBuilder installationMean = PipelineBuilder.getSensor("acPower")
+PipelineBuilder installationMean = Pipeline.getSensor("acPower")
                                                   .aggregate(Aggregation.MEAN,
                                                              Grouping.byDeviceAttribute("installation"))
 
-PipelineBuilder deviceOutput = PipelineBuilder.getSensor("acPower")
+PipelineBuilder deviceOutput = Pipeline.getSensor("acPower")
 
-Pipeline pipe = PipelineBuilder.relativeDifference(deviceOutput, installationMean)
-                               .lt(-0.2)
-                               .holdTrue(Period.minutes(30))
-                               .compile();
+Pipeline pipe = deviceOutput.relativeDifference(installationMean)
+                            .lt(-0.2)
+                            .holdTrue(Period.minutes(30));
 
 // Same monitor construction as above
 

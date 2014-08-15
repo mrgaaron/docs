@@ -47,9 +47,9 @@ Here's one way a thermostat device, sensors, and attributes could be modeled in 
 {
   key: "v1-123456",
   attributes: {
-    user_id: "321",
-    building: "444",
-    floor: "main"
+    device_type: "thermostat",
+    customer: "321",
+    site: "444"
   },
   sensors: [
     {
