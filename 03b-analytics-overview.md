@@ -22,35 +22,17 @@ and formats the output as requested.
 
 The following sections describe these parts in more detail.
 
-### Selectors
 
-A selector searches through all the devices in your environment
-
-Devices can be selected using several criteria:
-
-* By device key
-* By attribute value
-* By attribute existence
-
-Multiple criteria can be combined using boolean AND and OR operations.
-
-#### Example
-Customer 123 has thermostats installed at several different sites.
-She wishes to compare the humidity across the sites.
-
-The selector in this case must select the 'hum' sensor on thermostat devices where
-the customer attribute is '123'.
-
-Or, in pseudocode:
-
-```
-device_attr["type"] == "thermostat"
-AND device_attr["customer"] == "123"
-AND sensor_key["hum"]
-```
 
 ### Pipelines
-TODO: update
+
+A pipeline defines a sequence of operations that are applied to data from a sensor.
+They are typically mathematical functions, such as applying a scale factor or
+averaging over a period of time.
+
+Pipelines operate individually on each sensor in a selector. Therefore, for a basic
+pipeline, there's a one-to-one correspondence between input sensors and output computations.
+Combining
 
 The processing pipeline is the heart of an analysis operation.
 The pipeline defines the stream
