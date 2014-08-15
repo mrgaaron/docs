@@ -47,7 +47,7 @@ Here's one way a thermostat device, sensors, and attributes could be modeled in 
 {
   key: "v1-123456",
   attributes: {
-    device_type: "thermostat",
+    type: "thermostat",
     customer: "321",
     site: "444"
   },
@@ -56,20 +56,20 @@ Here's one way a thermostat device, sensors, and attributes could be modeled in 
       key: "temp1",
       attributes: {
         unit: "degC",
-        type: "temperature"
+        measurement: "temperature"
       }
     },
     {
       key: "temp2",
       attributes: {
         unit: "degC",
-        type: "temperature"
+        measurement: "temperature"
       }
     },
     {
       key: "hum",
       attributes: {
-        type: "humidity"
+        measurement: "humidity"
       }
     }
   ]

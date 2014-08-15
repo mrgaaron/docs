@@ -16,7 +16,7 @@ An analytics request in TempoIQ is made up of three components: a selector,
 a processing pipeline, and an executor.
 
 The selector specifies which devices and sensors are part of the analysis;
-the pipeline defines the computations to be carried out;
+the pipeline defines the computations to be carried out on a given selector's sensors;
 and the executor runs the analysis over a specified time range (realtime or historical)
 and formats the output as requested.
 
@@ -24,9 +24,7 @@ The following sections describe these parts in more detail.
 
 ### Selectors
 
-A selector filters the devices in your environment down to the group
-that you are actually performing the analysis on. It is roughly equivalent to the WHERE
-clause of a SQL SELECT statement.
+A selector searches through all the devices in your environment
 
 Devices can be selected using several criteria:
 
@@ -37,17 +35,18 @@ Devices can be selected using several criteria:
 Multiple criteria can be combined using boolean AND and OR operations.
 
 #### Example
-A customer owns an apartment building where each unit has a thermostat installed.
-She wishes to compare the temperature and humidity between apartment 1A and
-apartment 2A.
-The apartment number is stored in the thermostat's `site` attribute.
+Customer 123 has thermostats installed at several different sites.
+She wishes to compare the humidity across the sites.
 
-The selector in this case must select thermostat devices where the site ID is either
-1A or 2A.
+The selector in this case must select the 'hum' sensor on thermostat devices where
+the customer attribute is '123'.
 
 Or, in pseudocode:
+
 ```
-attr["device_type"] == "thermostat" AND (attr["site"] == "1A" OR attr["site"] == "2A")
+device_attr["type"] == "thermostat"
+AND device_attr["customer"] == "123"
+AND sensor_key["hum"]
 ```
 
 ### Pipelines
