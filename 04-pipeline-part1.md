@@ -44,4 +44,4 @@ response = client.read(sensors, pipe, start, end);
 An analytics pipeline can contain several operations in sequence. Each operation takes
 the result of the previous operation as its input. This enables you to compose complex
 analysis functions out of simple component operations. See the pipeline cookbook for
-example pipelines that are composed from the basic supported operations.
+example pipelines that are composed from the basic pipeline operations.

@@ -32,9 +32,9 @@ you must use special wildcard statements. See the API reference for the actual s
 ### Streams
 
 A stream is an ordered sequence of data points (i.e. `timestamp, value` tuples)
-along with some context describing the source of the data points.
+along with some metadata describing the source of the data points.
 When you read data from several sensors, TempoIQ returns one stream per sensor,
-where each stream's context describes the device and sensor that the data stream
+where each stream's metadata describes the device and sensor that the stream
 originated from.
 
 
@@ -61,7 +61,7 @@ sensors = {
 start = "2014-06-01T00:00:00Z";
 end = "2014-06-06T00:00:00Z";
 
-response = client.read(sensors, start, end);
+results = client.read(sensors, start, end);
 
 // TODO: example code for iterating over sensor metadata and data points
 ```
