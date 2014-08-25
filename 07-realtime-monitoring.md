@@ -1,4 +1,4 @@
-## Realtime monitoring
+# Realtime monitoring
 
 TempoIQ's realtime monitoring API allows you to define monitoring rules
 for your devices. These rules will alert you as soon as a device writes data that
@@ -11,6 +11,8 @@ abnormally quickly.
 Defining a monitoring rule is very similar to defining an analytics query. You
 create a selector to indicate which sensors to monitor, then compose a pipeline
 to define the criteria to monitor.
+
+`[ graphic showing a selector, pipeline, and trigger ]`
 
 #### Boolean streams
 
@@ -50,3 +52,38 @@ attributes if it's the result of combining or aggregating several streams togeth
 
 
 ### Example
+
+Acme Thermostat wants to receive an alert whenever a thermostat's temperature
+is below 55 degrees Fahrenheit.
+
+The selector for this rule is straightforward; it should select the
+temperature sensor for every device of type *thermostat*.
+
+```
+selector = { device: { attributes: { type: "thermostat" } }
+             sensor: { key: "temp" } }
+```
+
+The pipeline simply takes each stream from the selector, and checks if the value
+is less than 55 degrees:
+
+```
+pipe = Pipeline.start().lt(55)
+```
+
+Whenever the condition is met, we want to send a webhook to Acme's frontend application
+so it can forward it to the relevant customer:
+
+```
+trigger = Trigger.webhook("https://app.acmethermostat.com/webhooks")
+```
+
+Finally, send the rule request using the TempoIQ client:
+```
+resp = client.addMonitorRule(selector, pipe, trigger, {name: "lowTemperature"})
+```
+
+### Behavior of streams in a realtime setting
+
+
+### Managing monitoring rules
