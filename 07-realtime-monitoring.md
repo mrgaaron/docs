@@ -53,7 +53,7 @@ attributes if it's the result of combining or aggregating several streams togeth
 
 ### Example
 
-Acme Thermostat wants to receive an alert whenever a thermostat's temperature
+Acme Thermostat wants to receive an alert whenever any thermostat's temperature
 is below 55 degrees Fahrenheit.
 
 The selector for this rule is straightforward; it should select the
@@ -78,10 +78,23 @@ so it can forward it to the relevant customer:
 trigger = Trigger.webhook("https://app.acmethermostat.com/webhooks")
 ```
 
-Finally, send the rule request using the TempoIQ client:
+Finally, use the TempoIQ client to create the complete monitoring rule
+on the server:
+
 ```
 resp = client.addMonitorRule(selector, pipe, trigger, {name: "lowTemperature"})
 ```
+Every time a thermostat's temperature crosses the 55 degree threshold, the app's
+webhook endpoint receives a JSON object via HTTP POST. The object
+contains fields as described above in *Data contained in triggers*.
+
+### Monitoring rule lifecycle
+
+Unlike the request-response nature of historical analytics queries, monitoring
+rules are persisted in TempoIQ so that the rules can evaluate new data in
+realtime.
+
+
 
 ### Behavior of streams in a realtime setting
 
