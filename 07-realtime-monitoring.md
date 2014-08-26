@@ -60,7 +60,7 @@ The selector for this rule is straightforward; it should select the
 temperature sensor for every device of type *thermostat*.
 
 ```
-selector = { device: { attributes: { type: "thermostat" } }
+selector = { device: { attributes: { type: "thermostat" } },
              sensor: { key: "temp" } }
 ```
 
@@ -75,28 +75,36 @@ Whenever the condition is met, we want to send a webhook to Acme's frontend appl
 so it can forward it to the relevant customer:
 
 ```
-trigger = Trigger.webhook("https://app.acmethermostat.com/webhooks")
+trigger = Trigger.webhook("https://app.example.com/webhooks")
 ```
 
 Finally, use the TempoIQ client to create the complete monitoring rule
 on the server:
 
 ```
-resp = client.addMonitorRule(selector, pipe, trigger, {name: "lowTemperature"})
+resp = client.addMonitorRule(selector, pipe, trigger,
+                             {key: "lowtemp", name: "Low Temperature"})
 ```
 Every time a thermostat's temperature crosses the 55 degree threshold, the app's
 webhook endpoint receives a JSON object via HTTP POST. The object
 contains fields as described above in *Data contained in triggers*.
 
-### Monitoring rule lifecycle
+### Rule lifecycle
 
-Unlike the request-response nature of historical analytics queries, monitoring
-rules are persisted in TempoIQ so that the rules can evaluate new data in
-realtime.
+The TempoIQ API provides a way to list, modify, and delete existing rules. In
+addition, you can temporarily disable a rule by setting its `state` field to
+`pending`. For details on rule states and modifying rules, see the *Monitoring
+rule reference*.
 
+### Out-of-order writes
 
+An out-of-order write occurs when you write a data point for a sensor where
+the timestamp is before the sensor's last data point's timestamp.
+TempoIQ supports out-of-order writes, but handling them in a realtime
+context can produce unexpected results. This is because an out-of-order
+write breaks the invariance that a stream of data points is strictly
+chronological.
 
-### Behavior of streams in a realtime setting
-
-
-### Managing monitoring rules
+As a result, monitoring rules ignore out-of-order points. Points written
+out-of-order are still stored and can be queried with the historical analytics
+APIs.
