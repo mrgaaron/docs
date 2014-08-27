@@ -3,13 +3,6 @@
 The main entry point to the TempoIQ API.
 
 
- * Retrieve a filtered list of `Sensor`s
- * Retrieve a Sensor by key
- * Retrieve datapoints for a single sensor in a specific time interval
- * Write datapoints for a single sensor
- * Retrieve datapoints aggregated across multiple Sensors
- * Write datapoints to multiple Sensor
-
 ## Fields
 
 | Name | Type | Description |
@@ -83,16 +76,55 @@ Nothing
 
 ---
 
-### writeDeviceData(device, data)
-Writes one or more data points to one or more sensors on the given device.
+### writeData(data)
+Writes one or more data points to any device and sensor. This is the most
+flexible write method, since it can accommodate a collection of points at
+multiple timestamps, on multiple different devices.
+
+Sometimes, it's not feasible for deployed devices to write data directly to
+TempoIQ. A common solution is to use a gateway server to ingest and queue data
+from all devices, and periodically forward the queued data to TempoIQ. This
+method is well suited for that use case, because the gateway can simply maintain
+a single queue for data from all devices, flushing the queue with a single
+writeData call. For a more detailed description
+of this design pattern, see the *Writing via a Gateway* guide.
 
 | Argument | Type | Description |
 | -------- | ---- | ----------- |
-| device | `Device` | The device to write |
-| data | Array of `MultiDataPoint` |
+| data | Array of `WriteableDataPoint` | Data points to write |
+
+
+### writeDeviceData(device, data)
+Writes one or more data points to one or more sensors on a given device.
+This method is a special case of writeData, where the device is the same for
+all points being written.
+
+**Example:**
+
+Every minute, a power meter logs its voltage, frequency, and energy readings and
+immediately sends the data to TempoIQ.
+
+```
+reading = [ {
+              "timestamp": "2014-08-22T12:45:00Z",
+              "values": {
+                          "voltage": 120.23,
+                          "frequency": 59.9,
+                          "energy": 4230
+                        }
+            } ]
+
+client.writeDeviceData(THIS_DEVICE, reading)
+
+```
+
+Note that **reading** is an array. In this example it only contains one
+`WriteableMultiPoint` but in general it could contain many.
+
+| Argument | Type | Description |
+| -------- | ---- | ----------- |
+| device | `Device` | The device to write to |
+| data | Array of `WriteableMultiPoint` | Data points to write |
 
 #### Returns
 Nothing
-
-
-### writeData(data)
