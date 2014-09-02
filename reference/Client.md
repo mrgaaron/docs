@@ -108,10 +108,10 @@ immediately sends the data to TempoIQ.
 reading = [ {
               "timestamp": "2014-08-22T12:45:00Z",
               "values": {
-                          "voltage": 120.23,
-                          "frequency": 59.9,
-                          "energy": 4230
-                        }
+                "voltage": 120.23,
+                "frequency": 59.9,
+                "energy": 4230
+              }
             } ]
 
 client.writeDeviceData(THIS_DEVICE, reading)

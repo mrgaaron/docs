@@ -14,20 +14,34 @@ TempoIQ uses a simple two-level data hierarchy, consisting of Devices and Sensor
 
 ### Devices
 
-A device generally corresponds to a discrete physical unit that has one or more associated sensors. For example: solar panels, vehicles, or activity monitors.
+A device generally corresponds to a discrete physical unit that has one
+or more associated sensors. For example: solar panels, vehicles, or activity
+monitors.
 
-Each device is required to have a globally unique key. Good choices for device keys include serial numbers, UUIDs, and other identifiers that will not change or conflict with other devices.
+Each device is required to have a globally unique key. Good choices for
+device keys include serial numbers, UUIDs, and other identifiers that will
+not change or conflict with other devices.
 
-In addition to a key, you can define attributes on a device. Attributes allow you to add additional metadata to a device, and construct powerful analytics queries by analyzing many devices at once. Examples of possible attributes include user ID, geographic region, and device model number.
+In addition to a key, you can define attributes on a device. Attributes
+allow you to add additional metadata to a device, and construct powerful
+analytics queries by analyzing many devices at once. Examples of possible
+attributes include user ID, geographic region, and device model number.
 
 
 ### Sensors
 
-A sensor corresponds to a single measurement coming from a specific device. For example: internal temperature, DC voltage, or wind speed.
+A sensor corresponds to a single measurement coming from a specific device.
+For example: internal temperature, DC voltage, or wind speed.
 
-A sensor is required to have a key unique within its device. Sensors can be referenced by the combination of device key and sensor key. There is no concept of a sensor that is not associated with a device.
+A sensor is required to have a key unique within its device. Sensors
+are referenced by the combination of device key and sensor key. There
+is no concept of a sensor that is not associated with a device.
 
-In addition to a key, you can define additional attributes on a sensor. Sensor attributes should describe the specific sensor, rather than the device as a whole. Examples of possible sensor attributes include measurement unit, calibration offset, or sensor location (if the location doesn't apply to the overall device).
+In addition to a key, you can define additional attributes on a sensor.
+Sensor attributes should describe the specific sensor, rather than the
+device as a whole. Examples of possible sensor attributes include
+measurement unit, calibration offset, or sensor location (if the location
+  doesn't apply to the overall device).
 
 ### Example
 
