@@ -1,5 +1,9 @@
 # Device
 
+The device is the core business object in TempoIQ. All data is stored
+within a device, and analytics can be performed on a device or by
+comparing across several devices.
+
 A device generally corresponds to a discrete physical unit that has one
 or more associated sensors. For example: a solar panel, vehicle, or activity
 monitor.
@@ -10,7 +14,7 @@ monitor.
 | Name | Type | Description |
 |------|------|-------------|
 | key | String | Required. Unique identifier for the device |
-| name | String | Human-readable description |
+| name | String | Human-readable name |
 | attributes | Map of String=>String | Key/value metadata describing the device |
 | sensors | Array of `Sensor` | The sensors attached to the device |
 
@@ -53,6 +57,16 @@ the average temperature on each floor in a given building.
 List of `Sensor` objects attached to the device. Sensors may be added
 and deleted after creating a device, but keep in mind that deleting a
 sensor will remove all of its historical data.
+
+If sensors are frequently created or removed from a device, it might
+make sense to split up sensors into multiple smaller devices that each
+have a more consistent configuration.
+
+TempoIQ's storage engine is optimized for devices with relatively few
+long-living sensors. You may find yourself frequently creating/deleting
+sensors on a device, or having devices with more than 30-50 sensors.
+If this is the case, consider splitting your sensors across several
+devices with smaller, more consistent configurations.
 
 #### Attributes vs. sensors
 

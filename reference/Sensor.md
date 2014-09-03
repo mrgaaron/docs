@@ -3,12 +3,9 @@
 A sensor corresponds to a single measurement coming from a specific device.
 For example: internal temperature, DC voltage, or wind speed.
 
-A sensor is required to have a key unique within its device. Sensors
-are referenced by the combination of device key and sensor key. There
+A sensor's key must be unique within its device. Sensors
+are addressed by the combination of device key and sensor key. There
 is no concept of a sensor that is not associated with a device.
-
-In addition to a key, you can define additional attributes on a sensor.
-
 
 
 ## Fields
@@ -16,7 +13,7 @@ In addition to a key, you can define additional attributes on a sensor.
 | Name | Type | Description |
 |------|------|-------------|
 | key | String | Required. Identifier for the sensor; unique within a device |
-| name | String | Human-readable description |
+| name | String | Human-readable name |
 | attributes | Map of String=>String | Key/value metadata describing the sensor |
 
 
@@ -52,5 +49,5 @@ a given attribute value (e.g. "type": "temp") than list all possible sensor
 keys (e.g. ["temp1", "temp2", ... ]).
 
 Sensor attributes should describe the specific sensor, rather than the
-device as a whole. If the attribute isn't sensor-specific, it should be a
+device as a whole. If an attribute isn't sensor-specific, it should be a
 device attribute.
