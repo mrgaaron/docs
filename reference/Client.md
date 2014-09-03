@@ -77,54 +77,24 @@ Nothing
 ---
 
 ### writeData(data)
-Writes one or more data points to any device and sensor. This is the most
-flexible write method, since it can accommodate a collection of points at
-multiple timestamps, on multiple different devices.
+Writes data points to one or more devices and sensors.
 
-Sometimes, it's not feasible for deployed devices to write data directly to
-TempoIQ. A common solution is to use a gateway server to ingest and queue data
-from all devices, and periodically forward the queued data to TempoIQ. This
-method is well suited for that use case, because the gateway can simply maintain
-a single queue for data from all devices, flushing the queue with a single
-writeData call. For a more detailed description
-of this design pattern, see the *Writing via a Gateway* guide.
+If a sensor already has a DataPoint at a given timestamp, writing a new
+DataPoint with the same timestamp overwrites the old DataPoint's
+value. This means that writes are idempotent, in other words, repeatedly
+writing the same data to a sensor does not change what's stored. This
+can often simplify your application's write logic, because there's
+no risk of data corruption if you happen to write data multiple times.
+
 
 | Argument | Type | Description |
 | -------- | ---- | ----------- |
-| data | Array of `WriteableDataPoint` | Data points to write |
-
-
-### writeDeviceData(device, data)
-Writes one or more data points to one or more sensors on a given device.
-This method is a special case of writeData, where the device is the same for
-all points being written.
-
-**Example:**
-
-Every minute, a power meter logs its voltage, frequency, and energy readings and
-immediately sends the data to TempoIQ.
-
-```
-reading = [ {
-              "timestamp": "2014-08-22T12:45:00Z",
-              "values": {
-                "voltage": 120.23,
-                "frequency": 59.9,
-                "energy": 4230
-              }
-            } ]
-
-client.writeDeviceData(THIS_DEVICE, reading)
-
-```
-
-Note that **reading** is an array. In this example it only contains one
-`WriteableMultiPoint` but in general it could contain many.
-
-| Argument | Type | Description |
-| -------- | ---- | ----------- |
-| device | `Device` | The device to write to |
-| data | Array of `WriteableMultiPoint` | Data points to write |
+| data | WriteBody | Data points to write |
 
 #### Returns
-Nothing
+Nothing.
+
+#### Errors
+If you attempt to write to a sensor or device that does not exist, or
+specify an invalid DataPoint format, a MultiStatus will be returned
+indicating which Devices succeeded and which failed in writing.
