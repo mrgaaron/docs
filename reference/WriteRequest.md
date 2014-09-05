@@ -1,8 +1,8 @@
-# WriteBody
+# WriteRequest
 
-An object containing sensor data to write to TempoIQ.
+Contains sensor data to write to TempoIQ.
 
-A WriteBody is a map of device keys to their associated
+A WriteRequest is a map of device keys to their associated
 sensor data. Each device's sensor data is itself a map from
 the sensor key to an array of DataPoints for that sensor. In JSON,
 this looks like:
@@ -25,11 +25,11 @@ this looks like:
 ```
 
 Client libraries may offer convenience methods and shortcuts for
-constructing WriteBodys.
+constructing WriteRequests.
 
-A single WriteBody can contain DataPoints for many devices and sensors.
+A single WriteRequest can contain DataPoints for many devices and sensors.
 When possible, it's recommended to aggregate many DataPoints into a single
-WriteBody instead of sending many small requests. This can increase write
+WriteRequest instead of sending many small requests. This can increase write
 throughput dramatically.
 
 See: `Client.writeData`

@@ -14,12 +14,14 @@ The main entry point to the TempoIQ API.
 
 * Device CRUD methods
 * Data write methods
-* Historical read and analysis methods
+* Historical read methods
 * Monitoring rule CRUD methods
 
 ---
 
 ### createDevice(device)
+`POST /v2/devices/`
+
 Creates a device. Creating a device with the same key as an existing device
 results in an error. If the device does not contain a key, one will be
 generated.
@@ -35,6 +37,8 @@ The `Device` that was created.
 
 
 ### getDevice(key)
+`GET /v2/devices/:key/`
+
 Gets a device.
 
 | Argument | Type | Description |
@@ -46,6 +50,8 @@ The `Device` with the provided key.
 
 
 ### updateDevice(device)
+`PUT /v2/devices/:key/`
+
 Updates a device with the provided metadata and sensors. To safely modify just
 some of a device's properties, it is recommended to use this method in a
 *GET-modify-PUT* pattern. First, get the device object using getDevice or
@@ -65,6 +71,8 @@ The updated `Device`
 
 
 ### deleteDevice(device)
+`DELETE /v2/devices/:key/`
+
 Deletes all the device's metadata, sensors, and sensor data.
 
 | Argument | Type | Description |
@@ -77,6 +85,9 @@ Nothing
 ---
 
 ### writeData(data)
+
+`POST /v2/write/`
+
 Writes data points to one or more devices and sensors.
 
 If a sensor already has a DataPoint at a given timestamp, writing a new
@@ -89,7 +100,7 @@ no risk of data corruption if you happen to write data multiple times.
 
 | Argument | Type | Description |
 | -------- | ---- | ----------- |
-| data | WriteBody | Data points to write |
+| data | WriteRequest | Data points to write |
 
 #### Returns
 Nothing.
@@ -98,3 +109,15 @@ Nothing.
 If you attempt to write to a sensor or device that does not exist, or
 specify an invalid DataPoint format, a MultiStatus will be returned
 indicating which Devices succeeded and which failed in writing.
+
+---
+
+### readData(readRequest)
+
+`GET /v2/read/`
+
+Reads data points from one or more devices and sensors.
+
+| Argument | Type | Description |
+| ----- | ------ | ------- |
+| readRequest | `ReadRequest` | Parameters for the read operation |
