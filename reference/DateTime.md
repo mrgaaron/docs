@@ -7,7 +7,7 @@ TempoIQ treats time.
 
 Internally, TempoIQ stores all DateTime values in UTC
 with millisecond precision. In the HTTP API, DateTimes are represented in
-ISO-8601 format, for example, `2014-06-29T00:00:01.000-0500`. 
+[ISO-8601 format][2], for example, `2014-06-29T00:00:01.000-0500`.
 
 Where applicable, TempoIQ uses language-specific DateTime implementations
 in client libraries. This table shows the DateTime class used in each library:
@@ -24,3 +24,4 @@ time zone information in your application.
 
 
 [1]: http://infiniteundo.com/post/25326999628/falsehoods-programmers-believe-about-time
+[2]: http://en.wikipedia.org/wiki/ISO_8601
