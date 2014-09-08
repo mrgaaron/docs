@@ -7,8 +7,8 @@ Describes a read operation to perform.
 | Name | Type | Description |
 | -----| ----- | ----- |
 | search | `Search` | Required. Selects the sensors to read |
-| pipeline | `Pipeline` | Optional. A sequence of operations to transform the raw sensor data
 | action | `ReadAction` | Required. Parameters for specifying the time range of data to read |
+| pipeline | `Pipeline` | Optional. A sequence of operations to transform the raw sensor data |
 
 
 ## Examples

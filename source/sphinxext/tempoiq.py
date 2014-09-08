@@ -18,7 +18,7 @@ class TempoIQObject(ObjectDescription):
     doc_field_types = [
         TypedField('arguments', label=l_('Arguments'),
                    names=('argument', 'arg', 'parameter', 'param'),
-                   typerolename='method', typenames=('type', 'paramtype'),
+                   typerolename='class', typenames=('type', 'paramtype'),
                    can_collapse=True),
         Field('endpoint', label=l_('HTTP Endpoint'), has_arg=False,
               names=('endpoint', )),
@@ -112,6 +112,24 @@ class TempoIQObject(ObjectDescription):
 
 class TempoIQMethod(TempoIQObject):
     has_arguments = True
+
+    doc_field_types = [
+        TypedField('arguments', label=l_('Arguments'),
+                   names=('argument', 'arg', 'parameter', 'param'),
+                   typerolename='class', typenames=('type', 'paramtype'),
+                   can_collapse=True),
+        Field('endpoint', label=l_('HTTP Endpoint'), has_arg=False,
+              names=('endpoint', )),
+        GroupedField('errors', label=l_('Errors'), rolename='err',
+                     names=('throws', 'errors'),
+                     can_collapse=True),
+        Field('returnvalue', label=l_('Returns'), has_arg=False,
+              names=('returns', 'return')),
+        Field('returntype', label=l_('Return type'), has_arg=False,
+              names=('rtype', )),
+        Field('cursored', label=l_("Cursored"), names=('cursored', 'cursor'),
+              has_arg=False)
+    ]
 
 
 class TIQXRefRole(XRefRole):

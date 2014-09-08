@@ -9,11 +9,10 @@ Welcome to TempoIQ Manual's documentation!
 Contents:
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
 
-   read.rst
-   client.rst
-   device.rst
+   /concepts/index
+   /reference/index
 
 
 Indices and tables
@@ -22,4 +21,3 @@ Indices and tables
 * :ref:`genindex`
 * :ref:`modindex`
 * :ref:`search`
-

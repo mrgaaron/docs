@@ -24,8 +24,8 @@ extensions = [
     'tempoiq'
 ]
 
-# Name of the default domain. TODO: make a separate TempoIQ domain
-primary_domain = 'py'
+# Name of the default domain.
+primary_domain = 'tempoiq'
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -35,6 +35,12 @@ source_suffix = '.rst'
 
 # The master toctree document.
 master_doc = 'index'
+
+# A list of (type, target) tuples (by default empty) that should be ignored
+# when generating warnings in “nitpicky mode”
+nitpick_ignore = [
+    ('tempoiq:class', 'String')
+]
 
 # General information about the project.
 project = u'TempoIQ Manual'
@@ -66,6 +72,9 @@ exclude_patterns = []
 
 # The name of the Pygments (syntax highlighting) style to use.
 pygments_style = 'sphinx'
+
+# Default language for syntax highlighting
+highlight_language = 'javascript'
 
 
 # -- Options for HTML output ----------------------------------------------
@@ -151,4 +160,3 @@ html_static_path = ['_static']
 
 # Output file base name for HTML help builder.
 htmlhelp_basename = 'TempoIQManualdoc'
-
