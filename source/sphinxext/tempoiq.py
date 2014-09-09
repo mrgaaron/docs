@@ -9,6 +9,9 @@ from sphinx.roles import XRefRole
 from sphinx.util.docfields import Field, GroupedField, TypedField
 from sphinx.util.nodes import make_refnode
 
+## TODO: create Objects:
+# - Selector
+# - PipelineFunction
 
 class TempoIQObject(ObjectDescription):
 
@@ -123,10 +126,8 @@ class TempoIQMethod(TempoIQObject):
         GroupedField('errors', label=l_('Errors'), rolename='err',
                      names=('throws', 'errors'),
                      can_collapse=True),
-        Field('returnvalue', label=l_('Returns'), has_arg=False,
+        Field('returns', label=l_('Returns'), has_arg=False,
               names=('returns', 'return')),
-        Field('returntype', label=l_('Return type'), has_arg=False,
-              names=('rtype', )),
         Field('cursored', label=l_("Cursored"), names=('cursored', 'cursor'),
               has_arg=False)
     ]

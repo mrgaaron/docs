@@ -6,7 +6,7 @@
 Welcome to TempoIQ Manual's documentation!
 ==========================================
 
-Contents:
+
 
 .. toctree::
    :maxdepth: 1
