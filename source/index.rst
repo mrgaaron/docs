@@ -6,8 +6,6 @@
 Welcome to TempoIQ Manual's documentation!
 ==========================================
 
-
-
 .. toctree::
    :maxdepth: 1
 
@@ -15,8 +13,8 @@ Welcome to TempoIQ Manual's documentation!
    /reference/index
 
 
-* :ref:`genindex`
+:ref:`genindex`
 
 .. only:: dev
 
-   * :ref:`todos`
+   :ref:`todos`

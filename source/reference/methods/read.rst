@@ -1,7 +1,8 @@
 Reading
 =======
 
-.. default-domain:: tempoiq
+Description
+-----------
 
 .. method:: read(readRequest)
 
@@ -9,6 +10,8 @@ Reading
 
    :cursored: Yes
 
+   Reads data points from one or more devices and sensors.
+
    :arg ReadRequest readRequest:
 
-      The thing that you want to read.
+      Parameters for the read operation

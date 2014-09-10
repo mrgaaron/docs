@@ -4,4 +4,4 @@ Monitoring Rules
 
 Coming soon!
 
-.. TODO:: write monitoring rules stuff
+.. TODO:: write monitoring CRUD docs
