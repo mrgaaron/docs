@@ -2,6 +2,9 @@
 TimeZone
 =========
 
+Description
+-----------
+
 .. class:: TimeZone
 
 TempoIQ supports the full list of time zones provided in the
@@ -14,5 +17,10 @@ ISO 8601. These are ambiguous. For instance, CST can either mean Central
 Standard Time in the United States or China Standard Time in China. For this
 reason, the Olson naming conventions are used. If the colloquial abbreviations
 are required, a lookup table is recommended for conversion.
+
+Supported Time Zones
+--------------------
+
+.. include:: /includes/timezone-table.rst
 
 See: :class:`DateTime`

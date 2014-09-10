@@ -7,4 +7,4 @@ Methods
    device-sensor-crud
    write
    read
-   toc-monitoring-crud
+   monitoring-crud

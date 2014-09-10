@@ -15,9 +15,8 @@ Welcome to TempoIQ Manual's documentation!
    /reference/index
 
 
-Indices and tables
-==================
-
 * :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
+
+.. only:: dev
+
+   * :ref:`todos`

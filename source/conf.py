@@ -13,6 +13,13 @@ sys.path.append(os.path.abspath('sphinxext'))
 
 # -- General configuration ------------------------------------------------
 
+# Set to True to remove dev-only stuff. Can also be done in sphinx-build
+# cmd line args as "-t publish"
+#tags.add('publish')
+
+if not tags.has('publish'):
+    tags.add('dev')
+
 # If your documentation needs a minimal Sphinx version, state it here.
 #needs_sphinx = '1.0'
 
@@ -57,7 +64,11 @@ release = '1.0'
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
-exclude_patterns = []
+exclude_patterns = ['includes/*']
+
+# Include TODO directives in the output. Turn off for publishing in prod
+if tags.has('dev'):
+    todo_include_todos = True
 
 # The reST default role (used for this markup: `text`) to use for all
 # documents.
