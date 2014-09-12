@@ -13,7 +13,7 @@ will also contain code snippets and more advanced guided tutorials.
 If you spot an error or omission, please email support@tempoiq.com. Thanks!
 
 .. toctree::
-   :maxdepth: 1
+   :titlesonly:
 
    /concepts/index
    /reference/index

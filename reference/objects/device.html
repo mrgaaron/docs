@@ -218,6 +218,34 @@ of, and should rarely change. TempoIQ also does not store a history of past
 attribute values.</p>
 </div>
 </div>
+<div class="section" id="example">
+<h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
+<p>Smart power meter device with two sensors:</p>
+<div class="highlight-javascript"><div class="highlight"><pre><span class="p">{</span>
+  <span class="s2">&quot;key&quot;</span><span class="o">:</span> <span class="s2">&quot;m34234589&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="s2">&quot;Bldg 4 mains meter&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;building&quot;</span><span class="o">:</span> <span class="s2">&quot;4&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;mains_meter&quot;</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;sensors&quot;</span><span class="o">:</span><span class="p">[</span>
+    <span class="p">{</span>
+      <span class="s2">&quot;key&quot;</span><span class="o">:</span> <span class="s2">&quot;voltage&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;unit&quot;</span><span class="o">:</span> <span class="s2">&quot;Volts&quot;</span>
+      <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="s2">&quot;key&quot;</span><span class="o">:</span> <span class="s2">&quot;cumulative_energy&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;unit&quot;</span><span class="o">:</span> <span class="s2">&quot;KWh&quot;</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
 </div>
 
 

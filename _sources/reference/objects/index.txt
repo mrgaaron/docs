@@ -5,6 +5,6 @@ Domain Objects
 
 .. toctree::
    :glob:
-   :maxdepth: 1
+   :titlesonly:
 
    *

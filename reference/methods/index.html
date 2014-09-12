@@ -114,16 +114,24 @@
             
   <div class="section" id="methods">
 <h1>Methods<a class="headerlink" href="#methods" title="Permalink to this headline">¶</a></h1>
+<p>This section documents the API calls that the TempoIQ backend supports.</p>
+<p>In the API libraries, these calls are exposed as methods on a <tt class="docutils literal"><span class="pre">Client</span></tt> object.
+Clients may also expose convenience methods for special cases of some calls.</p>
+<p>When using the HTTP interface directly, supply the documented method&#8217;s argument
+as a JSON body in the HTTP request.</p>
+<div class="admonition-todo admonition" id="index-0">
+<p class="first admonition-title">Todo</p>
+<p class="last">page documenting specifics for HTTP</p>
+</div>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="device-sensor-crud.html">Device and Sensor CRUD</a></li>
-<li class="toctree-l1"><a class="reference internal" href="write.html">Writing Data</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="write.html#description">Description</a></li>
-<li class="toctree-l2"><a class="reference internal" href="write.html#errors">Errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="device-sensor-crud.html">Device and Sensor CRUD</a><ul class="simple">
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="read.html">Reading</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="read.html#description">Description</a></li>
+<li class="toctree-l1"><a class="reference internal" href="write.html">Writing Data</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="read.html">Reading Historical Data</a><ul class="simple">
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="monitoring-crud.html">Monitoring Rules</a></li>
