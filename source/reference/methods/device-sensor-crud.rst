@@ -33,24 +33,27 @@ Find devices
 Example
 ~~~~~~~
 
-Return devices w
+Return devices with keys *dev32*, *dev33*, and *dev37*. Note that in the HTTP
+API, the search object is wrapped in another object with an additional "find"
+field::
 
-{
-  "search": {
-    "select": "devices",
-    "filters": {
-      "devices": {
-        "or": [
-          {"key": "dev32"},
-          {"key": "dev33"}
-        ]
+    {
+      "search": {
+        "select": "devices",
+        "filters": {
+          "devices": {
+            "or": [
+              {"key": "dev32"},
+              {"key": "dev33"},
+              {"key": "dev37"},
+            ]
+          }
+        },
       }
-    },
-  }
-  "find": {
-    "quantifier": "all"
-  }
-}
+      "find": {
+        "quantifier": "all"
+      }
+    }
 
 
 Update device
