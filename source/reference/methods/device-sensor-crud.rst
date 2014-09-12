@@ -1,25 +1,42 @@
 Device and Sensor CRUD
 ======================
 
-.. default-domain:: tempoiq
+
+Create device
+-------------
 
 .. method:: createDevice(device)
 
    :endpoint: ``POST /v2/devices/``
    :arg Device device: The device to create
-   :rtype: The :class:`Device` that was created
+   :returns: The :class:`Device` that was created
+
+Get device
+----------
 
 .. method:: getDevice(key)
 
    :endpoint: ``GET /v2/devices/:key/``
    :arg String key: The key of the device to get
-   :rtype: The :class:`Device` with the given key
+   :returns: The :class:`Device` with the given key
+
+List devices
+------------
+
+.. method:: listDevices(search)
+
+   :endpoint: ``GET /v2/devices/``
+   :arg Search search:
+   :returns: A :class:`Cursor` over the devices
+
+Update device
+-------------
 
 .. method:: updateDevice(device)
 
    :endpoint: ``PUT /v2/devices/:key/``
    :arg Device device: The updated device
-   :rtype Device: The updated device
+   :returns: The updated :class:`Device`
 
    Updates a device with the provided metadata and sensors. To safely modify just
    some of a device's properties, it is recommended to use this method in a

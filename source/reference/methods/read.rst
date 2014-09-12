@@ -1,5 +1,5 @@
-Reading
-=======
+Reading Historical Data
+=======================
 
 Description
 -----------
@@ -15,3 +15,12 @@ Description
    :arg ReadRequest readRequest:
 
       Parameters for the read operation
+
+   :returns:
+
+      :class:`ReadResponse` with the requested data.
+
+Example
+-------
+
+.. todo:: example of reading data

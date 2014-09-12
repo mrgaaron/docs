@@ -8,7 +8,7 @@ Contains sensor data to write to TempoIQ.
 
 A WriteRequest is a map of device keys to their associated
 sensor data. Each device's sensor data is itself a map from
-the sensor key to an array of DataPoints for that sensor. In JSON,
+the sensor key to an array of :class:`DataPoint`\ s for that sensor. In JSON,
 this looks like::
 
     {

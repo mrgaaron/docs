@@ -23,16 +23,6 @@ class TempoIQObject(ObjectDescription):
                    names=('argument', 'arg', 'parameter', 'param'),
                    typerolename='class', typenames=('type', 'paramtype'),
                    can_collapse=True),
-        Field('endpoint', label=l_('HTTP Endpoint'), has_arg=False,
-              names=('endpoint', )),
-        GroupedField('errors', label=l_('Errors'), rolename='err',
-                     names=('throws', 'errors'),
-                     can_collapse=True),
-        Field('returnvalue', label=l_('Returns'), has_arg=False,
-              names=('returns', 'return')),
-        Field('returntype', label=l_('Return type'), has_arg=False,
-              names=('rtype', ))
-
     ]
 
     def handle_signature(self, sig, signode):
