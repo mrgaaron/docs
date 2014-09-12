@@ -1,6 +1,7 @@
 Device and Sensor CRUD
 ======================
 
+.. contents::
 
 Create device
 -------------
@@ -20,14 +21,37 @@ Get device
    :arg String key: The key of the device to get
    :returns: The :class:`Device` with the given key
 
-List devices
+Find devices
 ------------
 
-.. method:: listDevices(search)
+.. method:: findDevices(search)
 
    :endpoint: ``GET /v2/devices/``
    :arg Search search:
    :returns: A :class:`Cursor` over the devices
+
+Example
+~~~~~~~
+
+Return devices w
+
+{
+  "search": {
+    "select": "devices",
+    "filters": {
+      "devices": {
+        "or": [
+          {"key": "dev32"},
+          {"key": "dev33"}
+        ]
+      }
+    },
+  }
+  "find": {
+    "quantifier": "all"
+  }
+}
+
 
 Update device
 -------------
@@ -47,3 +71,22 @@ Update device
    A device's key is immutable, so it is not possible to change a device
    key with this method. Calling updateDevice with a key that does not already
    exist in TempoIQ results in an error.
+
+   A device's sensor configuration is currently also immutable.
+
+
+Delete devices
+--------------
+
+.. method:: deleteDevice(key)
+
+   :endpoint: ``DELETE /v2/devices/:key/``
+   :arg String key: The key of the device to delete
+   :returns: Nothing
+
+
+.. method:: deleteDevices(search)
+
+   :endpoint: ``DELETE /v2/devices/``
+   :arg Search search: Selector defining which devices to delete
+   :returns: The number of devices that were deleted

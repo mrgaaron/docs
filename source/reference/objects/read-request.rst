@@ -18,7 +18,7 @@ Fields
    * - search
      - :class:`Search`
      - Required. Selects the sensors to read
-   * - action
+   * - read
      - :class:`ReadAction`
      - Required. Parameters for specifying the time range of data to read
    * - pipeline
@@ -41,7 +41,7 @@ Read two days of raw data from temperature sensors on devices in the "foo" regio
           "key": "temperature"
         }
       },
-      "action": {
+      "read": {
         "start": "2014-09-01T00:00:00Z",
         "end": "2014-09-03T00:00:00Z"
       }

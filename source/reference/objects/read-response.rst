@@ -1,8 +1,6 @@
 ReadResponse
 ============
 
-.. default-domain:: tempoiq
-
 .. contents::
 
 Definition
@@ -16,12 +14,7 @@ Definition
    data from multiple streams, the value of each DataPoint will contain data for
    every stream with a value defined at that timestamp. See :ref:`examples` below.
 
-
-Cursoring
----------
-
-Pages and pages of datapoints!
-
+.. todo:: note about cursoring in readResponses
 
 
 .. _examples:

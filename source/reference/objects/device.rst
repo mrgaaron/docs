@@ -107,3 +107,32 @@ represents a measured value or state from the device that changes over time.
 An attribute represents a grouping that the device is a part
 of, and should rarely change. TempoIQ also does not store a history of past
 attribute values.
+
+
+Example
+-------
+
+Smart power meter device with two sensors::
+
+    {
+      "key": "m34234589",
+      "name": "Bldg 4 mains meter",
+      "attributes": {
+        "building": "4",
+        "type": "mains_meter"
+      },
+      "sensors":[
+        {
+          "key": "voltage",
+          "attributes": {
+            "unit": "Volts"
+          }
+        },
+        {
+          "key": "cumulative_energy",
+          "attributes": {
+            "unit": "KWh"
+          }
+        }
+      ]
+    }
