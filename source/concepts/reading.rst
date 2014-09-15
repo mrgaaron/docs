@@ -11,7 +11,7 @@ A basic read operation takes a sensor selector, and a start and end datetime.
 It returns streams of data points for the selected sensors over the specified time
 range.
 
-``[ schematic diagram of relationship between selectors, streams, sensors, and a read request ]``
+.. todo:: schematic diagram of relationship between selectors, streams, sensors, and a read request
 
 
 Selectors

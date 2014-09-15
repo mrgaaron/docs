@@ -8,7 +8,7 @@ Definition
 
 .. class:: ReadResponse
 
-   Object containing the results of a :method:`readData` operation.
+   Object containing the results of a :method:`read` operation.
 
    Contains a sequence of :class:`MultiPoint`\ s. If the read operation contains
    data from multiple streams, the value of each DataPoint will contain data for
@@ -16,6 +16,7 @@ Definition
 
 .. todo:: note about cursoring in readResponses
 
+.. todo:: document MultiPoint format
 
 .. _examples:
 

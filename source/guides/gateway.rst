@@ -1,3 +1,5 @@
+:orphan:
+
 Writing via a gateway
 =====================
 

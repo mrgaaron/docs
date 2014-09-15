@@ -30,6 +30,8 @@ Find devices
    :arg Search search:
    :returns: A :class:`Cursor` over the devices
 
+.. todo:: Document Cursor interface
+
 Example
 ~~~~~~~
 
