@@ -3,8 +3,6 @@
 Writing via a gateway
 =====================
 
-.. TODO:: Guide on the gateway pattern of writing to TempoIQ.
-
 
 Sometimes, it's not feasible for deployed devices to write data directly to
 TempoIQ. A common solution is to use a gateway server to ingest and queue data
