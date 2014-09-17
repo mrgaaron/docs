@@ -2,16 +2,21 @@
 MonitorRule
 ===========
 
+.. contents::
+
 .. attention:: The JSON representation of MonitorRules has not yet been finalized.
-   This page documents the format at the time of writing, but it may change in
-   the future.
+  This page documents the format at the time of writing, but it may change in
+  the future.
 
 Description
 -----------
 
 .. class:: MonitorRule
 
-  The complete representation of a monitoring rule.
+  The complete representation of a monitoring rule. It consists of three
+  parts: a *Search* to define which devices and sensors the rule should be applied
+  to, the main *Rule* definition, and a *grouping scheme* to indicate how
+  different sensors should be grouped together.
 
   .. list-table::
     :header-rows: 1
@@ -26,13 +31,13 @@ Description
       - :class:`Search`
       - Required.
     * - alerts
-      - "any", "device", or "sensor"
-      - Required. See :ref:`alert-groupings` below
+      - "device", "sensor", or "any"
+      - Required. Grouping scheme for the rule. See :ref:`alert-groupings` below
 
 
 .. class:: Rule
 
-  The core of the MonitorRule definition. Contains the following fields:
+  The core of the MonitorRule definition.
 
   .. list-table::
     :header-rows: 1
@@ -42,7 +47,7 @@ Description
       - Description
     * - key
       - String
-      - Optional. If a key is not defined, one will be generated.
+      - Optional. Unique identifier for the rule. If a key is not defined, one will be generated.
     * - name
       - String
       - Optional. Human-readable name
@@ -184,19 +189,95 @@ Description
 
 
 
+.. _alert-groupings:
+
+Grouping schemes
+----------------
+
+The grouping scheme parameter indicates whether data from different sensors
+and devices should go through a single rule instance, or be routed to
+different instances. This affects behavior in several ways:
+
+* If a rule contains conditions that filter for different sensors or devices,
+  you must ensure that the scheme allows all relevant sensors to be grouped
+  together. Otherwise the rule will never trigger because data for the different
+  conditions won't go to the same rule instance.
+* Webhooks contain the scope of the rule instance, so a more granular grouping
+  allows for more detailed information in the alerts that your application
+  receives.
+* If a grouping and a condition's filter allows for multiple sensor streams to
+  go through a single condition, the condition's moving average trigger would
+  be calculated from all data points from all streams, not the average of each
+  stream individually.
+
+
+The supported groupings are:
+
+any
+  All sensors that meet the search criteria will be routed to a single rule
+  instance. The webhook will not contain any information about which sensor or
+  device an alert came from, but it's possible to create a rule with conditions
+  that apply to different devices.
+
+device
+  Sensors from different devices will be routed to different rule instances,
+  where each instance is scoped to a single device. The webhook will
+  therefore contain information about which device an alert came from, but it's
+  not possible to create a rule with conditions that apply to different devices.
+  This is the most common setting.
+
+sensor
+  Every sensor will be routed to a different rule instance, where each instance
+  is scoped to a single sensor and device. The webhook will therefore contain
+  information about which sensor and device an alert came from, but it's not
+  possible to create a rule with conditions that apply to different sensors or
+  devices.
+
+
 
 Search vs. Filter
 -----------------
 
-.. todo:: document search vs. filter
+A MonitorRule contains two similar but distinct concepts: a search and
+a filter. Understanding their differences and how they interact is important for
+constructing more complex monitoring rules.
+
+A search defines the overall set of devices relevant to the rule.
+Typically it is not necessary to select specific sensors in a search; you can
+simply use the "all" sensor selector.
+
+A filter selects a subset of the search results that an individual condition
+should apply to. This is important when a rule contains multiple conditions
+that apply to different sensors.
+
+For example, consider a rule that sends an alert when a device's temperature
+sensor has a value below 50 **and** the humidity sensor has a value above 80.
+The conditions for the rule would be as follows::
+
+  [
+    {
+      "filter": { "operation": "select",
+                  "type": "sensor_key",
+                  "arguments": "temperature" },
+      "trigger": { "name": "value",
+                   "arguments": [ "static", "lt", 50 ] }
+    },
+    {
+      "filter": { "operation": "select",
+                  "type": "sensor_key",
+                  "arguments": "humidity" },
+      "trigger": { "name": "value",
+                   "arguments": [ "static", "gt", 80 ] }
+    }
+  ]
 
 
-.. _alert-groupings:
+For rules with a single condition, there is no practical difference between a
+search and a filter. However, for clarity and performance, it is still
+recommended to define the device selection in the search and the sensor selection
+in the filter.
 
-Alert Groupings
----------------
 
-.. todo:: document alert grouping parameter
 
 Example
 -------

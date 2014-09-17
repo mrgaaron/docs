@@ -46,3 +46,24 @@ h4 (but try to avoid hierarchies this deep):
 Sub-subsection heading
 ^^^^^^^^^^^^^^^^^^^^^^
 ```
+
+### Indentation
+
+Indent directive contents (e.g. the body of a `.. class::` declaration) with
+two spaces. Typically in reST 3 spaces is used, so that the body lines up with
+the name of the directive, but an odd number of spaces is annoying to do without
+special configuration in your text editor.
+
+### Terminology
+
+* "Data point" is two words
+* "Time zone" is two words
+* "real time" or "real-time", not "realtime"
+* "timestamp" is one word
+
+### Punctuation/capitalization
+
+* Use the oxford comma.
+* File names should be in `kebab-case`
+* Class names should be in `PascalCase` (except in filenames).
+* To reflect the JSON API, multi-word field names should be in `snake_case`.

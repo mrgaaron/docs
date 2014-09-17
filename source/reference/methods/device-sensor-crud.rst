@@ -27,11 +27,24 @@ Find devices
 
 .. method:: findDevices(search)
 
-   :endpoint: ``GET /v2/devices``
-   :arg Search search:
-   :returns: A :class:`Cursor` over the devices
+  :endpoint: ``GET /v2/devices``
+  :arg Search search:
+  :returns: A :class:`Cursor` over the devices
 
-.. todo:: Document Cursor interface
+  Example::
+
+    {
+      "search": {
+        "select": "devices",
+        "filters": {
+          "device": {
+            "attributes": {"building": "3"}
+          }
+        }
+      }
+    }
+
+.. todo:: Be more explicit about search/select/filters relationship
 
 Example
 ~~~~~~~
