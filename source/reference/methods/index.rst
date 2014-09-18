@@ -2,7 +2,7 @@
 Methods
 =======
 
-This section documents the API calls that the TempoIQ backend supports.
+This section documents the TempoIQ backend's supported API calls.
 
 In the API libraries, these calls are exposed as methods on a ``Client`` object.
 Clients may also expose convenience methods for special cases of some calls.
