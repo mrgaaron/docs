@@ -44,14 +44,14 @@ html:
 
 gh-pages:
 	git checkout gh-pages
-	rm -rf build _sources _static
+	rm -rf ./*
 	git checkout master $(GH_PAGES_SOURCES)
 	git reset HEAD
 	$(SPHINXBUILD) -b html -t publish $(ALLSPHINXOPTS) $(BUILDDIR)/html
 	mv -fv build/html/* ./
 	rm -rf $(GH_PAGES_SOURCES) build
 	git add -A
-	git commit -m "Generated gh-pages for `git log master -1 --pretty=short --abbrev-commit`" && git push $(GH_PAGES_REMOTE) gh-pages ; git checkout master
+	# git commit -m "Generated gh-pages for `git log master -1 --pretty=short --abbrev-commit`" && git push $(GH_PAGES_REMOTE) gh-pages ; git checkout master
 	@echo
 	@echo "Build finished. HTML pages have been published."
 
