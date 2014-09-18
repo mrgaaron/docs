@@ -19,6 +19,7 @@ Description
   different sensors should be grouped together.
 
   .. list-table::
+    :widths: 1 1 4
     :header-rows: 1
 
     * - Name
@@ -40,6 +41,7 @@ Description
   The core of the MonitorRule definition.
 
   .. list-table::
+    :widths: 1 1 4
     :header-rows: 1
 
     * - Name
@@ -68,17 +70,18 @@ Description
 .. class:: Condition
 
     .. list-table::
-       :header-rows: 1
+      :widths: 1 1 4
+      :header-rows: 1
 
-       * - Name
-         - Type
-         - Description
-       * - filter
-         - :class:`StreamFilter`
-         - Required
-       * - trigger
-         - :class:`Trigger`
-         - Required
+      * - Name
+        - Type
+        - Description
+      * - filter
+        - :class:`StreamFilter`
+        - Required
+      * - trigger
+        - :class:`Trigger`
+        - Required
 
 
 .. class:: StreamFilter
@@ -90,6 +93,7 @@ Description
   temperature is over 50, and humidity is over 80.
 
   .. list-table::
+    :widths: 1 1 4
     :header-rows: 1
 
     * - Name

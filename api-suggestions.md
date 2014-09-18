@@ -30,7 +30,7 @@ Monitoring:
 * Devices and Sensors are capitalized in returned search
 * concerning that re-serialized rule looks different. esp. condition filter
 * Listing rules returns map of key to name. Not very useful. Status? ...
-
+* Can't activate rule in creation. Intended?
 
 
 Bugs:
