@@ -1,3 +1,4 @@
+======================
 Device and Sensor CRUD
 ======================
 
@@ -8,7 +9,7 @@ Create device
 
 .. method:: createDevice(device)
 
-   :endpoint: ``POST /v2/devices/``
+   :endpoint: ``POST /v2/devices``
    :arg Device device: The device to create
    :returns: The :class:`Device` that was created
 
@@ -17,7 +18,7 @@ Get device
 
 .. method:: getDevice(key)
 
-   :endpoint: ``GET /v2/devices/:key/``
+   :endpoint: ``GET /v2/devices/:key``
    :arg String key: The key of the device to get
    :returns: The :class:`Device` with the given key
 
@@ -26,9 +27,24 @@ Find devices
 
 .. method:: findDevices(search)
 
-   :endpoint: ``GET /v2/devices/``
-   :arg Search search:
-   :returns: A :class:`Cursor` over the devices
+  :endpoint: ``GET /v2/devices``
+  :arg Search search:
+  :returns: A :class:`Cursor` over the devices
+
+  Example::
+
+    {
+      "search": {
+        "select": "devices",
+        "filters": {
+          "device": {
+            "attributes": {"building": "3"}
+          }
+        }
+      }
+    }
+
+.. todo:: Be more explicit about search/select/filters relationship
 
 Example
 ~~~~~~~
@@ -61,7 +77,7 @@ Update device
 
 .. method:: updateDevice(device)
 
-   :endpoint: ``PUT /v2/devices/:key/``
+   :endpoint: ``PUT /v2/devices/:key``
    :arg Device device: The updated device
    :returns: The updated :class:`Device`
 

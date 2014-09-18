@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Period &mdash; TempoIQ Manual 1.0 documentation</title>
+  <title>Cursor &mdash; TempoIQ Manual 1.0 documentation</title>
   
 
   
@@ -30,8 +30,8 @@
   
     <link rel="top" title="TempoIQ Manual 1.0 documentation" href="../../index.html"/>
         <link rel="up" title="Domain Objects" href="index.html"/>
-        <link rel="next" title="Pipeline" href="pipeline.html"/>
-        <link rel="prev" title="MonitorRule" href="monitor-rule.html"/> 
+        <link rel="next" title="DataPoint" href="datapoint.html"/>
+        <link rel="prev" title="Credentials" href="credentials.html"/> 
 
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
@@ -103,10 +103,10 @@
       
           <li><a href="index.html">Domain Objects</a> &raquo;</li>
       
-    <li>Period</li>
+    <li>Cursor</li>
       <li class="wy-breadcrumbs-aside">
         
-          <a href="../../_sources/reference/objects/period.txt" rel="nofollow"> View page source</a>
+          <a href="../../_sources/reference/objects/cursor.txt" rel="nofollow"> View page source</a>
         
       </li>
   </ul>
@@ -114,45 +114,15 @@
 </div>
           <div role="main" class="document">
             
-  <div class="section" id="period">
-<h1>Period<a class="headerlink" href="#period" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="cursor">
+<h1>Cursor<a class="headerlink" href="#cursor" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="description">
+<h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
-<dt id="Period">
-<tt class="descname">Period</tt><a class="headerlink" href="#Period" title="Permalink to this definition">¶</a></dt>
+<dt id="Cursor">
+<tt class="descname">Cursor</tt><a class="headerlink" href="#Cursor" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<p>TempoIQ supports two different formats for expressing time periods as strings:
-Simple format and ISO 8601 durations.</p>
-<div class="section" id="simple-format">
-<h2>Simple Format<a class="headerlink" href="#simple-format" title="Permalink to this headline">¶</a></h2>
-<p>Specify a period with a number and a unit of time, e.g. <cite>6hour</cite> or <cite>1day</cite>.
-The supported time units are:</p>
-<ul class="simple">
-<li>min - Minutes</li>
-<li>hour - Hours</li>
-<li>day - Days</li>
-<li>month - Months</li>
-<li>year - Years</li>
-</ul>
-</div>
-<div class="section" id="iso-8601-duration-format">
-<h2>ISO 8601 Duration Format<a class="headerlink" href="#iso-8601-duration-format" title="Permalink to this headline">¶</a></h2>
-<p>ISO 8601&#8217;s duration format allows for specifying more complex periods.
-For example:</p>
-<ul class="simple">
-<li>6hour is represented as <tt class="docutils literal"><span class="pre">PT6H</span></tt></li>
-<li>1day is represented as <tt class="docutils literal"><span class="pre">P1D</span></tt></li>
-<li>1 minute and 15 seconds is represented as <tt class="docutils literal"><span class="pre">PT1M15S</span></tt>, or more concisely <tt class="docutils literal"><span class="pre">PT75S</span></tt></li>
-<li>2 weeks is represented as <tt class="docutils literal"><span class="pre">P2W</span></tt></li>
-</ul>
-<p>For a detailed description of the duration format, see the
-<a class="reference external" href="http://en.wikipedia.org/wiki/ISO_8601#Durations">ISO 8601 Wikipedia page</a>.</p>
-</div>
-<div class="section" id="api-libraries">
-<h2>API Libraries<a class="headerlink" href="#api-libraries" title="Permalink to this headline">¶</a></h2>
-<p>TempoIQ&#8217;s libraries may use language-specific Period implementations. See the
-library&#8217;s documentation for details.</p>
-<p>See also: <a class="reference internal" href="datetime.html#DateTime" title="DateTime"><tt class="xref tempoiq tempoiq-class docutils literal"><span class="pre">DateTime</span></tt></a></p>
 </div>
 </div>
 
@@ -162,10 +132,10 @@ library&#8217;s documentation for details.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="pipeline.html" class="btn btn-neutral float-right" title="Pipeline">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="datapoint.html" class="btn btn-neutral float-right" title="DataPoint">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="monitor-rule.html" class="btn btn-neutral" title="MonitorRule"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="credentials.html" class="btn btn-neutral" title="Credentials"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

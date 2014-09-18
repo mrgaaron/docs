@@ -115,11 +115,126 @@
           <div role="main" class="document">
             
   <div class="section" id="monitoring-rules">
-<h1>Monitoring Rules<a class="headerlink" href="#monitoring-rules" title="Permalink to this headline">¶</a></h1>
-<p>Coming soon!</p>
-<div class="admonition-todo admonition" id="index-0">
-<p class="first admonition-title">Todo</p>
-<p class="last">write monitoring CRUD docs</p>
+<h1><a class="toc-backref" href="#id1">Monitoring Rules</a><a class="headerlink" href="#monitoring-rules" title="Permalink to this headline">¶</a></h1>
+<div class="contents topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#monitoring-rules" id="id1">Monitoring Rules</a><ul>
+<li><a class="reference internal" href="#create-monitoring-rule" id="id2">Create monitoring rule</a></li>
+<li><a class="reference internal" href="#get-monitoring-rule" id="id3">Get monitoring rule</a></li>
+<li><a class="reference internal" href="#list-monitoring-rules" id="id4">List monitoring rules</a></li>
+<li><a class="reference internal" href="#update-monitoring-rule" id="id5">Update monitoring rule</a></li>
+<li><a class="reference internal" href="#delete-monitoring-rule" id="id6">Delete monitoring rule</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="create-monitoring-rule">
+<h2><a class="toc-backref" href="#id2">Create monitoring rule</a><a class="headerlink" href="#create-monitoring-rule" title="Permalink to this headline">¶</a></h2>
+<dl class="method">
+<dt id="createMonitor">
+<tt class="descname">createMonitor</tt><big>(</big><em>rule</em><big>)</big><a class="headerlink" href="#createMonitor" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">HTTP Endpoint:</th><td class="field-body"><tt class="docutils literal"><span class="pre">POST</span> <span class="pre">/v2/monitors</span></tt></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Arguments:</th><td class="field-body"><strong>rule</strong> (<a class="reference internal" href="../objects/monitor-rule.html#MonitorRule" title="MonitorRule"><em>MonitorRule</em></a>) &#8211; </td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The created <a class="reference internal" href="../objects/monitor-rule.html#MonitorRule" title="MonitorRule"><tt class="xref tempoiq tempoiq-class docutils literal"><span class="pre">MonitorRule</span></tt></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="get-monitoring-rule">
+<h2><a class="toc-backref" href="#id3">Get monitoring rule</a><a class="headerlink" href="#get-monitoring-rule" title="Permalink to this headline">¶</a></h2>
+<dl class="method">
+<dt id="getMonitor">
+<tt class="descname">getMonitor</tt><big>(</big><em>key</em><big>)</big><a class="headerlink" href="#getMonitor" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">HTTP Endpoint:</th><td class="field-body"><tt class="docutils literal"><span class="pre">GET</span> <span class="pre">/v2/monitors/:key</span></tt></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Arguments:</th><td class="field-body"><strong>key</strong> (<em>String</em>) &#8211; Key of the monitoring rule to get</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The <a class="reference internal" href="../objects/monitor-rule.html#MonitorRule" title="MonitorRule"><tt class="xref tempoiq tempoiq-class docutils literal"><span class="pre">MonitorRule</span></tt></a> with the provided key</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="list-monitoring-rules">
+<h2><a class="toc-backref" href="#id4">List monitoring rules</a><a class="headerlink" href="#list-monitoring-rules" title="Permalink to this headline">¶</a></h2>
+<dl class="method">
+<dt id="listMonitors">
+<tt class="descname">listMonitors</tt><big>(</big><big>)</big><a class="headerlink" href="#listMonitors" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">HTTP Endpoint:</th><td class="field-body"><tt class="docutils literal"><span class="pre">GET</span> <span class="pre">/v2/monitors</span></tt></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="update-monitoring-rule">
+<h2><a class="toc-backref" href="#id5">Update monitoring rule</a><a class="headerlink" href="#update-monitoring-rule" title="Permalink to this headline">¶</a></h2>
+<dl class="method">
+<dt id="updateMonitor">
+<tt class="descname">updateMonitor</tt><big>(</big><em>rule</em><big>)</big><a class="headerlink" href="#updateMonitor" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">HTTP Endpoint:</th><td class="field-body"><tt class="docutils literal"><span class="pre">PUT</span> <span class="pre">/v2/monitors/:key</span></tt></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Arguments:</th><td class="field-body"><strong>rule</strong> (<a class="reference internal" href="../objects/monitor-rule.html#MonitorRule" title="MonitorRule"><em>MonitorRule</em></a>) &#8211; The updated rule</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The updated rule</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="setMonitorStatus">
+<tt class="descname">setMonitorStatus</tt><big>(</big><em>key</em>, <em>status</em><big>)</big><a class="headerlink" href="#setMonitorStatus" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">HTTP Endpoint:</th><td class="field-body"><tt class="docutils literal"><span class="pre">PUT</span> <span class="pre">/v2/monitors/:key/status</span></tt></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Arguments:</th><td class="field-body"><strong>status</strong> (<em>String</em>) &#8211; </td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="delete-monitoring-rule">
+<h2><a class="toc-backref" href="#id6">Delete monitoring rule</a><a class="headerlink" href="#delete-monitoring-rule" title="Permalink to this headline">¶</a></h2>
+<dl class="method">
+<dt id="deleteMonitor">
+<tt class="descname">deleteMonitor</tt><big>(</big><em>key</em><big>)</big><a class="headerlink" href="#deleteMonitor" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">HTTP Endpoint:</th><td class="field-body"><tt class="docutils literal"><span class="pre">DELETE</span> <span class="pre">/v2/monitors/:key</span></tt></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
 </div>
 </div>
 

@@ -141,7 +141,7 @@
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">HTTP Endpoint:</th><td class="field-body"><tt class="docutils literal"><span class="pre">POST</span> <span class="pre">/v2/devices/</span></tt></td>
+<tr class="field-odd field"><th class="field-name">HTTP Endpoint:</th><td class="field-body"><tt class="docutils literal"><span class="pre">POST</span> <span class="pre">/v2/devices</span></tt></td>
 </tr>
 <tr class="field-even field"><th class="field-name">Arguments:</th><td class="field-body"><strong>device</strong> (<a class="reference internal" href="../objects/device.html#Device" title="Device"><em>Device</em></a>) &#8211; The device to create</td>
 </tr>
@@ -161,7 +161,7 @@
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">HTTP Endpoint:</th><td class="field-body"><tt class="docutils literal"><span class="pre">GET</span> <span class="pre">/v2/devices/:key/</span></tt></td>
+<tr class="field-odd field"><th class="field-name">HTTP Endpoint:</th><td class="field-body"><tt class="docutils literal"><span class="pre">GET</span> <span class="pre">/v2/devices/:key</span></tt></td>
 </tr>
 <tr class="field-even field"><th class="field-name">Arguments:</th><td class="field-body"><strong>key</strong> (<em>String</em>) &#8211; The key of the device to get</td>
 </tr>
@@ -181,14 +181,27 @@
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">HTTP Endpoint:</th><td class="field-body"><tt class="docutils literal"><span class="pre">GET</span> <span class="pre">/v2/devices/</span></tt></td>
+<tr class="field-odd field"><th class="field-name">HTTP Endpoint:</th><td class="field-body"><tt class="docutils literal"><span class="pre">GET</span> <span class="pre">/v2/devices</span></tt></td>
 </tr>
 <tr class="field-even field"><th class="field-name">Arguments:</th><td class="field-body"><strong>search</strong> (<a class="reference internal" href="../objects/search.html#Search" title="Search"><em>Search</em></a>) &#8211; </td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">A <tt class="xref tempoiq tempoiq-class docutils literal"><span class="pre">Cursor</span></tt> over the devices</td>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">A <a class="reference internal" href="../objects/cursor.html#Cursor" title="Cursor"><tt class="xref tempoiq tempoiq-class docutils literal"><span class="pre">Cursor</span></tt></a> over the devices</td>
 </tr>
 </tbody>
 </table>
+<p>Example:</p>
+<div class="highlight-javascript"><div class="highlight"><pre><span class="p">{</span>
+  <span class="s2">&quot;search&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;select&quot;</span><span class="o">:</span> <span class="s2">&quot;devices&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;filters&quot;</span><span class="o">:</span> <span class="p">{</span>
+      <span class="s2">&quot;device&quot;</span><span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span><span class="s2">&quot;building&quot;</span><span class="o">:</span> <span class="s2">&quot;3&quot;</span><span class="p">}</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <div class="section" id="example">
@@ -226,7 +239,7 @@ field:</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">HTTP Endpoint:</th><td class="field-body"><tt class="docutils literal"><span class="pre">PUT</span> <span class="pre">/v2/devices/:key/</span></tt></td>
+<tr class="field-odd field"><th class="field-name">HTTP Endpoint:</th><td class="field-body"><tt class="docutils literal"><span class="pre">PUT</span> <span class="pre">/v2/devices/:key</span></tt></td>
 </tr>
 <tr class="field-even field"><th class="field-name">Arguments:</th><td class="field-body"><strong>device</strong> (<a class="reference internal" href="../objects/device.html#Device" title="Device"><em>Device</em></a>) &#8211; The updated device</td>
 </tr>

@@ -1,7 +1,7 @@
+:orphan:
+
 Writing via a gateway
 =====================
-
-.. TODO:: Guide on the gateway pattern of writing to TempoIQ.
 
 
 Sometimes, it's not feasible for deployed devices to write data directly to
