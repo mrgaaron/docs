@@ -38,3 +38,22 @@ Bugs:
 * POST new rule returns 500 if specifying a key
 * get logs returns 500 when specifying range, weird 400 if not
 * 500 when specifying freshness in a rule
+* 500 when writing to nonexistent device (should be 4xx?)
+
+
+Device selectors:
+key: valueDescriptor
+attributes: {}
+has_sensor: {sensor_selector}
+
+
+Sensor selectors:
+key: valueDescriptor
+attributes: {}
+with_device: {device_selector}
+
+
+Generic selectors:
+and: [selector...]
+or: [{selector}...]
+not: {selector}

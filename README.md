@@ -16,6 +16,15 @@ To build docs locally:
 HTML output is in build/html.
 
 
+## Stuff to know
+
+The "dev" Sphinx tag can be used to include content for development builds only,
+e.g.: `..only:: dev`
+
+The todo directive already has this behavior, so they won't be included in the
+output if the "dev" tag isn't set.
+
+
 ## Conventions
 
 ### Headings

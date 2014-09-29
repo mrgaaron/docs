@@ -4,7 +4,7 @@ Concepts
 .. toctree::
    :maxdepth: 1
 
-   general-concepts
+   data-model
    writing
    reading
    pipeline
