@@ -28,7 +28,7 @@ if not tags.has('publish'):
 # ones.
 extensions = [
     'sphinx.ext.todo',
-    'tempoiq'
+    'tempoiq_sphinx'
 ]
 
 # Name of the default domain.
