@@ -62,7 +62,7 @@
         
             <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../concepts/index.html">Concepts</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../concepts/general-concepts.html">General Concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../concepts/data-model.html">Data Model</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../concepts/writing.html">Writing sensor data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../concepts/reading.html">Reading sensor data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../concepts/pipeline.html">Analytics pipeline</a></li>
@@ -76,6 +76,11 @@
 <li class="toctree-l2 current"><a class="reference internal" href="index.html">Domain Objects</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../../sdk/index.html">SDKs and API Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../guides/tempodb-transition.html">Transitioning from TempoDB</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../faqs.html">Frequently Asked Questions</a></li>
 </ul>
 
         
@@ -121,11 +126,21 @@
 <tt class="descname">PipelineFunction</tt><a class="headerlink" href="#PipelineFunction" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<p>Transforms data in a pipeline.</p>
+<p>Transforms data in a pipeline. The arguments below are listed in the order
+that they should be specified when constructing the request. For example:</p>
+<div class="highlight-javascript"><div class="highlight"><pre><span class="s2">&quot;functions&quot;</span><span class="o">:</span> <span class="p">[</span>
+  <span class="p">{</span>
+    <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="s2">&quot;rollup&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;arguments&quot;</span><span class="o">:</span> <span class="p">[</span><span class="s2">&quot;max&quot;</span><span class="p">,</span> <span class="s2">&quot;1day&quot;</span><span class="p">]</span>      <span class="c1">// [Fold, Period]</span>
+  <span class="p">}</span>
+<span class="p">]</span>
+</pre></div>
+</div>
 <dl class="class">
-<dt id="rollup">
-<tt class="descname">rollup</tt><a class="headerlink" href="#rollup" title="Permalink to this definition">¶</a></dt>
-<dd><p>Arguments:</p>
+<dt id="Rollup">
+<tt class="descname">Rollup</tt><a class="headerlink" href="#Rollup" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Name:</strong> <tt class="docutils literal"><span class="pre">rollup</span></tt></p>
+<p><strong>Arguments:</strong></p>
 <table border="1" class="docutils">
 <colgroup>
 <col width="12%" />
@@ -139,11 +154,11 @@
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td>Fold</td>
+<tr class="row-even"><td>fold</td>
 <td><a class="reference internal" href="fold.html#Fold" title="Fold"><tt class="xref tempoiq tempoiq-class docutils literal"><span class="pre">Fold</span></tt></a></td>
 <td>Folding function to apply</td>
 </tr>
-<tr class="row-odd"><td>Period</td>
+<tr class="row-odd"><td>period</td>
 <td><a class="reference internal" href="period.html#Period" title="Period"><tt class="xref tempoiq tempoiq-class docutils literal"><span class="pre">Period</span></tt></a></td>
 <td>Time period for performing the rollup</td>
 </tr>
@@ -152,10 +167,127 @@
 </dd></dl>
 
 <dl class="class">
-<dt id="convert_tz">
-<tt class="descname">convert_tz</tt><a class="headerlink" href="#convert_tz" title="Permalink to this definition">¶</a></dt>
+<dt id="MultiRollup">
+<tt class="descname">MultiRollup</tt><a class="headerlink" href="#MultiRollup" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Name:</strong> <tt class="docutils literal"><span class="pre">multi_rollup</span></tt></p>
+<p><strong>Arguments:</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="10%" />
+<col width="33%" />
+<col width="57%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Name</th>
+<th class="head">Type</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>folds</td>
+<td>Array of <a class="reference internal" href="fold.html#Fold" title="Fold"><tt class="xref tempoiq tempoiq-class docutils literal"><span class="pre">Fold</span></tt></a></td>
+<td>The list of folding functions to apply</td>
+</tr>
+<tr class="row-odd"><td>period</td>
+<td><a class="reference internal" href="period.html#Period" title="Period"><tt class="xref tempoiq tempoiq-class docutils literal"><span class="pre">Period</span></tt></a></td>
+<td>Time period for performing the rollup</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="Interpolate">
+<tt class="descname">Interpolate</tt><a class="headerlink" href="#Interpolate" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Name:</strong> <tt class="docutils literal"><span class="pre">interpolate</span></tt></p>
+<p><strong>Arguments:</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="14%" />
+<col width="31%" />
+<col width="56%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Name</th>
+<th class="head">Type</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>function</td>
+<td>&#8220;linear&#8221; or &#8220;zoh&#8221;</td>
+<td>The interpolation function to use</td>
+</tr>
+<tr class="row-odd"><td>period</td>
+<td><a class="reference internal" href="period.html#Period" title="Period"><tt class="xref tempoiq tempoiq-class docutils literal"><span class="pre">Period</span></tt></a></td>
+<td>Period to interpolate to</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="Aggregate">
+<tt class="descname">Aggregate</tt><a class="headerlink" href="#Aggregate" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Name:</strong> <tt class="docutils literal"><span class="pre">aggregation</span></tt></p>
+<p><strong>Arguments:</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="14%" />
+<col width="32%" />
+<col width="54%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Name</th>
+<th class="head">Type</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>function</td>
+<td><a class="reference internal" href="fold.html#Fold" title="Fold"><tt class="xref tempoiq tempoiq-class docutils literal"><span class="pre">Fold</span></tt></a></td>
+<td>The aggregation function to use</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="Find">
+<tt class="descname">Find</tt><a class="headerlink" href="#Find" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Name:</strong> <tt class="docutils literal"><span class="pre">find</span></tt></p>
+<p><strong>Arguments:</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="44%" />
+<col width="44%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Name</th>
+<th class="head">Type</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>function</td>
+<td>&#8220;max&#8221;, &#8220;min&#8221;, &#8220;first&#8221;, or &#8220;last&#8221;</td>
+<td>The point to find in each period</td>
+</tr>
+<tr class="row-odd"><td>period</td>
+<td><a class="reference internal" href="period.html#Period" title="Period"><tt class="xref tempoiq tempoiq-class docutils literal"><span class="pre">Period</span></tt></a></td>
+<td>Time period to find each point</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="ConvertTZ">
+<tt class="descname">ConvertTZ</tt><a class="headerlink" href="#ConvertTZ" title="Permalink to this definition">¶</a></dt>
 <dd><p>Convert the DataPoints into the specified time zone.</p>
-<p>Arguments:</p>
+<p><strong>Name:</strong> <tt class="docutils literal"><span class="pre">convert_tz</span></tt></p>
+<p><strong>Arguments:</strong></p>
 <table border="1" class="docutils">
 <colgroup>
 <col width="16%" />

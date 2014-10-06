@@ -1,13 +1,5 @@
-General Concepts
-================
-
-.. default-domain:: tempoiq
-
-TempoIQ is an analytics backend for sensor data. Connected devices write data
-directly to TempoIQ via HTTPS, or through an intermediate proxy or gateway.
-
-You can construct realtime and historical queries using TempoIQ's Analytics API.
-
+Data Model
+==========
 
 Data objects
 ------------

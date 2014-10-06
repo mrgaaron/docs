@@ -1,26 +1,48 @@
-.. TempoIQ Manual documentation master file, created by
-   sphinx-quickstart on Sat Sep  6 14:34:01 2014.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
+================
+TempoIQ Overview
+================
 
-TempoIQ manual
-==============
+TempoIQ is an analytics backend for sensor data. Any connected device can write
+sensor data to TempoIQ via our write APIs. You can then perform historical
+analysis of the data through our analytics APIs. In addition, real-time
+monitoring rules can alert you as soon as devices report abnormal sensor data.
 
-Welcome to the TempoIQ manual! This manual contains explanations of high-level
-concepts, as well as detailed API reference documentation. In the future it
-will also contain code snippets and more advanced guided tutorials.
+TempoIQ's data model makes it easy to map your real-world sensors to
+virtual data streams. A :class:`Device` represents a single physical unit such
+as a power meter or vehicle, and each device has one or more :class:`Sensors <Sensor>`
+attached. Each sensor corresponds to a single time-varying measurement on the
+device, such as voltage or temperature. This model allows for flexible queries
+on sensors within a single device, or comparing corresponding sensors across
+many devices.
 
-If you spot an error or omission, please email support@tempoiq.com. Thanks!
+Harness the power of TempoIQ in your application in a few easy steps:
 
-.. toctree::
-   :titlesonly:
+1. :doc:`Model your devices and sensors </concepts/data-model>`
+2. :doc:`Write sensor data </concepts/writing>`
+3. :doc:`Analyze the data </concepts/reading>`
+4. :doc:`Set up real-time monitoring rules </concepts/monitoring>`
 
-   /concepts/index
-   /reference/index
+
+SDKs
+----
+
+TempoIQ provides API libraries and example code for most common
+languages and frameworks. See the :doc:`SDKs page </sdk/index>` for the
+complete list of supported languages.
+
+
+Transitioning from TempoDB
+--------------------------
+
+Are you migrating from TempoDB to TempoIQ? Our
+:doc:`migration guide </guides/tempodb-transition>` includes a mapping
+of TempoDB functions to TempoIQ, as well as other useful information.
 
 
 :ref:`genindex`
 
 .. only:: dev
 
-   :ref:`todos`
+   :doc:`todos`
+
+.. include:: toc-main.rst
