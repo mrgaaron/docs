@@ -25,6 +25,14 @@ The todo directive already has this behavior, so they won't be included in the
 output if the "dev" tag isn't set.
 
 
+## Organization
+
+The FAQs page (/source/faqs.rst) can be used as a temporary holding area for
+quickly answering questions that come up from customers. However, the page
+should periodically be refactored, putting answers into more specific pages
+to prevent it from sprawling out of control.
+
+
 ## Conventions
 
 ### Headings

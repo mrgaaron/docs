@@ -1,5 +1,6 @@
-TempoIQ manual
-==============
+================
+TempoIQ Overview
+================
 
 TempoIQ is an analytics backend for sensor data. Any connected device can write
 sensor data to TempoIQ via our write APIs. You can then perform historical
@@ -16,23 +17,32 @@ many devices.
 
 Harness the power of TempoIQ in your application in a few easy steps:
 
-* :doc:`Model your devices and sensors </concepts/data-model>`
-* :doc:`Write sensor data </concepts/writing>`
-* :doc:`Analyze the data </concepts/reading>`
-* :doc:`Set up real-time monitoring rules </concepts/monitoring>`
+1. :doc:`Model your devices and sensors </concepts/data-model>`
+2. :doc:`Write sensor data </concepts/writing>`
+3. :doc:`Analyze the data </concepts/reading>`
+4. :doc:`Set up real-time monitoring rules </concepts/monitoring>`
+
 
 SDKs
 ----
 
 TempoIQ provides API libraries and example code for most common
-languages and frameworks. See the :doc:`/sdk/index` SDKS page
+languages and frameworks. See the :doc:`SDKs page </sdk/index>` for the
+complete list of supported languages.
 
+
+Transitioning from TempoDB
+--------------------------
+
+Are you migrating from TempoDB to TempoIQ? Our
+:doc:`migration guide </guides/tempodb-transition>` includes a mapping
+of TempoDB functions to TempoIQ, as well as other useful information.
 
 
 :ref:`genindex`
 
 .. only:: dev
 
-   :ref:`todos`
+   :doc:`todos`
 
 .. include:: toc-main.rst
