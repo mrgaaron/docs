@@ -177,8 +177,8 @@ See <a class="reference internal" href="#tdb-write-interface"><em>Write Interfac
 <td>See <a class="reference internal" href="#tdb-write-interface"><em>Write Interface</em></a></td>
 </tr>
 <tr class="row-odd"><td><a class="reference external" href="https://tempo-db.com/docs/api/delete/datapoints/">Delete data points</a></td>
-<td><strong>NOT SUPPORTED</strong></td>
-<td>&nbsp;</td>
+<td><tt class="xref tempoiq tempoiq-method docutils literal"><span class="pre">deleteData()</span></tt></td>
+<td>In progress. Will be available 2014-10-20</td>
 </tr>
 <tr class="row-even"><td><a class="reference external" href="https://tempo-db.com/docs/api/read/datapoints/basic">Basic reading</a></td>
 <td><a class="reference internal" href="../reference/methods/read.html#read" title="read"><tt class="xref tempoiq tempoiq-method docutils literal"><span class="pre">read()</span></tt></a></td>
@@ -203,7 +203,8 @@ See <a class="reference internal" href="#tdb-read-interface"><em>Read Interface<
 </tr>
 <tr class="row-odd"><td><a class="reference external" href="https://tempo-db.com/docs/api/read/datapoints/aggregation">Aggregation</a></td>
 <td><a class="reference internal" href="../reference/objects/function.html#Aggregate" title="Aggregate"><tt class="xref tempoiq tempoiq-class docutils literal"><span class="pre">Aggregate</span></tt></a></td>
-<td>Currenly TempoIQ only supports aggregating across sensors within a single device.</td>
+<td>Currenly TempoIQ only supports aggregating across sensors within a single device.
+See <a class="reference internal" href="#tdb-aggregation"><em>Cross-Device Aggregation</em></a></td>
 </tr>
 <tr class="row-even"><td>Time zone adjustment</td>
 <td><a class="reference internal" href="../reference/objects/function.html#ConvertTZ" title="ConvertTZ"><tt class="xref tempoiq tempoiq-class docutils literal"><span class="pre">ConvertTZ</span></tt></a></td>
@@ -354,6 +355,13 @@ Single Value query. It is possible to read the latest value for a given
 sensor, but you can&#8217;t read points relative to an arbitrary timestamp.</p>
 <p>If your application relies on the Single Value API, contact <a class="reference external" href="mailto:support&#37;&#52;&#48;tempoiq&#46;com">support<span>&#64;</span>tempoiq<span>&#46;</span>com</a>
 for suggestions of alternative approaches.</p>
+</div>
+<div class="section" id="cross-device-aggregation">
+<span id="tdb-aggregation"></span><h3>Cross-Device Aggregation<a class="headerlink" href="#cross-device-aggregation" title="Permalink to this headline">¶</a></h3>
+<p>The current function pipeline semantics do not contain a concept of combining
+data from different devices. Therefore, the aggregation function only allows you
+to combine data from sensors on the same device. This limitation will be
+addressed in a future update.</p>
 </div>
 <div class="section" id="summary-endpoint">
 <span id="tdb-summary-endpoint"></span><h3>Summary Endpoint<a class="headerlink" href="#summary-endpoint" title="Permalink to this headline">¶</a></h3>
