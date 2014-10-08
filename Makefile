@@ -55,7 +55,7 @@ publish-prod:
 	git add -A
 	git commit -m "Generated gh-pages for `git log master -1 --pretty=short --abbrev-commit`" && git push $(GH_PAGES_PROD_REMOTE) gh-pages ; git checkout master
 	@echo
-	@echo "Build finished. HTML pages have been published."
+	@echo "Build finished. HTML pages have been published to prod."
 
 publish-dev:
 	git checkout gh-pages
