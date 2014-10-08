@@ -7,7 +7,8 @@ SPHINXBUILD   = sphinx-build
 PAPER         =
 BUILDDIR      = build
 GH_PAGES_SOURCES = source Makefile
-GH_PAGES_REMOTE = origin
+GH_PAGES_PROD_REMOTE = upstream
+GH_PAGES_DEV_REMOTE = origin
 
 # User-friendly check for sphinx-build
 ifeq ($(shell which $(SPHINXBUILD) >/dev/null 2>&1; echo $$?), 1)
@@ -25,14 +26,15 @@ I18NSPHINXOPTS  = $(PAPEROPT_$(PAPER)) $(SPHINXOPTS) source
 
 help:
 	@echo "Please use \`make <target>' where <target> is one of"
-	@echo "  html       to make standalone HTML files"
-	@echo "  gh-pages   to make and publish HTML files to GitHub Pages"
-	@echo "  singlehtml to make a single large HTML file"
-	@echo "  json       to make JSON files"
-	@echo "  xml        to make Docutils-native XML files"
-	@echo "  changes    to make an overview of all changed/added/deprecated items"
-	@echo "  linkcheck  to check all external links for integrity"
-	@echo "  doctest    to run all doctests embedded in the documentation (if enabled)"
+	@echo "  html          to make standalone HTML files"
+	@echo "  publish-prod  to make and publish HTML files to the Production repo"
+	@echo "  publish-dev   to make and publish HTML files to the Dev repo"
+	@echo "  singlehtml    to make a single large HTML file"
+	@echo "  json          to make JSON files"
+	@echo "  xml           to make Docutils-native XML files"
+	@echo "  changes       to make an overview of all changed/added/deprecated items"
+	@echo "  linkcheck     to check all external links for integrity"
+	@echo "  doctest       to run all doctests embedded in the documentation (if enabled)"
 
 clean:
 	rm -rf $(BUILDDIR)/*
@@ -42,7 +44,7 @@ html:
 	@echo
 	@echo "Build finished. The HTML pages are in $(BUILDDIR)/html."
 
-gh-pages:
+publish-prod:
 	git checkout gh-pages
 	rm -rf ./*
 	git checkout master $(GH_PAGES_SOURCES)
@@ -51,7 +53,20 @@ gh-pages:
 	mv -fv build/html/* ./
 	rm -rf $(GH_PAGES_SOURCES) build
 	git add -A
-	git commit -m "Generated gh-pages for `git log master -1 --pretty=short --abbrev-commit`" && git push $(GH_PAGES_REMOTE) gh-pages ; git checkout master
+	git commit -m "Generated gh-pages for `git log master -1 --pretty=short --abbrev-commit`" && git push $(GH_PAGES_PROD_REMOTE) gh-pages ; git checkout master
+	@echo
+	@echo "Build finished. HTML pages have been published."
+
+publish-dev:
+	git checkout gh-pages
+	rm -rf ./*
+	git checkout master $(GH_PAGES_SOURCES)
+	git reset HEAD
+	$(SPHINXBUILD) -b html -t publish $(ALLSPHINXOPTS) $(BUILDDIR)/html
+	mv -fv build/html/* ./
+	rm -rf $(GH_PAGES_SOURCES) build
+	git add -A
+	git commit -m "Generated gh-pages for `git log master -1 --pretty=short --abbrev-commit`" && git push $(GH_PAGES_DEV_REMOTE) gh-pages ; git checkout master
 	@echo
 	@echo "Build finished. HTML pages have been published."
 
