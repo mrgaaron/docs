@@ -56,13 +56,13 @@ Feature Comparison
       -
     * - `Multi-rollups <https://tempo-db.com/docs/api/read/datapoints/multi-rollups>`_
       - :class:`MultiRollup`
-      - bla
+      - 
     * - `Interpolation <https://tempo-db.com/docs/api/read/datapoints/interpolation>`_
       - :class:`Interpolate`
       -
     * - `Aggregation <https://tempo-db.com/docs/api/read/datapoints/aggregation>`_
       - :class:`Aggregate`
-      -
+      - Currenly TempoIQ only supports aggregating across sensors within a single device.
     * - Time zone adjustment
       - :class:`ConvertTZ`
       -
