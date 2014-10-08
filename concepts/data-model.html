@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>General Concepts &mdash; TempoIQ Manual 1.0 documentation</title>
+  <title>Data Model &mdash; TempoIQ Manual 1.0 documentation</title>
   
 
   
@@ -62,7 +62,7 @@
         
             <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Concepts</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="">General Concepts</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">Data Model</a></li>
 <li class="toctree-l2"><a class="reference internal" href="writing.html">Writing sensor data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="reading.html">Reading sensor data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pipeline.html">Analytics pipeline</a></li>
@@ -76,6 +76,11 @@
 <li class="toctree-l2"><a class="reference internal" href="../reference/objects/index.html">Domain Objects</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../sdk/index.html">SDKs and API Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/tempodb-transition.html">Transitioning from TempoDB</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../faqs.html">Frequently Asked Questions</a></li>
 </ul>
 
         
@@ -101,10 +106,10 @@
       
           <li><a href="index.html">Concepts</a> &raquo;</li>
       
-    <li>General Concepts</li>
+    <li>Data Model</li>
       <li class="wy-breadcrumbs-aside">
         
-          <a href="../_sources/concepts/general-concepts.txt" rel="nofollow"> View page source</a>
+          <a href="../_sources/concepts/data-model.txt" rel="nofollow"> View page source</a>
         
       </li>
   </ul>
@@ -112,11 +117,8 @@
 </div>
           <div role="main" class="document">
             
-  <div class="section" id="general-concepts">
-<h1>General Concepts<a class="headerlink" href="#general-concepts" title="Permalink to this headline">¶</a></h1>
-<p>TempoIQ is an analytics backend for sensor data. Connected devices write data
-directly to TempoIQ via HTTPS, or through an intermediate proxy or gateway.</p>
-<p>You can construct realtime and historical queries using TempoIQ&#8217;s Analytics API.</p>
+  <div class="section" id="data-model">
+<h1>Data Model<a class="headerlink" href="#data-model" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="data-objects">
 <h2>Data objects<a class="headerlink" href="#data-objects" title="Permalink to this headline">¶</a></h2>
 <p>TempoIQ uses a simple two-level data hierarchy, consisting of Devices and Sensors.</p>

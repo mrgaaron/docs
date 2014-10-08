@@ -1,0 +1,436 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Transitioning from TempoDB to TempoIQ &mdash; TempoIQ Manual 1.0 documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="TempoIQ Manual 1.0 documentation" href="../index.html"/>
+        <link rel="next" title="Frequently Asked Questions" href="../faqs.html"/>
+        <link rel="prev" title="SDKs and API Libraries" href="../sdk/index.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+          <a href="../index.html" class="fa fa-home"> TempoIQ Manual</a>
+        
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+        
+            <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../concepts/index.html">Concepts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/data-model.html">Data Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/writing.html">Writing sensor data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/reading.html">Reading sensor data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/pipeline.html">Analytics pipeline</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/aggregation.html">Aggregation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/filter-combine.html">Combine operations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/monitoring.html">Monitoring</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../reference/methods/index.html">Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reference/objects/index.html">Domain Objects</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../sdk/index.html">SDKs and API Libraries</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Transitioning from TempoDB</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../faqs.html">Frequently Asked Questions</a></li>
+</ul>
+
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">TempoIQ Manual</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+    <li>Transitioning from TempoDB to TempoIQ</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="../_sources/guides/tempodb-transition.txt" rel="nofollow"> View page source</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <div class="section" id="transitioning-from-tempodb-to-tempoiq">
+<h1><a class="toc-backref" href="#id1">Transitioning from TempoDB to TempoIQ</a><a class="headerlink" href="#transitioning-from-tempodb-to-tempoiq" title="Permalink to this headline">¶</a></h1>
+<div class="contents topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#transitioning-from-tempodb-to-tempoiq" id="id1">Transitioning from TempoDB to TempoIQ</a><ul>
+<li><a class="reference internal" href="#feature-comparison" id="id2">Feature Comparison</a></li>
+<li><a class="reference internal" href="#data-model" id="id3">Data Model</a></li>
+<li><a class="reference internal" href="#write-interface" id="id4">Write Interface</a></li>
+<li><a class="reference internal" href="#read-interface" id="id5">Read Interface</a></li>
+<li><a class="reference internal" href="#unsupported-tempodb-features" id="id6">Unsupported TempoDB features</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<p>This page covers important differences between TempoDB and TempoIQ, and considerations
+when migrating from the legacy TempoDB service.</p>
+<div class="section" id="feature-comparison">
+<h2><a class="toc-backref" href="#id2">Feature Comparison</a><a class="headerlink" href="#feature-comparison" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="25%" />
+<col width="25%" />
+<col width="50%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">TempoDB function/concept</th>
+<th class="head">TempoIQ equivalent</th>
+<th class="head">Notes</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><a class="reference external" href="https://tempo-db.com/docs/api/write/series/create">Create series</a></td>
+<td><a class="reference internal" href="../reference/methods/device-sensor-crud.html#createDevice" title="createDevice"><tt class="xref tempoiq tempoiq-method docutils literal"><span class="pre">createDevice()</span></tt></a></td>
+<td>See <a class="reference internal" href="#tdb-data-model"><em>Data Model</em></a> below.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference external" href="https://tempo-db.com/docs/api/write/series/update">Update series metadata</a></td>
+<td><a class="reference internal" href="../reference/methods/device-sensor-crud.html#updateDevice" title="updateDevice"><tt class="xref tempoiq tempoiq-method docutils literal"><span class="pre">updateDevice()</span></tt></a></td>
+<td>It is not possible to add/remove sensors once a device is created.</td>
+</tr>
+<tr class="row-even"><td><a class="reference external" href="https://tempo-db.com/docs/api/read/series/get">Get series by key</a></td>
+<td><a class="reference internal" href="../reference/methods/device-sensor-crud.html#getDevice" title="getDevice"><tt class="xref tempoiq tempoiq-method docutils literal"><span class="pre">getDevice()</span></tt></a></td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td><a class="reference external" href="https://tempo-db.com/docs/api/read/series/list">List series</a></td>
+<td><a class="reference internal" href="../reference/methods/device-sensor-crud.html#findDevices" title="findDevices"><tt class="xref tempoiq tempoiq-method docutils literal"><span class="pre">findDevices()</span></tt></a></td>
+<td>Enhancements to the interface for selecting devices are described below in
+<a class="reference internal" href="#tdb-selector-interface"><em>Selector Interface</em></a></td>
+</tr>
+<tr class="row-even"><td><a class="reference external" href="https://tempo-db.com/docs/api/delete/series/">Delete series</a></td>
+<td><a class="reference internal" href="../reference/methods/device-sensor-crud.html#deleteDevice" title="deleteDevice"><tt class="xref tempoiq tempoiq-method docutils literal"><span class="pre">deleteDevice()</span></tt></a>, <a class="reference internal" href="../reference/methods/device-sensor-crud.html#deleteDevices" title="deleteDevices"><tt class="xref tempoiq tempoiq-method docutils literal"><span class="pre">deleteDevices()</span></tt></a></td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td><a class="reference external" href="https://tempo-db.com/docs/api/write/datapoints/single">Write by key</a></td>
+<td><a class="reference internal" href="../reference/methods/write.html#writeData" title="writeData"><tt class="xref tempoiq tempoiq-method docutils literal"><span class="pre">writeData()</span></tt></a></td>
+<td>TempoIQ does not have a specialized method for writing to a single device.
+See <a class="reference internal" href="#tdb-write-interface"><em>Write Interface</em></a></td>
+</tr>
+<tr class="row-even"><td><a class="reference external" href="https://tempo-db.com/docs/api/write/datapoints/multi">Multi write</a></td>
+<td><a class="reference internal" href="../reference/methods/write.html#writeData" title="writeData"><tt class="xref tempoiq tempoiq-method docutils literal"><span class="pre">writeData()</span></tt></a></td>
+<td>See <a class="reference internal" href="#tdb-write-interface"><em>Write Interface</em></a></td>
+</tr>
+<tr class="row-odd"><td><a class="reference external" href="https://tempo-db.com/docs/api/delete/datapoints/">Delete data points</a></td>
+<td><strong>NOT SUPPORTED</strong></td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td><a class="reference external" href="https://tempo-db.com/docs/api/read/datapoints/basic">Basic reading</a></td>
+<td><a class="reference internal" href="../reference/methods/read.html#read" title="read"><tt class="xref tempoiq tempoiq-method docutils literal"><span class="pre">read()</span></tt></a></td>
+<td>TempoIQ does not have a specialized method for reading from a single device.
+See <a class="reference internal" href="#tdb-read-interface"><em>Read Interface</em></a></td>
+</tr>
+<tr class="row-odd"><td><a class="reference external" href="https://tempo-db.com/docs/api/read/datapoints/multi-series">Multi-series read</a></td>
+<td><a class="reference internal" href="../reference/methods/read.html#read" title="read"><tt class="xref tempoiq tempoiq-method docutils literal"><span class="pre">read()</span></tt></a></td>
+<td>See <a class="reference internal" href="#tdb-read-interface"><em>Read Interface</em></a></td>
+</tr>
+<tr class="row-even"><td>Rollups</td>
+<td><a class="reference internal" href="../reference/objects/function.html#Rollup" title="Rollup"><tt class="xref tempoiq tempoiq-class docutils literal"><span class="pre">Rollup</span></tt></a></td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td><a class="reference external" href="https://tempo-db.com/docs/api/read/datapoints/multi-rollups">Multi-rollups</a></td>
+<td><a class="reference internal" href="../reference/objects/function.html#MultiRollup" title="MultiRollup"><tt class="xref tempoiq tempoiq-class docutils literal"><span class="pre">MultiRollup</span></tt></a></td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td><a class="reference external" href="https://tempo-db.com/docs/api/read/datapoints/interpolation">Interpolation</a></td>
+<td><a class="reference internal" href="../reference/objects/function.html#Interpolate" title="Interpolate"><tt class="xref tempoiq tempoiq-class docutils literal"><span class="pre">Interpolate</span></tt></a></td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td><a class="reference external" href="https://tempo-db.com/docs/api/read/datapoints/aggregation">Aggregation</a></td>
+<td><a class="reference internal" href="../reference/objects/function.html#Aggregate" title="Aggregate"><tt class="xref tempoiq tempoiq-class docutils literal"><span class="pre">Aggregate</span></tt></a></td>
+<td>Currenly TempoIQ only supports aggregating across sensors within a single device.</td>
+</tr>
+<tr class="row-even"><td>Time zone adjustment</td>
+<td><a class="reference internal" href="../reference/objects/function.html#ConvertTZ" title="ConvertTZ"><tt class="xref tempoiq tempoiq-class docutils literal"><span class="pre">ConvertTZ</span></tt></a></td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td><a class="reference external" href="https://tempo-db.com/docs/api/read/datapoints/find">Find</a></td>
+<td><a class="reference internal" href="../reference/objects/function.html#Find" title="Find"><tt class="xref tempoiq tempoiq-class docutils literal"><span class="pre">Find</span></tt></a></td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td><a class="reference external" href="https://tempo-db.com/docs/api/read/datapoints/summary">Summary</a></td>
+<td><a class="reference internal" href="../reference/objects/function.html#MultiRollup" title="MultiRollup"><tt class="xref tempoiq tempoiq-class docutils literal"><span class="pre">MultiRollup</span></tt></a></td>
+<td>See <a class="reference internal" href="#tdb-summary-endpoint"><em>Summary Endpoint</em></a> below</td>
+</tr>
+<tr class="row-odd"><td><a class="reference external" href="https://tempo-db.com/docs/api/read/datapoints/single-value">Single value</a></td>
+<td><tt class="xref tempoiq tempoiq-method docutils literal"><span class="pre">lastValue()</span></tt></td>
+<td>Not a 100% replacement, see <a class="reference internal" href="#tdb-single-value"><em>Single Value Queries</em></a> below</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="data-model">
+<span id="tdb-data-model"></span><h2><a class="toc-backref" href="#id3">Data Model</a><a class="headerlink" href="#data-model" title="Permalink to this headline">¶</a></h2>
+<p>TempoDB&#8217;s concept of a series has been replaced by a two-level hierarchy of
+Devices and Sensors. When migrating to TempoIQ, it&#8217;s important to understand
+how to map your series to a corresponding TempoIQ sensor.</p>
+<p>Suppose you are currently storing energy meter data in TempoDB, using series
+with the following format:</p>
+<div class="highlight-javascript"><div class="highlight"><pre><span class="s2">&quot;series&quot;</span><span class="o">:</span> <span class="p">[</span>
+  <span class="p">{</span>
+    <span class="s2">&quot;key&quot;</span><span class="o">:</span> <span class="s2">&quot;meter:12345.region:2A.voltage.&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;tags&quot;</span><span class="o">:</span> <span class="s2">&quot;voltage&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
+      <span class="s2">&quot;meter&quot;</span><span class="o">:</span> <span class="s2">&quot;12345&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;region&quot;</span><span class="o">:</span> <span class="s2">&quot;2A&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;status&quot;</span><span class="o">:</span> <span class="s2">&quot;active&quot;</span>
+    <span class="p">},</span>
+  <span class="p">},</span>
+  <span class="p">{</span>
+    <span class="s2">&quot;key&quot;</span><span class="o">:</span> <span class="s2">&quot;meter:12345.region:2A.energy.&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;tags&quot;</span><span class="o">:</span> <span class="s2">&quot;energy&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
+      <span class="s2">&quot;meter&quot;</span><span class="o">:</span> <span class="s2">&quot;12345&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;region&quot;</span><span class="o">:</span> <span class="s2">&quot;2A&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;status&quot;</span><span class="o">:</span> <span class="s2">&quot;active&quot;</span>
+    <span class="p">},</span>
+  <span class="p">},</span>
+  <span class="p">...</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<p>While your exact format may differ, this example illustrates a few common
+conventions in TempoDB:</p>
+<ul class="simple">
+<li>Each physical unit (meter) is actually represented as multiple series; in this
+case, one for voltage and one for energy usage.</li>
+<li>A series key includes some or all of the series&#8217; metadata (attributes and tags).</li>
+<li>Series metadata describes the source of the data (which meter) as well as the
+type of measurement (voltage vs. usage). Source metadata is replicated across
+all series associated with that source.</li>
+</ul>
+<p>In TempoIQ, here&#8217;s how to represent this meter data as devices and sensors:</p>
+<div class="highlight-javascript"><div class="highlight"><pre><span class="s2">&quot;devices&quot;</span><span class="o">:</span> <span class="p">[</span>
+  <span class="p">{</span>
+    <span class="s2">&quot;key&quot;</span><span class="o">:</span> <span class="s2">&quot;meter:12345&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
+      <span class="s2">&quot;meter&quot;</span><span class="o">:</span> <span class="s2">&quot;12345&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;region&quot;</span><span class="o">:</span> <span class="s2">&quot;2A&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;status&quot;</span><span class="o">:</span> <span class="s2">&quot;active&quot;</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;sensors&quot;</span><span class="o">:</span> <span class="p">[</span>
+      <span class="p">{</span>
+        <span class="s2">&quot;key&quot;</span><span class="o">:</span> <span class="s2">&quot;voltage&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{}</span>
+      <span class="p">},</span>
+      <span class="p">{</span>
+        <span class="s2">&quot;key&quot;</span><span class="o">:</span> <span class="s2">&quot;energy&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{}</span>
+      <span class="p">}</span>
+    <span class="p">]</span>
+  <span class="p">},</span>
+  <span class="p">...</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<p>In contrast to the TempoDB example above:</p>
+<ul class="simple">
+<li>Each physical unit is represented as an individual device object, and all
+associated measurements are defined as sensors on that device.</li>
+<li>A device key only includes the information necessary to uniquely identify the
+device. TempoIQ does not automatically create attributes based on the content
+of the device key, so you have more flexibility in how you generate your device
+keys.</li>
+<li>Device metadata only includes attributes relevant to the overall device. The
+type of measurement becomes the sensor key. In addition, sensors have their
+own metadata which you can use for things like measurement unit or a calibration
+offset.</li>
+</ul>
+<p>Finally, TempoIQ only supports attribute metadata; tags are no longer supported.
+To emulate a tag, you can define an attribute key with an empty value string.</p>
+</div>
+<div class="section" id="write-interface">
+<span id="tdb-write-interface"></span><h2><a class="toc-backref" href="#id4">Write Interface</a><a class="headerlink" href="#write-interface" title="Permalink to this headline">¶</a></h2>
+<p>TempoIQ&#8217;s write interface has changed to accommodate the new device/sensor data
+model. In addition, there is no longer a dedicated endpoint for writing data to
+a single sensor, there is only a multi write interface. See the
+<a class="reference internal" href="../reference/methods/write.html#writeData" title="writeData"><tt class="xref tempoiq tempoiq-method docutils literal"><span class="pre">API</span> <span class="pre">Documentation</span></tt></a> for more information on writing in
+TempoIQ.</p>
+</div>
+<div class="section" id="read-interface">
+<span id="tdb-read-interface"></span><h2><a class="toc-backref" href="#id5">Read Interface</a><a class="headerlink" href="#read-interface" title="Permalink to this headline">¶</a></h2>
+<p>TempoIQ&#8217;s read interface has been enhanced to offer far more flexibility than
+was possible in TempoDB. These enhancements are in two main areas: selecting
+sensors to read and performing operations on the returned data.</p>
+<div class="section" id="selector-interface">
+<span id="tdb-selector-interface"></span><h3>Selector Interface<a class="headerlink" href="#selector-interface" title="Permalink to this headline">¶</a></h3>
+<p>In TempoDB, you could select series to read in one of two ways: specifying
+a list of series keys, or specifying tags and attributes to match. TempoIQ&#8217;s
+selection interface works in much the same way, but with a few differences:</p>
+<ul class="simple">
+<li>You may explicitly <em>AND</em> and <em>OR</em> attributes together to form more complex
+criteria.</li>
+<li>You may specify criteria about the sensors themselves as well as their parent
+devices.</li>
+</ul>
+<p>See the <a class="reference internal" href="../reference/objects/search.html#Search" title="Search"><tt class="xref tempoiq tempoiq-class docutils literal"><span class="pre">Search</span></tt></a> reference for details.</p>
+</div>
+<div class="section" id="function-pipeline">
+<span id="tdb-function-pipeline"></span><h3>Function Pipeline<a class="headerlink" href="#function-pipeline" title="Permalink to this headline">¶</a></h3>
+<p>Both TempoDB and TempoIQ support the same historical analysis features: rollups,
+interpolation, and aggregation. However, TempoIQ allows you to combine these
+functions in any order, whereas TempoDB hardcoded the ordering.</p>
+<p>Because of this increased flexibility, you must be conscious of the ordering
+of your function pipelines. As you migrate to TempoIQ, to preserve the
+same behavior in your application, simply order your pipeline
+operations to correspond to the ordering in TempoDB: interpolate,
+rollup, then aggregate.</p>
+</div>
+</div>
+<div class="section" id="unsupported-tempodb-features">
+<h2><a class="toc-backref" href="#id6">Unsupported TempoDB features</a><a class="headerlink" href="#unsupported-tempodb-features" title="Permalink to this headline">¶</a></h2>
+<p>While TempoIQ provides significantly more flexibility than TempoDB, it is not
+at 100% feature parity. This section covers every TempoDB feature which is not
+supported in TempoIQ.</p>
+<div class="section" id="single-value-queries">
+<span id="tdb-single-value"></span><h3>Single Value Queries<a class="headerlink" href="#single-value-queries" title="Permalink to this headline">¶</a></h3>
+<p>Currently, TempoIQ only supports a subset of the capabilities of TempoDB&#8217;s
+Single Value query. It is possible to read the latest value for a given
+sensor, but you can&#8217;t read points relative to an arbitrary timestamp.</p>
+<p>If your application relies on the Single Value API, contact <a class="reference external" href="mailto:support&#37;&#52;&#48;tempoiq&#46;com">support<span>&#64;</span>tempoiq<span>&#46;</span>com</a>
+for suggestions of alternative approaches.</p>
+</div>
+<div class="section" id="summary-endpoint">
+<span id="tdb-summary-endpoint"></span><h3>Summary Endpoint<a class="headerlink" href="#summary-endpoint" title="Permalink to this headline">¶</a></h3>
+<p>TempoIQ does not offer a special method for retreiving summary data over a
+time range. However, this functionality can be replicated using a multi-function
+rollup. Simply specify a rollup period greater than or equal to the time duration
+between the start and end times. This will result in a single rolled up value
+for the entire time range. Then specify all rollup functions that you wish to
+calculate. The TempoDB summary function returned the following functions:
+<tt class="docutils literal"><span class="pre">count</span></tt>, <tt class="docutils literal"><span class="pre">min</span></tt>, <tt class="docutils literal"><span class="pre">max</span></tt>, <tt class="docutils literal"><span class="pre">mean</span></tt>, <tt class="docutils literal"><span class="pre">stddev</span></tt>, and <tt class="docutils literal"><span class="pre">sum</span></tt>.</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../faqs.html" class="btn btn-neutral float-right" title="Frequently Asked Questions">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../sdk/index.html" class="btn btn-neutral" title="SDKs and API Libraries"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014, TempoIQ Inc.
+    </p>
+  </div>
+
+  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
