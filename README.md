@@ -3,7 +3,7 @@ Docs!
 
 Public documentation for TempoIQ.
 
-Built docs are currently hosted on GitHub pages:http://tempoiq.github.io/docs/
+Built docs are currently hosted on GitHub pages: http://tempoiq.github.io/docs/
 
 To build docs locally:
 
@@ -13,13 +13,25 @@ To build docs locally:
 4. `pip install -r requirements.txt`
 5. `make html`
 
-HTML output is in build/html.
+HTML output is in build/html. If you're feeling more adventurous, there's
+also a Grunt task that auto-builds the docs and refreshes the webpage whenever
+a .rst file changes. To set it up:
+
+1. Install Node: e.g. `brew install node`
+2. Install grunt: `npm install -g grunt-cli`
+3. Install packages and grunt plugins to do the cool stuff: `npm install`
+4. Run the task with `grunt`.
 
 
 ## Stuff to know
 
-The "dev" Sphinx tag can be used to include content for development builds only,
-e.g.: `..only:: dev`
+The "dev" Sphinx tag can be used to include content in development builds only,
+e.g.:
+
+    .. only:: dev
+
+       Insert profanity, secrets, or other not-safe-for-customers
+       content here.
 
 The todo directive already has this behavior, so they won't be included in the
 output if the "dev" tag isn't set.
@@ -73,8 +85,8 @@ special configuration in your text editor.
 
 ### Terminology
 
-* "Data point" is two words
-* "Time zone" is two words
+* "data point" is two words
+* "time zone" is two words
 * "real time" or "real-time", not "realtime"
 * "timestamp" is one word
 
