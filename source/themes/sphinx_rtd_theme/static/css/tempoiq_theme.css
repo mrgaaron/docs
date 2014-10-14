@@ -1,0 +1,34 @@
+html, body {
+  height: 100%!important;
+  font-family: 'GothamHTF-Light', Calibri, Sans-Serif;
+}
+
+h1, h2, h3, h4, h5, h6, legend {
+    margin-top: 0;
+    font-weight: 700;
+    font-family: "GothamHTF-Book", "Roboto Slab", "ff-tisa-web-pro", "Georgia", Arial, sans-serif;
+}
+
+nav.stickynav {
+    position: fixed;
+    top: 60px;
+}
+
+.wy-menu-vertical .fa-home{
+    font-size: 24px;
+    padding: 5px 20px;
+}
+
+.wy-nav-content-wrap {
+    padding-top: 60px;
+}
+
+.wy-nav-content {}
+
+.wy-menu-vertical li.toctree-l3 > a {
+    padding-left: 60px;
+}
+
+.wy-menu-vertical {
+    margin-top: 20px;
+}

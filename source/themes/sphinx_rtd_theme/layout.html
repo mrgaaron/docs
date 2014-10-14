@@ -37,10 +37,13 @@
   {% if not READTHEDOCS %}
     <link rel="stylesheet" href="{{ pathto('_static/' + style, 1) }}" type="text/css" />
   {% endif %}
-
+  <link rel="stylesheet" href="{{ pathto('_static/', 1) }}css/fonts.css" type="text/css" />
   {% for cssfile in css_files %}
     <link rel="stylesheet" href="{{ pathto(cssfile, 1) }}" type="text/css" />
   {% endfor %}
+  <link rel="stylesheet" href="{{ pathto('_static/', 1) }}css/tempoiq_theme.css" type="text/css" />
+
+  <link rel="stylesheet" href="{{ pathto('_static/', 1) }}css/nav.css" type="text/css" />
 
   {%- block linktags %}
     {%- if hasdoc('about') %}
@@ -76,20 +79,24 @@
 </head>
 
 <body class="wy-body-for-nav" role="document">
-
   <div class="wy-grid-for-nav">
-
+    {% block nav %}
+    <div class="navbar navbar-fixed-top" role="navigation">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/"><img class="navbar-brand-logo" src="{{ pathto('_static/', 1) }}img/logo.png"/></a>
+        </div>
+        <ul class="user-profile">
+          <li>{% include "searchbox.html" %}</li>
+        </ul>
+    </div>
+    {% endblock nav %}
     {# SIDE NAV, TOGGLES ON MOBILE #}
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
-      <div class="wy-side-nav-search">
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
         {% block sidebartitle %}
           <a href="{{ pathto(master_doc) }}" class="fa fa-home"> {{ project }}</a>
         {% endblock %}
-        {% include "searchbox.html" %}
-      </div>
-
-      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-        {% set toctree = toctree(maxdepth=2, collapse=False, includehidden=True) %}
+        {% set toctree = toctree(maxdepth=3, collapse=False, includehidden=True) %}
         {% if toctree %}
             {{ toctree }}
         {% else %}
