@@ -23,7 +23,9 @@ nav.stickynav {
     padding-top: 60px;
 }
 
-.wy-nav-content {}
+.wy-nav-content {
+    min-width: 100%;
+}
 
 .wy-menu-vertical li.toctree-l3 > a {
     padding-left: 60px;
