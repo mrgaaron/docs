@@ -42,8 +42,8 @@ Feature Comparison
       - :method:`writeData`
       - See :ref:`tdb-write-interface`
     * - `Delete data points <https://tempo-db.com/docs/api/delete/datapoints/>`_
-      - **NOT SUPPORTED**
-      -
+      - :method:`deleteData`
+      - In progress. Will be available 2014-10-20
     * - `Basic reading <https://tempo-db.com/docs/api/read/datapoints/basic>`_
       - :method:`read`
       - TempoIQ does not have a specialized method for reading from a single device.
@@ -56,13 +56,14 @@ Feature Comparison
       -
     * - `Multi-rollups <https://tempo-db.com/docs/api/read/datapoints/multi-rollups>`_
       - :class:`MultiRollup`
-      - 
+      -
     * - `Interpolation <https://tempo-db.com/docs/api/read/datapoints/interpolation>`_
       - :class:`Interpolate`
       -
     * - `Aggregation <https://tempo-db.com/docs/api/read/datapoints/aggregation>`_
       - :class:`Aggregate`
       - Currenly TempoIQ only supports aggregating across sensors within a single device.
+        See :ref:`tdb-aggregation`
     * - Time zone adjustment
       - :class:`ConvertTZ`
       -
@@ -235,6 +236,17 @@ sensor, but you can't read points relative to an arbitrary timestamp.
 
 If your application relies on the Single Value API, contact support@tempoiq.com
 for suggestions of alternative approaches.
+
+
+.. _tdb-aggregation:
+
+Cross-Device Aggregation
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+The current function pipeline semantics do not contain a concept of combining
+data from different devices. Therefore, the aggregation function only allows you
+to combine data from sensors on the same device. This limitation will be
+addressed in a future update.
 
 
 .. _tdb-summary-endpoint:
