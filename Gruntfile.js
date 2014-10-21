@@ -34,7 +34,7 @@ module.exports = function(grunt) {
     watch: {
       /* Changes in theme dir rebuild sphinx */
       sphinx: {
-        files: ['source/**/*.rst'],
+        files: ['source/**/*.rst', 'source/**/*.html', 'source/**/*.css'],
         tasks: ['exec:build_sphinx']
       },
       /* live-reload the demo_docs if sphinx re-builds */
