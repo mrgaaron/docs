@@ -41,9 +41,8 @@
   {% for cssfile in css_files %}
     <link rel="stylesheet" href="{{ pathto(cssfile, 1) }}" type="text/css" />
   {% endfor %}
-  <link rel="stylesheet" href="{{ pathto('_static/', 1) }}css/tempoiq_theme.css" type="text/css" />
-
   <link rel="stylesheet" href="{{ pathto('_static/', 1) }}css/nav.css" type="text/css" />
+  <link rel="stylesheet" href="{{ pathto('_static/', 1) }}css/tempoiq_theme.css" type="text/css" />
 
   {%- block linktags %}
     {%- if hasdoc('about') %}
@@ -85,7 +84,7 @@
         <div class="navbar-header">
             <a class="navbar-brand" href="/"><img class="navbar-brand-logo" src="{{ pathto('_static/', 1) }}img/logo.png"/></a>
         </div>
-        <ul class="user-profile">
+        <ul class="docs-search">
           <li>{% include "searchbox.html" %}</li>
         </ul>
     </div>

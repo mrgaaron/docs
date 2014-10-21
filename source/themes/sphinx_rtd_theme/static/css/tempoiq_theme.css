@@ -14,6 +14,47 @@ nav.stickynav {
     top: 60px;
 }
 
+nav i.fa-bars {
+    margin-top: 10px;
+}
+
+.navbar {
+    background-color: #343131
+}
+
+@media(max-width: 768px) {
+    .navbar-header {
+        width: auto;
+        padding-left: 0px;
+    }
+
+    .navbar-brand .navbar-brand-logo {
+        width: 150px;
+        margin-left: 10px;
+    }
+
+    .navbar .docs-search {
+        margin-right: 10px;
+    }
+}
+
+@media (max-width: 400px) {
+    .navbar-brand .navbar-brand-logo {
+        width: 120px;
+        margin-left: 5px;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    #rtd-search-form input[type="text"] {
+        margin: 0;
+        display: inline-block;
+    }
+
+}
+
+
+
 .wy-menu-vertical .fa-home{
     font-size: 24px;
     padding: 5px 20px;
@@ -33,4 +74,8 @@ nav.stickynav {
 
 .wy-menu-vertical {
     margin-top: 20px;
+}
+
+.wy-nav-side {
+    top: 60px;
 }
