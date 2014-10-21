@@ -1,0 +1,81 @@
+html, body {
+  height: 100%!important;
+  font-family: 'GothamHTF-Light', Calibri, Sans-Serif;
+}
+
+h1, h2, h3, h4, h5, h6, legend {
+    margin-top: 0;
+    font-weight: 700;
+    font-family: "GothamHTF-Book", "Roboto Slab", "ff-tisa-web-pro", "Georgia", Arial, sans-serif;
+}
+
+nav.stickynav {
+    position: fixed;
+    top: 60px;
+}
+
+nav i.fa-bars {
+    margin-top: 10px;
+}
+
+.navbar {
+    background-color: #343131
+}
+
+@media(max-width: 768px) {
+    .navbar-header {
+        width: auto;
+        padding-left: 0px;
+    }
+
+    .navbar-brand .navbar-brand-logo {
+        width: 150px;
+        margin-left: 10px;
+    }
+
+    .navbar .docs-search {
+        margin-right: 10px;
+    }
+}
+
+@media (max-width: 400px) {
+    .navbar-brand .navbar-brand-logo {
+        width: 120px;
+        margin-left: 5px;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    #rtd-search-form input[type="text"] {
+        margin: 0;
+        display: inline-block;
+    }
+
+}
+
+
+
+.wy-menu-vertical .fa-home{
+    font-size: 24px;
+    padding: 5px 20px;
+}
+
+.wy-nav-content-wrap {
+    padding-top: 60px;
+}
+
+.wy-nav-content {
+    min-width: 100%;
+}
+
+.wy-menu-vertical li.toctree-l3 > a {
+    padding-left: 60px;
+}
+
+.wy-menu-vertical {
+    margin-top: 20px;
+}
+
+.wy-nav-side {
+    top: 60px;
+}
