@@ -6,7 +6,7 @@ Data objects
 
 TempoIQ uses a simple two-level data hierarchy, consisting of Devices and Sensors.
 
-``Simple high-level graphic showing backend  with many devices; devices with many sensors``
+.. todo:: Simple high-level graphic showing backend  with many devices; devices with many sensors
 
 Devices
 ~~~~~~~

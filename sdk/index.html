@@ -26,8 +26,10 @@
   
     <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   
-
+  <link rel="stylesheet" href="../_static/css/fonts.css" type="text/css" />
   
+  <link rel="stylesheet" href="../_static/css/nav.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/tempoiq_theme.css" type="text/css" />
     <link rel="top" title="TempoIQ Manual 1.0 documentation" href="../index.html"/>
         <link rel="next" title="Transitioning from TempoDB to TempoIQ" href="../guides/tempodb-transition.html"/>
         <link rel="prev" title="WriteRequest" href="../reference/objects/write-request.html"/> 
@@ -38,41 +40,84 @@
 </head>
 
 <body class="wy-body-for-nav" role="document">
-
   <div class="wy-grid-for-nav">
-
     
-    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
-      <div class="wy-side-nav-search">
-        
-          <a href="../index.html" class="fa fa-home"> TempoIQ Manual</a>
-        
-        <div role="search">
+    <div class="navbar navbar-fixed-top" role="navigation">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/"><img class="navbar-brand-logo" src="../_static/img/logo.png"/></a>
+        </div>
+        <ul class="docs-search">
+          <li><div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input class="form-control" type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
-</div>
-      </div>
-
+</div></li>
+        </ul>
+    </div>
+    
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          <a href="../index.html" class="fa fa-home"> TempoIQ Manual</a>
+        
         
         
             <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../concepts/index.html">Concepts</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../concepts/data-model.html">Data Model</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../concepts/writing.html">Writing sensor data</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../concepts/reading.html">Reading sensor data</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../concepts/pipeline.html">Analytics pipeline</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../concepts/aggregation.html">Aggregation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/data-model.html">Data Model</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/writing.html">Writing sensor data</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/reading.html">Reading sensor data</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/pipeline.html">Analytics pipeline</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/aggregation.html">Aggregation</a><ul class="simple">
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../concepts/filter-combine.html">Combine operations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../concepts/monitoring.html">Monitoring</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/monitoring.html">Monitoring</a><ul class="simple">
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../reference/index.html">API Reference</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../reference/methods/index.html">Methods</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../reference/objects/index.html">Domain Objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reference/methods/index.html">Methods</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../reference/methods/device-sensor-crud.html">Device and Sensor CRUD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/methods/write.html">Writing Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/methods/read.html">Reading Historical Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/methods/monitoring-crud.html">Monitoring Rules</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../reference/objects/index.html">Domain Objects</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../reference/objects/credentials.html">Credentials</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/objects/cursor.html">Cursor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/objects/datapoint.html">DataPoint</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/objects/datetime.html">DateTime</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/objects/device.html">Device</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/objects/fold.html">Fold</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/objects/function.html">PipelineFunction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/objects/monitor-rule.html">MonitorRule</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/objects/period.html">Period</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/objects/pipeline.html">Pipeline</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/objects/read-action.html">ReadAction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/objects/read-request.html">ReadRequest</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/objects/read-response.html">ReadResponse</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/objects/search.html">Search</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/objects/selector.html">Selector</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/objects/sensor.html">Sensor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/objects/timezone.html">TimeZone</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/objects/value-descriptor.html">ValueDescriptor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/objects/write-request.html">WriteRequest</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">SDKs and API Libraries</a></li>
@@ -116,6 +161,15 @@
             
   <div class="section" id="sdks-and-api-libraries">
 <h1>SDKs and API Libraries<a class="headerlink" href="#sdks-and-api-libraries" title="Permalink to this headline">¶</a></h1>
+<p>TempoIQ provides API libraries for many common languages and frameworks. You
+can find links to download the latest versions of these libraries below:</p>
+<ul class="simple">
+<li><a class="reference external" href="https://tempoiq.com/static/sdks/tempoiq-java.zip">Java</a></li>
+<li><a class="reference external" href="https://tempoiq.com/static/sdks/tempoiq-net.zip">.NET/C#</a></li>
+<li><a class="reference external" href="https://tempoiq.com/static/sdks/tempoiq-node-js.zip">NodeJS</a></li>
+<li><a class="reference external" href="https://tempoiq.com/static/sdks/tempoiq-python.zip">Python</a></li>
+<li><a class="reference external" href="https://tempoiq.com/static/sdks/tempoiq-ruby.zip">Ruby</a></li>
+</ul>
 </div>
 
 

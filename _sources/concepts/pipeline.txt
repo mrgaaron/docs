@@ -18,7 +18,7 @@ pipeline, there's a one-to-one correspondence between input sensor streams and
 output streams.
 Combining streams across several sensors or devices is covered in the next section.
 
-``[ diagram of where a basic pipeline fits in a read query ]``
+.. todo:: diagram of where a basic pipeline fits in a read query
 
 TempoIQ supports many pipeline operations as part of the client libraries.
 See the Analytics API reference for details.

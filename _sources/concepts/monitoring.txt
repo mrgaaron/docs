@@ -14,7 +14,7 @@ Defining a monitoring rule is very similar to defining an analytics query. You
 create a selector to indicate which sensors to monitor, then compose a pipeline
 to define the criteria to monitor.
 
-``[ graphic showing a selector, pipeline, and trigger ]``
+.. todo:: graphic showing a selector, pipeline, and trigger
 
 Boolean streams
 ~~~~~~~~~~~~~~~
