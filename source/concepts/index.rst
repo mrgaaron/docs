@@ -9,5 +9,3 @@ Concepts
    reading
    pipeline
    aggregation
-   filter-combine
-   monitoring
