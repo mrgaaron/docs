@@ -80,19 +80,11 @@ the average temperature on each floor in a given building.
 sensors
 ~~~~~~~
 
-List of :class:`Sensor` objects attached to the device. Sensors may be added
-and deleted after creating a device, but keep in mind that deleting a
-sensor will remove all of its historical data.
+List of :class:`Sensor` objects attached to the device. Currently, it is not
+possible to add or remove sensors from a device after the device is initially
+created.
 
-If sensors are frequently created or removed from a device, it might
-make sense to split up sensors into multiple smaller devices that each
-have a more consistent configuration.
-
-TempoIQ's storage engine is optimized for devices with relatively few
-long-living sensors. You may find yourself frequently creating/deleting
-sensors on a device, or having devices with more than 30-50 sensors.
-If this is the case, consider splitting your sensors across several
-devices with smaller, more consistent configurations.
+TempoIQ supports a maximum of 256 sensors on a device.
 
 
 Considerations

@@ -16,7 +16,6 @@ averaging over a period of time.
 Pipelines operate individually on each sensor in a selector. Therefore, for a basic
 pipeline, there's a one-to-one correspondence between input sensor streams and
 output streams.
-Combining streams across several sensors or devices is covered in the next section.
 
 .. todo:: diagram of where a basic pipeline fits in a read query
 
@@ -49,5 +48,4 @@ Chaining pipeline operations
 
 An analytics pipeline can contain several operations in sequence. Each operation takes
 the result of the previous operation as its input. This enables you to compose complex
-analysis functions out of simple component operations. See the pipeline cookbook for
-example pipelines that are composed from the basic pipeline operations.
+analysis functions out of simple component operations.

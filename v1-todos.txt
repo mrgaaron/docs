@@ -13,17 +13,17 @@ Dependencies
 Need to do
 ----------
 
-++   Remove all references to monitoring
+X ++   Remove all references to monitoring
 ++   Update write examples to reflect API
 ++   Update read examples to reflect API
 +++  Update selector/search etc for new API (dep: 2)
 +++  Document rollups and other pipeline fns
 +    Document Latest endpoint (dep: 3)
 +    Code example of reading data (dep: 1)
-+    Remove aggregation and combine docs
-+    In device ref: sensors MAY NOT be added/removed
+X +    Remove aggregation and combine docs
+X +    In device ref: sensors MAY NOT be added/removed
 +    Clean up duplicate/unnecessary object ref pages (fold?)
-+    Remove valuedescriptor doc? (dep: 2)
+X +    Remove valuedescriptor doc? (dep: 2)
 
 Want to do
 ----------

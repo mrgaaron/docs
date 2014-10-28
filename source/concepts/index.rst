@@ -8,4 +8,3 @@ Concepts
    writing
    reading
    pipeline
-   aggregation
