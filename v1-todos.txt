@@ -17,18 +17,19 @@ X ++   Remove all references to monitoring
 ++   Update write examples to reflect API
 ++   Update read examples to reflect API
 +++  Update selector/search etc for new API (dep: 2)
-+++  Document rollups and other pipeline fns
+X ++   Document rollups
+++   Document other pipeline fns
 +    Document Latest endpoint (dep: 3)
 +    Code example of reading data (dep: 1)
 X +    Remove aggregation and combine docs
 X +    In device ref: sensors MAY NOT be added/removed
-+    Clean up duplicate/unnecessary object ref pages (fold?)
+X +    Clean up duplicate/unnecessary object ref pages (fold?)
 X +    Remove valuedescriptor doc? (dep: 2)
 
 Want to do
 ----------
 
-+   Remove delteDevice documentation?
++   Remove deleteDevice documentation?
 ++  Document multistatus
 ++  Cursoring explanation (dep: 4)
 +   Don't show arguments in method display
@@ -43,7 +44,7 @@ Bonus points
 ------------
 
 +  Client lib datetime classes
-+  Device-sensor model diagram
+++  Device-sensor model diagram
 ++ Pipeline concepts diagram
 ++ HTTP specifics page
 ++ Categorize reference docs (query, devices, etc)
