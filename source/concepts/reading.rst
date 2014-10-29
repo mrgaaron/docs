@@ -53,13 +53,13 @@ the customer attribute is '123'.
 .. code-block:: javascript
 
     sensors = {
-                device: {
+                devices: {
                   attributes: {
                     type: "thermostat",
                     customer: "123"
                   }
                 },
-                sensor: {
+                sensors: {
                   key: "hum"
                 }
               };
@@ -88,8 +88,8 @@ and humidity.
 .. code-block:: javascript
 
     sensors = {
-                device: { key: thermostatKey },  // As supplied by user or database lookup
-                sensor: "ALL"
+                devices: { key: thermostatKey },  // As supplied by user or database lookup
+                sensors: "all"
               };
 
     response = client.latest(sensors);

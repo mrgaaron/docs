@@ -14,8 +14,8 @@ Need to do
 ----------
 
 X ++   Remove all references to monitoring
-++   Update write examples to reflect API
-++   Update read examples to reflect API
+X ++   Update write examples to reflect API
+x-ish ++   Update read examples to reflect API
 +++  Update selector/search etc for new API (dep: 2)
 X ++   Document rollups
 ++   Document other pipeline fns

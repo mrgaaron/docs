@@ -38,9 +38,9 @@ to downsample the raw data streams to hourly averages:
 
 .. code-block:: javascript
 
-    pipe = Pipeline.start().rollup("1hour", "mean");
+    var pipe = new tempoiq.Pipeline.rollup("mean", "1hour", start);
 
-    response = client.read(sensors, pipe, start, end);
+    client.read(selector, start, end, pipe, callback);
 
 
 Chaining pipeline operations
