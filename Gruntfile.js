@@ -24,7 +24,7 @@ module.exports = function(grunt) {
 
     exec: {
       build_sphinx: {
-        cmd: 'make html'
+        cmd: 'make dev-html'
       },
       clean: {
         cmd: 'make clean'

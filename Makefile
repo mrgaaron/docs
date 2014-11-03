@@ -27,6 +27,7 @@ I18NSPHINXOPTS  = $(PAPEROPT_$(PAPER)) $(SPHINXOPTS) source
 help:
 	@echo "Please use \`make <target>' where <target> is one of"
 	@echo "  html          to make standalone HTML files"
+	@echo "  dev-html      to make a development build of HTML files"
 	@echo "  publish-prod  to make and publish HTML files to the Production repo"
 	@echo "  publish-dev   to make and publish HTML files to the Dev repo"
 	@echo "  singlehtml    to make a single large HTML file"
@@ -41,6 +42,11 @@ clean:
 
 html:
 	$(SPHINXBUILD) -b html $(ALLSPHINXOPTS) $(BUILDDIR)/html
+	@echo
+	@echo "Build finished. The HTML pages are in $(BUILDDIR)/html."
+
+dev-html:
+	$(SPHINXBUILD) -b html -t dev $(ALLSPHINXOPTS) $(BUILDDIR)/html
 	@echo
 	@echo "Build finished. The HTML pages are in $(BUILDDIR)/html."
 

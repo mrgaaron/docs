@@ -13,12 +13,9 @@ sys.path.append(os.path.abspath('sphinxext'))
 
 # -- General configuration ------------------------------------------------
 
-# Set to True to remove dev-only stuff. Can also be done in sphinx-build
-# cmd line args as "-t publish"
-#tags.add('publish')
-
-if not tags.has('publish'):
-    tags.add('dev')
+# For development builds, invoke sphinx-build with '-t dev'.
+if not tags.has('dev'):
+    tags.add('publish')
 
 # If your documentation needs a minimal Sphinx version, state it here.
 #needs_sphinx = '1.0'
