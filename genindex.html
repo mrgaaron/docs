@@ -78,13 +78,6 @@
 <li class="toctree-l2"><a class="reference internal" href="concepts/pipeline.html">Analytics pipeline</a><ul class="simple">
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="concepts/aggregation.html">Aggregation</a><ul class="simple">
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="concepts/filter-combine.html">Combine operations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="concepts/monitoring.html">Monitoring</a><ul class="simple">
-</ul>
-</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="reference/index.html">API Reference</a><ul>
@@ -92,7 +85,6 @@
 <li class="toctree-l3"><a class="reference internal" href="reference/methods/device-sensor-crud.html">Device and Sensor CRUD</a></li>
 <li class="toctree-l3"><a class="reference internal" href="reference/methods/write.html">Writing Data</a></li>
 <li class="toctree-l3"><a class="reference internal" href="reference/methods/read.html">Reading Historical Data</a></li>
-<li class="toctree-l3"><a class="reference internal" href="reference/methods/monitoring-crud.html">Monitoring Rules</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="reference/objects/index.html">Domain Objects</a><ul>
@@ -101,9 +93,7 @@
 <li class="toctree-l3"><a class="reference internal" href="reference/objects/datapoint.html">DataPoint</a></li>
 <li class="toctree-l3"><a class="reference internal" href="reference/objects/datetime.html">DateTime</a></li>
 <li class="toctree-l3"><a class="reference internal" href="reference/objects/device.html">Device</a></li>
-<li class="toctree-l3"><a class="reference internal" href="reference/objects/fold.html">Fold</a></li>
 <li class="toctree-l3"><a class="reference internal" href="reference/objects/function.html">PipelineFunction</a></li>
-<li class="toctree-l3"><a class="reference internal" href="reference/objects/monitor-rule.html">MonitorRule</a></li>
 <li class="toctree-l3"><a class="reference internal" href="reference/objects/period.html">Period</a></li>
 <li class="toctree-l3"><a class="reference internal" href="reference/objects/pipeline.html">Pipeline</a></li>
 <li class="toctree-l3"><a class="reference internal" href="reference/objects/read-action.html">ReadAction</a></li>
@@ -113,7 +103,6 @@
 <li class="toctree-l3"><a class="reference internal" href="reference/objects/selector.html">Selector</a></li>
 <li class="toctree-l3"><a class="reference internal" href="reference/objects/sensor.html">Sensor</a></li>
 <li class="toctree-l3"><a class="reference internal" href="reference/objects/timezone.html">TimeZone</a></li>
-<li class="toctree-l3"><a class="reference internal" href="reference/objects/value-descriptor.html">ValueDescriptor</a></li>
 <li class="toctree-l3"><a class="reference internal" href="reference/objects/write-request.html">WriteRequest</a></li>
 </ul>
 </li>
@@ -166,14 +155,12 @@
  | <a href="#F"><strong>F</strong></a>
  | <a href="#G"><strong>G</strong></a>
  | <a href="#I"><strong>I</strong></a>
- | <a href="#L"><strong>L</strong></a>
  | <a href="#M"><strong>M</strong></a>
  | <a href="#P"><strong>P</strong></a>
  | <a href="#R"><strong>R</strong></a>
  | <a href="#S"><strong>S</strong></a>
  | <a href="#T"><strong>T</strong></a>
  | <a href="#U"><strong>U</strong></a>
- | <a href="#V"><strong>V</strong></a>
  | <a href="#W"><strong>W</strong></a>
  
 </div>
@@ -191,10 +178,6 @@
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%" valign="top"><dl>
       
-  <dt><a href="reference/objects/monitor-rule.html#Condition">Condition (class)</a>
-  </dt>
-
-      
   <dt><a href="reference/objects/function.html#ConvertTZ">ConvertTZ (class)</a>
   </dt>
 
@@ -204,10 +187,6 @@
 
   </dl></td>
   <td style="width: 33%" valign="top"><dl>
-      
-  <dt><a href="reference/methods/monitoring-crud.html#createMonitor">createMonitor (None method)</a>
-  </dt>
-
       
   <dt><a href="reference/objects/credentials.html#Credentials">Credentials (class)</a>
   </dt>
@@ -241,10 +220,6 @@
   </dt>
 
       
-  <dt><a href="reference/methods/monitoring-crud.html#deleteMonitor">deleteMonitor (None method)</a>
-  </dt>
-
-      
   <dt><a href="reference/objects/device.html#Device">Device (class)</a>
   </dt>
 
@@ -258,14 +233,10 @@
   <dt><a href="reference/objects/function.html#Find">Find (class)</a>
   </dt>
 
-      
-  <dt><a href="reference/methods/device-sensor-crud.html#findDevices">findDevices (None method)</a>
-  </dt>
-
   </dl></td>
   <td style="width: 33%" valign="top"><dl>
       
-  <dt><a href="reference/objects/fold.html#Fold">Fold (class)</a>
+  <dt><a href="reference/methods/device-sensor-crud.html#findDevices">findDevices (None method)</a>
   </dt>
 
   </dl></td>
@@ -276,12 +247,6 @@
   <td style="width: 33%" valign="top"><dl>
       
   <dt><a href="reference/methods/device-sensor-crud.html#getDevice">getDevice (None method)</a>
-  </dt>
-
-  </dl></td>
-  <td style="width: 33%" valign="top"><dl>
-      
-  <dt><a href="reference/methods/monitoring-crud.html#getMonitor">getMonitor (None method)</a>
   </dt>
 
   </dl></td>
@@ -297,28 +262,8 @@
   </dl></td>
 </tr></table>
 
-<h2 id="L">L</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%" valign="top"><dl>
-      
-  <dt><a href="reference/methods/monitoring-crud.html#listMonitors">listMonitors (None method)</a>
-  </dt>
-
-  </dl></td>
-</tr></table>
-
 <h2 id="M">M</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%" valign="top"><dl>
-      
-  <dt><a href="reference/objects/monitor-rule.html#MonitorAction">MonitorAction (class)</a>
-  </dt>
-
-      
-  <dt><a href="reference/objects/monitor-rule.html#MonitorRule">MonitorRule (class)</a>
-  </dt>
-
-  </dl></td>
   <td style="width: 33%" valign="top"><dl>
       
   <dt><a href="reference/objects/function.html#MultiRollup">MultiRollup (class)</a>
@@ -362,22 +307,14 @@
   <dt><a href="reference/objects/read-request.html#ReadRequest">ReadRequest (class)</a>
   </dt>
 
+  </dl></td>
+  <td style="width: 33%" valign="top"><dl>
       
   <dt><a href="reference/objects/read-response.html#ReadResponse">ReadResponse (class)</a>
   </dt>
 
-  </dl></td>
-  <td style="width: 33%" valign="top"><dl>
       
   <dt><a href="reference/objects/function.html#Rollup">Rollup (class)</a>
-  </dt>
-
-      
-  <dt><a href="reference/objects/monitor-rule.html#Rule">Rule (class)</a>
-  </dt>
-
-      
-  <dt><a href="reference/objects/monitor-rule.html#RuleStatus">RuleStatus (class)</a>
   </dt>
 
   </dl></td>
@@ -394,18 +331,10 @@
   <dt><a href="reference/objects/selector.html#Selector">Selector (class)</a>
   </dt>
 
-      
-  <dt><a href="reference/objects/sensor.html#Sensor">Sensor (class)</a>
-  </dt>
-
   </dl></td>
   <td style="width: 33%" valign="top"><dl>
       
-  <dt><a href="reference/methods/monitoring-crud.html#setMonitorStatus">setMonitorStatus (None method)</a>
-  </dt>
-
-      
-  <dt><a href="reference/objects/monitor-rule.html#StreamFilter">StreamFilter (class)</a>
+  <dt><a href="reference/objects/sensor.html#Sensor">Sensor (class)</a>
   </dt>
 
   </dl></td>
@@ -419,12 +348,6 @@
   </dt>
 
   </dl></td>
-  <td style="width: 33%" valign="top"><dl>
-      
-  <dt><a href="reference/objects/monitor-rule.html#Trigger">Trigger (class)</a>
-  </dt>
-
-  </dl></td>
 </tr></table>
 
 <h2 id="U">U</h2>
@@ -432,22 +355,6 @@
   <td style="width: 33%" valign="top"><dl>
       
   <dt><a href="reference/methods/device-sensor-crud.html#updateDevice">updateDevice (None method)</a>
-  </dt>
-
-  </dl></td>
-  <td style="width: 33%" valign="top"><dl>
-      
-  <dt><a href="reference/methods/monitoring-crud.html#updateMonitor">updateMonitor (None method)</a>
-  </dt>
-
-  </dl></td>
-</tr></table>
-
-<h2 id="V">V</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%" valign="top"><dl>
-      
-  <dt><a href="reference/objects/value-descriptor.html#ValueDescriptor">ValueDescriptor (class)</a>
   </dt>
 
   </dl></td>

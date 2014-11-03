@@ -4,8 +4,7 @@ TempoIQ Overview
 
 TempoIQ is an analytics backend for sensor data. Any connected device can write
 sensor data to TempoIQ via our write APIs. You can then perform historical
-analysis of the data through our analytics APIs. In addition, real-time
-monitoring rules can alert you as soon as devices report abnormal sensor data.
+analysis of the data through our analytics APIs.
 
 TempoIQ's data model makes it easy to map your real-world sensors to
 virtual data streams. A :class:`Device` represents a single physical unit such
@@ -20,7 +19,6 @@ Harness the power of TempoIQ in your application in a few easy steps:
 1. :doc:`Model your devices and sensors </concepts/data-model>`
 2. :doc:`Write sensor data </concepts/writing>`
 3. :doc:`Analyze the data </concepts/reading>`
-4. :doc:`Set up real-time monitoring rules </concepts/monitoring>`
 
 
 SDKs

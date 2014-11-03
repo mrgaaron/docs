@@ -32,17 +32,19 @@ Read two days of raw data from temperature sensors on devices in the "foo" regio
 
     {
       "search": {
-        "devices": {
-          "attributes": {
-            "region": "foo"
+        "filters": {
+          "devices": {
+            "attributes": {
+              "region": "foo"
+            }
+          },
+          "sensors": {
+            "key": "temperature"
           }
-        },
-        "sensors": {
-          "key": "temperature"
         }
       },
       "read": {
         "start": "2014-09-01T00:00:00Z",
-        "end": "2014-09-03T00:00:00Z"
+        "stop": "2014-09-03T00:00:00Z"
       }
     }

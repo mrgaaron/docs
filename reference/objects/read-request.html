@@ -80,13 +80,6 @@
 <li class="toctree-l2"><a class="reference internal" href="../../concepts/pipeline.html">Analytics pipeline</a><ul class="simple">
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../concepts/aggregation.html">Aggregation</a><ul class="simple">
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../../concepts/filter-combine.html">Combine operations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../concepts/monitoring.html">Monitoring</a><ul class="simple">
-</ul>
-</li>
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">API Reference</a><ul class="current">
@@ -94,7 +87,6 @@
 <li class="toctree-l3"><a class="reference internal" href="../methods/device-sensor-crud.html">Device and Sensor CRUD</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../methods/write.html">Writing Data</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../methods/read.html">Reading Historical Data</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../methods/monitoring-crud.html">Monitoring Rules</a></li>
 </ul>
 </li>
 <li class="toctree-l2 current"><a class="reference internal" href="index.html">Domain Objects</a><ul class="current">
@@ -103,9 +95,7 @@
 <li class="toctree-l3"><a class="reference internal" href="datapoint.html">DataPoint</a></li>
 <li class="toctree-l3"><a class="reference internal" href="datetime.html">DateTime</a></li>
 <li class="toctree-l3"><a class="reference internal" href="device.html">Device</a></li>
-<li class="toctree-l3"><a class="reference internal" href="fold.html">Fold</a></li>
 <li class="toctree-l3"><a class="reference internal" href="function.html">PipelineFunction</a></li>
-<li class="toctree-l3"><a class="reference internal" href="monitor-rule.html">MonitorRule</a></li>
 <li class="toctree-l3"><a class="reference internal" href="period.html">Period</a></li>
 <li class="toctree-l3"><a class="reference internal" href="pipeline.html">Pipeline</a></li>
 <li class="toctree-l3"><a class="reference internal" href="read-action.html">ReadAction</a></li>
@@ -115,7 +105,6 @@
 <li class="toctree-l3"><a class="reference internal" href="selector.html">Selector</a></li>
 <li class="toctree-l3"><a class="reference internal" href="sensor.html">Sensor</a></li>
 <li class="toctree-l3"><a class="reference internal" href="timezone.html">TimeZone</a></li>
-<li class="toctree-l3"><a class="reference internal" href="value-descriptor.html">ValueDescriptor</a></li>
 <li class="toctree-l3"><a class="reference internal" href="write-request.html">WriteRequest</a></li>
 </ul>
 </li>
@@ -207,18 +196,20 @@
 <p>Read two days of raw data from temperature sensors on devices in the &#8220;foo&#8221; region:</p>
 <div class="highlight-javascript"><div class="highlight"><pre><span class="p">{</span>
   <span class="s2">&quot;search&quot;</span><span class="o">:</span> <span class="p">{</span>
-    <span class="s2">&quot;devices&quot;</span><span class="o">:</span> <span class="p">{</span>
-      <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
-        <span class="s2">&quot;region&quot;</span><span class="o">:</span> <span class="s2">&quot;foo&quot;</span>
+    <span class="s2">&quot;filters&quot;</span><span class="o">:</span> <span class="p">{</span>
+      <span class="s2">&quot;devices&quot;</span><span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
+          <span class="s2">&quot;region&quot;</span><span class="o">:</span> <span class="s2">&quot;foo&quot;</span>
+        <span class="p">}</span>
+      <span class="p">},</span>
+      <span class="s2">&quot;sensors&quot;</span><span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;key&quot;</span><span class="o">:</span> <span class="s2">&quot;temperature&quot;</span>
       <span class="p">}</span>
-    <span class="p">},</span>
-    <span class="s2">&quot;sensors&quot;</span><span class="o">:</span> <span class="p">{</span>
-      <span class="s2">&quot;key&quot;</span><span class="o">:</span> <span class="s2">&quot;temperature&quot;</span>
     <span class="p">}</span>
   <span class="p">},</span>
   <span class="s2">&quot;read&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;start&quot;</span><span class="o">:</span> <span class="s2">&quot;2014-09-01T00:00:00Z&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;end&quot;</span><span class="o">:</span> <span class="s2">&quot;2014-09-03T00:00:00Z&quot;</span>
+    <span class="s2">&quot;stop&quot;</span><span class="o">:</span> <span class="s2">&quot;2014-09-03T00:00:00Z&quot;</span>
   <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>

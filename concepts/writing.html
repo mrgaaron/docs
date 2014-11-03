@@ -80,13 +80,6 @@
 <li class="toctree-l2"><a class="reference internal" href="pipeline.html">Analytics pipeline</a><ul class="simple">
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="aggregation.html">Aggregation</a><ul class="simple">
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="filter-combine.html">Combine operations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="monitoring.html">Monitoring</a><ul class="simple">
-</ul>
-</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../reference/index.html">API Reference</a><ul>
@@ -94,7 +87,6 @@
 <li class="toctree-l3"><a class="reference internal" href="../reference/methods/device-sensor-crud.html">Device and Sensor CRUD</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../reference/methods/write.html">Writing Data</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../reference/methods/read.html">Reading Historical Data</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../reference/methods/monitoring-crud.html">Monitoring Rules</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../reference/objects/index.html">Domain Objects</a><ul>
@@ -103,9 +95,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../reference/objects/datapoint.html">DataPoint</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../reference/objects/datetime.html">DateTime</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../reference/objects/device.html">Device</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../reference/objects/fold.html">Fold</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../reference/objects/function.html">PipelineFunction</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../reference/objects/monitor-rule.html">MonitorRule</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../reference/objects/period.html">Period</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../reference/objects/pipeline.html">Pipeline</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../reference/objects/read-action.html">ReadAction</a></li>
@@ -115,7 +105,6 @@
 <li class="toctree-l3"><a class="reference internal" href="../reference/objects/selector.html">Selector</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../reference/objects/sensor.html">Sensor</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../reference/objects/timezone.html">TimeZone</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../reference/objects/value-descriptor.html">ValueDescriptor</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../reference/objects/write-request.html">WriteRequest</a></li>
 </ul>
 </li>
@@ -170,28 +159,18 @@ closer look at how to work with actual measured data in TempoIQ.</p>
 of a timestamp and a value. To write a single data point, specify the sensor to
 write to (device key+sensor key), and the data point to write. A JSON
 representation of this data structure would be:</p>
-<div class="highlight-javascript"><div class="highlight"><pre><span class="p">{</span> <span class="s2">&quot;device&quot;</span><span class="o">:</span> <span class="s2">&quot;v1-123456&quot;</span><span class="p">,</span>
-  <span class="s2">&quot;sensor&quot;</span><span class="o">:</span> <span class="s2">&quot;temp1&quot;</span><span class="p">,</span>
-  <span class="s2">&quot;dp&quot;</span><span class="o">:</span> <span class="p">{</span>
-    <span class="s2">&quot;ts&quot;</span><span class="o">:</span> <span class="s2">&quot;2014-08-20T00:22:30Z&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;v&quot;</span><span class="o">:</span> <span class="mf">23.5</span>
+<div class="highlight-javascript"><div class="highlight"><pre><span class="p">{</span>
+  <span class="s2">&quot;v1-123456&quot;</span><span class="o">:</span> <span class="p">{</span>  <span class="c1">// device key</span>
+    <span class="s2">&quot;temp1&quot;</span><span class="o">:</span> <span class="p">[</span>    <span class="c1">// sensor key</span>
+      <span class="p">{</span> <span class="s2">&quot;t&quot;</span><span class="o">:</span> <span class="s2">&quot;2014-08-20T00:22:30Z&quot;</span><span class="p">,</span> <span class="s2">&quot;v&quot;</span><span class="o">:</span> <span class="mf">23.5</span> <span class="p">}</span>
+    <span class="p">]</span>
   <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>In concept, any write request is simply a collection of one or more <tt class="docutils literal"><span class="pre">(deviceKey,</span>
-<span class="pre">sensorKey,</span> <span class="pre">timestamp,</span> <span class="pre">value)</span></tt> tuples. In practice, there are several specialized
-endpoints for handling common write operations more efficiently. One example
-of this is for writing data for several sensors on the same device at the same timestamp:</p>
-<div class="highlight-javascript"><div class="highlight"><pre><span class="p">{</span> <span class="s2">&quot;device&quot;</span><span class="o">:</span> <span class="s2">&quot;v1-123456&quot;</span><span class="p">,</span>
-  <span class="s2">&quot;ts&quot;</span><span class="o">:</span> <span class="s2">&quot;2014-08-20T00:22:30Z&quot;</span><span class="p">,</span>
-  <span class="s2">&quot;data&quot;</span><span class="o">:</span> <span class="p">{</span>
-      <span class="s2">&quot;temp1&quot;</span><span class="o">:</span> <span class="mf">23.5</span><span class="p">,</span>
-      <span class="s2">&quot;hum&quot;</span><span class="o">:</span> <span class="mi">46</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-</pre></div>
-</div>
+<p>Write requests are simply lists of data points to write to one or more sensors.
+Some libraries may implement convenience methods for special cases, such as
+writing values for many sensors at the same timestamp.</p>
 <div class="section" id="properties-of-sensor-data">
 <h2>Properties of sensor data<a class="headerlink" href="#properties-of-sensor-data" title="Permalink to this headline">¶</a></h2>
 <p>TempoIQ&#8217;s write APIs are designed to be as flexible and easy-to-use as possible.
@@ -200,9 +179,7 @@ A few notes to help you make the most of them:</p>
 <li>A sensor can only have one value for a given timestamp. If you write a data
 point for the same timestamp as an existing point, the new value will overwrite
 the old one.</li>
-<li>A sensor&#8217;s data points are allowed to be written out of order. However, points
-written out of order may be ignored by realtime analytics pipelines. See the
-section on realtime analytics for more details.</li>
+<li>A sensor&#8217;s data points are allowed to be written out of order.</li>
 </ul>
 </div>
 </div>
