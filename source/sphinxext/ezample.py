@@ -6,7 +6,7 @@ from sphinx.directives.code import CodeBlock
 from sphinx.util.compat import Directive, make_admonition
 
 
-class EzampleSnippet(Directive):    # Params: title, language
+class CodeSnippet(Directive):    # Params: title, language
     """
     A code snippet in a language.
     """
@@ -32,22 +32,27 @@ class EzampleSnippet(Directive):    # Params: title, language
         })
 
 
-class EzampleBlock(Directive):  # Param: title, prints all snippets related to that title
+class MultiSnippet(Directive):  # Param: title, prints all snippets related to that title
     pass
 
 
-class ezample_block(nodes.General, nodes.Element):
+class MultiSnippetNode(nodes.General, nodes.Element):
     pass
 
 
-def purge_ezamples(app, env, docname):
-    if not hasattr(env, 'ezample_all'):
+class SnippetNode(nodes.General, nodes.Element):
+    pass
+
+
+def purge_snippets(app, env, docname):
+    if not hasattr(env, 'snippets_all'):
         return
-    env.ezample_all = [ezample for ezample in env.ezample_all
-                       if ezample['docname'] != docname]
+    env.snippets_all = [snippet for snippet in env.snippets_all
+                        if snippet['docname'] != docname]
 
-# TODO: (ha) translate this from todo example to this extension
-def process_todo_nodes(app, doctree, fromdocname):
+
+# TODO: translate this from todo example to this extension
+def resolve_snippets(app, doctree, fromdocname):
     if not app.config.todo_include_todos:
         for node in doctree.traverse(todo):
             node.parent.remove(node)
@@ -90,10 +95,10 @@ def process_todo_nodes(app, doctree, fromdocname):
 
 
 def setup(app):
-    app.add_node(ezample_block)    # TODO: add visit/depart functions for Theme hooks
+    app.add_node(MultiSnippetNode)    # TODO: add visit/depart functions for Theme hooks
 
-    app.add_directive('ezample', EzampleBlock)
-    app.add_directive('ezample-snippet', EzampleSnippet)
+    app.add_directive('multi-snippet', MultiSnippet)
+    app.add_directive('code-snippet', CodeSnippet)
 
-    app.connect('env-purge-doc', purge_ezamples)
-    app.connect('doctree-resolved', resolve_ezamples)
+    app.connect('env-purge-doc', purge_snippets)
+    app.connect('doctree-resolved', resolve_snippets)
