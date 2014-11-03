@@ -11,29 +11,18 @@ representation of this data structure would be:
 
 .. code-block:: javascript
 
-    { "device": "v1-123456",
-      "sensor": "temp1",
-      "dp": {
-        "ts": "2014-08-20T00:22:30Z",
-        "v": 23.5
+    {
+      "v1-123456": {  // device key
+        "temp1": [    // sensor key
+          { "t": "2014-08-20T00:22:30Z", "v": 23.5 }
+        ]
       }
     }
 
 
-In concept, any write request is simply a collection of one or more ``(deviceKey,
-sensorKey, timestamp, value)`` tuples. In practice, there are several specialized
-endpoints for handling common write operations more efficiently. One example
-of this is for writing data for several sensors on the same device at the same timestamp:
-
-.. code-block:: javascript
-
-    { "device": "v1-123456",
-      "ts": "2014-08-20T00:22:30Z",
-      "data": {
-          "temp1": 23.5,
-          "hum": 46
-      }
-    }
+Write requests are simply lists of data points to write to one or more sensors.
+Some libraries may implement convenience methods for special cases, such as
+writing values for many sensors at the same timestamp.
 
 
 Properties of sensor data
@@ -45,6 +34,4 @@ A few notes to help you make the most of them:
 * A sensor can only have one value for a given timestamp. If you write a data
   point for the same timestamp as an existing point, the new value will overwrite
   the old one.
-* A sensor's data points are allowed to be written out of order. However, points
-  written out of order may be ignored by realtime analytics pipelines. See the
-  section on realtime analytics for more details.
+* A sensor's data points are allowed to be written out of order.

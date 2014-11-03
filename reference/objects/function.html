@@ -32,8 +32,8 @@
   <link rel="stylesheet" href="../../_static/css/tempoiq_theme.css" type="text/css" />
     <link rel="top" title="TempoIQ Manual 1.0 documentation" href="../../index.html"/>
         <link rel="up" title="Domain Objects" href="index.html"/>
-        <link rel="next" title="MonitorRule" href="monitor-rule.html"/>
-        <link rel="prev" title="Fold" href="fold.html"/> 
+        <link rel="next" title="Period" href="period.html"/>
+        <link rel="prev" title="Device" href="device.html"/> 
 
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
@@ -80,13 +80,6 @@
 <li class="toctree-l2"><a class="reference internal" href="../../concepts/pipeline.html">Analytics pipeline</a><ul class="simple">
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../concepts/aggregation.html">Aggregation</a><ul class="simple">
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../../concepts/filter-combine.html">Combine operations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../concepts/monitoring.html">Monitoring</a><ul class="simple">
-</ul>
-</li>
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">API Reference</a><ul class="current">
@@ -94,7 +87,6 @@
 <li class="toctree-l3"><a class="reference internal" href="../methods/device-sensor-crud.html">Device and Sensor CRUD</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../methods/write.html">Writing Data</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../methods/read.html">Reading Historical Data</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../methods/monitoring-crud.html">Monitoring Rules</a></li>
 </ul>
 </li>
 <li class="toctree-l2 current"><a class="reference internal" href="index.html">Domain Objects</a><ul class="current">
@@ -103,9 +95,7 @@
 <li class="toctree-l3"><a class="reference internal" href="datapoint.html">DataPoint</a></li>
 <li class="toctree-l3"><a class="reference internal" href="datetime.html">DateTime</a></li>
 <li class="toctree-l3"><a class="reference internal" href="device.html">Device</a></li>
-<li class="toctree-l3"><a class="reference internal" href="fold.html">Fold</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="">PipelineFunction</a></li>
-<li class="toctree-l3"><a class="reference internal" href="monitor-rule.html">MonitorRule</a></li>
 <li class="toctree-l3"><a class="reference internal" href="period.html">Period</a></li>
 <li class="toctree-l3"><a class="reference internal" href="pipeline.html">Pipeline</a></li>
 <li class="toctree-l3"><a class="reference internal" href="read-action.html">ReadAction</a></li>
@@ -115,7 +105,6 @@
 <li class="toctree-l3"><a class="reference internal" href="selector.html">Selector</a></li>
 <li class="toctree-l3"><a class="reference internal" href="sensor.html">Sensor</a></li>
 <li class="toctree-l3"><a class="reference internal" href="timezone.html">TimeZone</a></li>
-<li class="toctree-l3"><a class="reference internal" href="value-descriptor.html">ValueDescriptor</a></li>
 <li class="toctree-l3"><a class="reference internal" href="write-request.html">WriteRequest</a></li>
 </ul>
 </li>
@@ -184,13 +173,32 @@ that they should be specified when constructing the request. For example:</p>
 <dl class="class">
 <dt id="Rollup">
 <tt class="descname">Rollup</tt><a class="headerlink" href="#Rollup" title="Permalink to this definition">¶</a></dt>
-<dd><p><strong>Name:</strong> <tt class="docutils literal"><span class="pre">rollup</span></tt></p>
+<dd><p>A rollup downsamples sensor data by applying a folding function over all
+points that fall within a given time period. For example, the maximum within
+each 1-hour period.</p>
+<p>Rollups are defined by a folding function and a time period.</p>
+<p><strong>Folding Functions</strong></p>
+<p>The folding function specifies how the datapoints are reduced within each
+period. The following folding functions are supported:</p>
+<ul class="simple">
+<li>mean - Simple average of values in each period</li>
+<li>sum - Sum of values</li>
+<li>min - Minimum value</li>
+<li>max - Maximum value</li>
+<li>stddev - Standard deviation</li>
+<li>variance - Variance, or sum of squares</li>
+<li>count - Total number of datapoints in each period</li>
+<li>range - Maximum value less the minimum value</li>
+<li>first - First data point in each period</li>
+<li>last - Last data point in each period</li>
+</ul>
+<p><strong>Name:</strong> <tt class="docutils literal"><span class="pre">rollup</span></tt></p>
 <p><strong>Arguments:</strong></p>
 <table border="1" class="docutils">
 <colgroup>
-<col width="12%" />
-<col width="27%" />
-<col width="62%" />
+<col width="10%" />
+<col width="30%" />
+<col width="61%" />
 </colgroup>
 <thead valign="bottom">
 <tr class="row-odd"><th class="head">Name</th>
@@ -200,12 +208,16 @@ that they should be specified when constructing the request. For example:</p>
 </thead>
 <tbody valign="top">
 <tr class="row-even"><td>fold</td>
-<td><a class="reference internal" href="fold.html#Fold" title="Fold"><tt class="xref tempoiq tempoiq-class docutils literal"><span class="pre">Fold</span></tt></a></td>
+<td>Fold as defined above</td>
 <td>Folding function to apply</td>
 </tr>
 <tr class="row-odd"><td>period</td>
 <td><a class="reference internal" href="period.html#Period" title="Period"><tt class="xref tempoiq tempoiq-class docutils literal"><span class="pre">Period</span></tt></a></td>
 <td>Time period for performing the rollup</td>
+</tr>
+<tr class="row-even"><td>start</td>
+<td><a class="reference internal" href="datetime.html#DateTime" title="DateTime"><tt class="xref tempoiq tempoiq-class docutils literal"><span class="pre">DateTime</span></tt></a></td>
+<td>Same as the start time in the read interval</td>
 </tr>
 </tbody>
 </table>
@@ -214,13 +226,14 @@ that they should be specified when constructing the request. For example:</p>
 <dl class="class">
 <dt id="MultiRollup">
 <tt class="descname">MultiRollup</tt><a class="headerlink" href="#MultiRollup" title="Permalink to this definition">¶</a></dt>
-<dd><p><strong>Name:</strong> <tt class="docutils literal"><span class="pre">multi_rollup</span></tt></p>
+<dd><p>The multi-rollup function applies several folds to the same sensor data.</p>
+<p><strong>Name:</strong> <tt class="docutils literal"><span class="pre">multi_rollup</span></tt></p>
 <p><strong>Arguments:</strong></p>
 <table border="1" class="docutils">
 <colgroup>
 <col width="10%" />
-<col width="33%" />
-<col width="57%" />
+<col width="31%" />
+<col width="60%" />
 </colgroup>
 <thead valign="bottom">
 <tr class="row-odd"><th class="head">Name</th>
@@ -230,68 +243,16 @@ that they should be specified when constructing the request. For example:</p>
 </thead>
 <tbody valign="top">
 <tr class="row-even"><td>folds</td>
-<td>Array of <a class="reference internal" href="fold.html#Fold" title="Fold"><tt class="xref tempoiq tempoiq-class docutils literal"><span class="pre">Fold</span></tt></a></td>
+<td>Array of Folds</td>
 <td>The list of folding functions to apply</td>
 </tr>
 <tr class="row-odd"><td>period</td>
 <td><a class="reference internal" href="period.html#Period" title="Period"><tt class="xref tempoiq tempoiq-class docutils literal"><span class="pre">Period</span></tt></a></td>
 <td>Time period for performing the rollup</td>
 </tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="class">
-<dt id="Interpolate">
-<tt class="descname">Interpolate</tt><a class="headerlink" href="#Interpolate" title="Permalink to this definition">¶</a></dt>
-<dd><p><strong>Name:</strong> <tt class="docutils literal"><span class="pre">interpolate</span></tt></p>
-<p><strong>Arguments:</strong></p>
-<table border="1" class="docutils">
-<colgroup>
-<col width="14%" />
-<col width="31%" />
-<col width="56%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Name</th>
-<th class="head">Type</th>
-<th class="head">Description</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr class="row-even"><td>function</td>
-<td>&#8220;linear&#8221; or &#8220;zoh&#8221;</td>
-<td>The interpolation function to use</td>
-</tr>
-<tr class="row-odd"><td>period</td>
-<td><a class="reference internal" href="period.html#Period" title="Period"><tt class="xref tempoiq tempoiq-class docutils literal"><span class="pre">Period</span></tt></a></td>
-<td>Period to interpolate to</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="class">
-<dt id="Aggregate">
-<tt class="descname">Aggregate</tt><a class="headerlink" href="#Aggregate" title="Permalink to this definition">¶</a></dt>
-<dd><p><strong>Name:</strong> <tt class="docutils literal"><span class="pre">aggregation</span></tt></p>
-<p><strong>Arguments:</strong></p>
-<table border="1" class="docutils">
-<colgroup>
-<col width="14%" />
-<col width="32%" />
-<col width="54%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Name</th>
-<th class="head">Type</th>
-<th class="head">Description</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr class="row-even"><td>function</td>
-<td><a class="reference internal" href="fold.html#Fold" title="Fold"><tt class="xref tempoiq tempoiq-class docutils literal"><span class="pre">Fold</span></tt></a></td>
-<td>The aggregation function to use</td>
+<tr class="row-even"><td>start</td>
+<td><a class="reference internal" href="datetime.html#DateTime" title="DateTime"><tt class="xref tempoiq tempoiq-class docutils literal"><span class="pre">DateTime</span></tt></a></td>
+<td>Same as the start time in the read interval</td>
 </tr>
 </tbody>
 </table>
@@ -300,13 +261,15 @@ that they should be specified when constructing the request. For example:</p>
 <dl class="class">
 <dt id="Find">
 <tt class="descname">Find</tt><a class="headerlink" href="#Find" title="Permalink to this definition">¶</a></dt>
-<dd><p><strong>Name:</strong> <tt class="docutils literal"><span class="pre">find</span></tt></p>
+<dd><p>Find is similar to a rollup, but it returns an actual data point from each
+period, based on the predicate function.</p>
+<p><strong>Name:</strong> <tt class="docutils literal"><span class="pre">find</span></tt></p>
 <p><strong>Arguments:</strong></p>
 <table border="1" class="docutils">
 <colgroup>
-<col width="11%" />
-<col width="44%" />
-<col width="44%" />
+<col width="10%" />
+<col width="39%" />
+<col width="52%" />
 </colgroup>
 <thead valign="bottom">
 <tr class="row-odd"><th class="head">Name</th>
@@ -322,6 +285,10 @@ that they should be specified when constructing the request. For example:</p>
 <tr class="row-odd"><td>period</td>
 <td><a class="reference internal" href="period.html#Period" title="Period"><tt class="xref tempoiq tempoiq-class docutils literal"><span class="pre">Period</span></tt></a></td>
 <td>Time period to find each point</td>
+</tr>
+<tr class="row-even"><td>start</td>
+<td><a class="reference internal" href="datetime.html#DateTime" title="DateTime"><tt class="xref tempoiq tempoiq-class docutils literal"><span class="pre">DateTime</span></tt></a></td>
+<td>Same as the start time in the read interval</td>
 </tr>
 </tbody>
 </table>
@@ -362,10 +329,10 @@ that they should be specified when constructing the request. For example:</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="monitor-rule.html" class="btn btn-neutral float-right" title="MonitorRule">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="period.html" class="btn btn-neutral float-right" title="Period">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="fold.html" class="btn btn-neutral" title="Fold"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="device.html" class="btn btn-neutral" title="Device"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

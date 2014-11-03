@@ -78,13 +78,6 @@
 <li class="toctree-l2"><a class="reference internal" href="concepts/pipeline.html">Analytics pipeline</a><ul class="simple">
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="concepts/aggregation.html">Aggregation</a><ul class="simple">
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="concepts/filter-combine.html">Combine operations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="concepts/monitoring.html">Monitoring</a><ul class="simple">
-</ul>
-</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="reference/index.html">API Reference</a><ul>
@@ -92,7 +85,6 @@
 <li class="toctree-l3"><a class="reference internal" href="reference/methods/device-sensor-crud.html">Device and Sensor CRUD</a></li>
 <li class="toctree-l3"><a class="reference internal" href="reference/methods/write.html">Writing Data</a></li>
 <li class="toctree-l3"><a class="reference internal" href="reference/methods/read.html">Reading Historical Data</a></li>
-<li class="toctree-l3"><a class="reference internal" href="reference/methods/monitoring-crud.html">Monitoring Rules</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="reference/objects/index.html">Domain Objects</a><ul>
@@ -101,9 +93,7 @@
 <li class="toctree-l3"><a class="reference internal" href="reference/objects/datapoint.html">DataPoint</a></li>
 <li class="toctree-l3"><a class="reference internal" href="reference/objects/datetime.html">DateTime</a></li>
 <li class="toctree-l3"><a class="reference internal" href="reference/objects/device.html">Device</a></li>
-<li class="toctree-l3"><a class="reference internal" href="reference/objects/fold.html">Fold</a></li>
 <li class="toctree-l3"><a class="reference internal" href="reference/objects/function.html">PipelineFunction</a></li>
-<li class="toctree-l3"><a class="reference internal" href="reference/objects/monitor-rule.html">MonitorRule</a></li>
 <li class="toctree-l3"><a class="reference internal" href="reference/objects/period.html">Period</a></li>
 <li class="toctree-l3"><a class="reference internal" href="reference/objects/pipeline.html">Pipeline</a></li>
 <li class="toctree-l3"><a class="reference internal" href="reference/objects/read-action.html">ReadAction</a></li>
@@ -113,7 +103,6 @@
 <li class="toctree-l3"><a class="reference internal" href="reference/objects/selector.html">Selector</a></li>
 <li class="toctree-l3"><a class="reference internal" href="reference/objects/sensor.html">Sensor</a></li>
 <li class="toctree-l3"><a class="reference internal" href="reference/objects/timezone.html">TimeZone</a></li>
-<li class="toctree-l3"><a class="reference internal" href="reference/objects/value-descriptor.html">ValueDescriptor</a></li>
 <li class="toctree-l3"><a class="reference internal" href="reference/objects/write-request.html">WriteRequest</a></li>
 </ul>
 </li>
@@ -162,8 +151,7 @@
 <h1>TempoIQ Overview<a class="headerlink" href="#tempoiq-overview" title="Permalink to this headline">¶</a></h1>
 <p>TempoIQ is an analytics backend for sensor data. Any connected device can write
 sensor data to TempoIQ via our write APIs. You can then perform historical
-analysis of the data through our analytics APIs. In addition, real-time
-monitoring rules can alert you as soon as devices report abnormal sensor data.</p>
+analysis of the data through our analytics APIs.</p>
 <p>TempoIQ&#8217;s data model makes it easy to map your real-world sensors to
 virtual data streams. A <a class="reference internal" href="reference/objects/device.html#Device" title="Device"><tt class="xref tempoiq tempoiq-class docutils literal"><span class="pre">Device</span></tt></a> represents a single physical unit such
 as a power meter or vehicle, and each device has one or more <a class="reference internal" href="reference/objects/sensor.html#Sensor" title="Sensor"><tt class="xref tempoiq tempoiq-class docutils literal"><span class="pre">Sensors</span></tt></a>
@@ -176,7 +164,6 @@ many devices.</p>
 <li><a class="reference internal" href="concepts/data-model.html"><em>Model your devices and sensors</em></a></li>
 <li><a class="reference internal" href="concepts/writing.html"><em>Write sensor data</em></a></li>
 <li><a class="reference internal" href="concepts/reading.html"><em>Analyze the data</em></a></li>
-<li><a class="reference internal" href="concepts/monitoring.html"><em>Set up real-time monitoring rules</em></a></li>
 </ol>
 <div class="section" id="sdks">
 <h2>SDKs<a class="headerlink" href="#sdks" title="Permalink to this headline">¶</a></h2>

@@ -32,7 +32,7 @@
   <link rel="stylesheet" href="../_static/css/tempoiq_theme.css" type="text/css" />
     <link rel="top" title="TempoIQ Manual 1.0 documentation" href="../index.html"/>
         <link rel="up" title="Concepts" href="index.html"/>
-        <link rel="next" title="Aggregation" href="aggregation.html"/>
+        <link rel="next" title="API Reference" href="../reference/index.html"/>
         <link rel="prev" title="Reading sensor data" href="reading.html"/> 
 
   
@@ -80,13 +80,6 @@
 <li class="toctree-l2 current"><a class="current reference internal" href="">Analytics pipeline</a><ul class="simple">
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="aggregation.html">Aggregation</a><ul class="simple">
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="filter-combine.html">Combine operations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="monitoring.html">Monitoring</a><ul class="simple">
-</ul>
-</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../reference/index.html">API Reference</a><ul>
@@ -94,7 +87,6 @@
 <li class="toctree-l3"><a class="reference internal" href="../reference/methods/device-sensor-crud.html">Device and Sensor CRUD</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../reference/methods/write.html">Writing Data</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../reference/methods/read.html">Reading Historical Data</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../reference/methods/monitoring-crud.html">Monitoring Rules</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../reference/objects/index.html">Domain Objects</a><ul>
@@ -103,9 +95,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../reference/objects/datapoint.html">DataPoint</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../reference/objects/datetime.html">DateTime</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../reference/objects/device.html">Device</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../reference/objects/fold.html">Fold</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../reference/objects/function.html">PipelineFunction</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../reference/objects/monitor-rule.html">MonitorRule</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../reference/objects/period.html">Period</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../reference/objects/pipeline.html">Pipeline</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../reference/objects/read-action.html">ReadAction</a></li>
@@ -115,7 +105,6 @@
 <li class="toctree-l3"><a class="reference internal" href="../reference/objects/selector.html">Selector</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../reference/objects/sensor.html">Sensor</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../reference/objects/timezone.html">TimeZone</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../reference/objects/value-descriptor.html">ValueDescriptor</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../reference/objects/write-request.html">WriteRequest</a></li>
 </ul>
 </li>
@@ -174,8 +163,7 @@ Pipeline operations are typically mathematical functions, such as applying a sca
 averaging over a period of time.</p>
 <p>Pipelines operate individually on each sensor in a selector. Therefore, for a basic
 pipeline, there&#8217;s a one-to-one correspondence between input sensor streams and
-output streams.
-Combining streams across several sensors or devices is covered in the next section.</p>
+output streams.</p>
 <p>TempoIQ supports many pipeline operations as part of the client libraries.
 See the Analytics API reference for details.</p>
 </div>
@@ -188,9 +176,9 @@ supply a pipeline object as an argument in the <cite>read</cite> call.</p>
 <p>Thermostat devices record data once a minute, but it is unnecessary to have this
 level of granularity in a week-long graph. You can use the rollup pipeline operation
 to downsample the raw data streams to hourly averages:</p>
-<div class="highlight-javascript"><div class="highlight"><pre><span class="nx">pipe</span> <span class="o">=</span> <span class="nx">Pipeline</span><span class="p">.</span><span class="nx">start</span><span class="p">().</span><span class="nx">rollup</span><span class="p">(</span><span class="s2">&quot;1hour&quot;</span><span class="p">,</span> <span class="s2">&quot;mean&quot;</span><span class="p">);</span>
+<div class="highlight-javascript"><div class="highlight"><pre><span class="kd">var</span> <span class="nx">pipe</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">tempoiq</span><span class="p">.</span><span class="nx">Pipeline</span><span class="p">.</span><span class="nx">rollup</span><span class="p">(</span><span class="s2">&quot;mean&quot;</span><span class="p">,</span> <span class="s2">&quot;1hour&quot;</span><span class="p">,</span> <span class="nx">start</span><span class="p">);</span>
 
-<span class="nx">response</span> <span class="o">=</span> <span class="nx">client</span><span class="p">.</span><span class="nx">read</span><span class="p">(</span><span class="nx">sensors</span><span class="p">,</span> <span class="nx">pipe</span><span class="p">,</span> <span class="nx">start</span><span class="p">,</span> <span class="nx">end</span><span class="p">);</span>
+<span class="nx">client</span><span class="p">.</span><span class="nx">read</span><span class="p">(</span><span class="nx">selector</span><span class="p">,</span> <span class="nx">start</span><span class="p">,</span> <span class="nx">end</span><span class="p">,</span> <span class="nx">pipe</span><span class="p">,</span> <span class="nx">callback</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
@@ -199,8 +187,7 @@ to downsample the raw data streams to hourly averages:</p>
 <h2>Chaining pipeline operations<a class="headerlink" href="#chaining-pipeline-operations" title="Permalink to this headline">¶</a></h2>
 <p>An analytics pipeline can contain several operations in sequence. Each operation takes
 the result of the previous operation as its input. This enables you to compose complex
-analysis functions out of simple component operations. See the pipeline cookbook for
-example pipelines that are composed from the basic pipeline operations.</p>
+analysis functions out of simple component operations.</p>
 </div>
 </div>
 
@@ -210,7 +197,7 @@ example pipelines that are composed from the basic pipeline operations.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="aggregation.html" class="btn btn-neutral float-right" title="Aggregation">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="../reference/index.html" class="btn btn-neutral float-right" title="API Reference">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="reading.html" class="btn btn-neutral" title="Reading sensor data"><span class="fa fa-arrow-circle-left"></span> Previous</a>

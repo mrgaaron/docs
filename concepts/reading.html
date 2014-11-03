@@ -80,13 +80,6 @@
 <li class="toctree-l2"><a class="reference internal" href="pipeline.html">Analytics pipeline</a><ul class="simple">
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="aggregation.html">Aggregation</a><ul class="simple">
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="filter-combine.html">Combine operations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="monitoring.html">Monitoring</a><ul class="simple">
-</ul>
-</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../reference/index.html">API Reference</a><ul>
@@ -94,7 +87,6 @@
 <li class="toctree-l3"><a class="reference internal" href="../reference/methods/device-sensor-crud.html">Device and Sensor CRUD</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../reference/methods/write.html">Writing Data</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../reference/methods/read.html">Reading Historical Data</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../reference/methods/monitoring-crud.html">Monitoring Rules</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../reference/objects/index.html">Domain Objects</a><ul>
@@ -103,9 +95,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../reference/objects/datapoint.html">DataPoint</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../reference/objects/datetime.html">DateTime</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../reference/objects/device.html">Device</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../reference/objects/fold.html">Fold</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../reference/objects/function.html">PipelineFunction</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../reference/objects/monitor-rule.html">MonitorRule</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../reference/objects/period.html">Period</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../reference/objects/pipeline.html">Pipeline</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../reference/objects/read-action.html">ReadAction</a></li>
@@ -115,7 +105,6 @@
 <li class="toctree-l3"><a class="reference internal" href="../reference/objects/selector.html">Selector</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../reference/objects/sensor.html">Sensor</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../reference/objects/timezone.html">TimeZone</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../reference/objects/value-descriptor.html">ValueDescriptor</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../reference/objects/write-request.html">WriteRequest</a></li>
 </ul>
 </li>
@@ -201,13 +190,13 @@ She wishes to compare the humidity across all her sites between 2014-06-01 and 2
 <p>The selector in this case must select the &#8216;hum&#8217; sensor on thermostat devices where
 the customer attribute is &#8216;123&#8217;.</p>
 <div class="highlight-javascript"><div class="highlight"><pre><span class="nx">sensors</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="nx">device</span><span class="o">:</span> <span class="p">{</span>
+            <span class="nx">devices</span><span class="o">:</span> <span class="p">{</span>
               <span class="nx">attributes</span><span class="o">:</span> <span class="p">{</span>
                 <span class="nx">type</span><span class="o">:</span> <span class="s2">&quot;thermostat&quot;</span><span class="p">,</span>
                 <span class="nx">customer</span><span class="o">:</span> <span class="s2">&quot;123&quot;</span>
               <span class="p">}</span>
             <span class="p">},</span>
-            <span class="nx">sensor</span><span class="o">:</span> <span class="p">{</span>
+            <span class="nx">sensors</span><span class="o">:</span> <span class="p">{</span>
               <span class="nx">key</span><span class="o">:</span> <span class="s2">&quot;hum&quot;</span>
             <span class="p">}</span>
           <span class="p">};</span>
@@ -233,8 +222,8 @@ the selector parameter acts exactly as in the <cite>read</cite> call.</p>
 <p>A dashboard application shows the current value for a given thermostat&#8217;s temperature
 and humidity.</p>
 <div class="highlight-javascript"><div class="highlight"><pre><span class="nx">sensors</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="nx">device</span><span class="o">:</span> <span class="p">{</span> <span class="nx">key</span><span class="o">:</span> <span class="nx">thermostatKey</span> <span class="p">},</span>  <span class="c1">// As supplied by user or database lookup</span>
-            <span class="nx">sensor</span><span class="o">:</span> <span class="s2">&quot;ALL&quot;</span>
+            <span class="nx">devices</span><span class="o">:</span> <span class="p">{</span> <span class="nx">key</span><span class="o">:</span> <span class="nx">thermostatKey</span> <span class="p">},</span>  <span class="c1">// As supplied by user or database lookup</span>
+            <span class="nx">sensors</span><span class="o">:</span> <span class="s2">&quot;all&quot;</span>
           <span class="p">};</span>
 
 <span class="nx">response</span> <span class="o">=</span> <span class="nx">client</span><span class="p">.</span><span class="nx">latest</span><span class="p">(</span><span class="nx">sensors</span><span class="p">);</span>

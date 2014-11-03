@@ -6,7 +6,7 @@ Selector
 
 Criteria for selecting objects in a Search.
 
-See: Search, ValueDescriptor
+See: Search
 
 and
 ---
@@ -44,18 +44,14 @@ Arguments: none
 key
 ---
 
-Select an object if its key matches the provided ValueDescriptor.
+Select an object if its key matches the provided value
 
-Arguments: ValueDescriptor
+Arguments: String
 
 
 attribute
 ---------
 
 Select an object based on an attribute.
-If a value is provided, selects objects where the attribute matches the
-ValueDescriptor.
-If a value is omitted, select all objects which define the provided
-attribute key.
 
-Arguments: key (String, required); value (ValueDescriptor, optional)
+Arguments: key (String, required); value (String, required)

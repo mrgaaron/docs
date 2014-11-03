@@ -80,13 +80,6 @@
 <li class="toctree-l2"><a class="reference internal" href="../../concepts/pipeline.html">Analytics pipeline</a><ul class="simple">
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../concepts/aggregation.html">Aggregation</a><ul class="simple">
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../../concepts/filter-combine.html">Combine operations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../concepts/monitoring.html">Monitoring</a><ul class="simple">
-</ul>
-</li>
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">API Reference</a><ul class="current">
@@ -94,7 +87,6 @@
 <li class="toctree-l3"><a class="reference internal" href="../methods/device-sensor-crud.html">Device and Sensor CRUD</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../methods/write.html">Writing Data</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../methods/read.html">Reading Historical Data</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../methods/monitoring-crud.html">Monitoring Rules</a></li>
 </ul>
 </li>
 <li class="toctree-l2 current"><a class="reference internal" href="index.html">Domain Objects</a><ul class="current">
@@ -103,9 +95,7 @@
 <li class="toctree-l3"><a class="reference internal" href="datapoint.html">DataPoint</a></li>
 <li class="toctree-l3"><a class="reference internal" href="datetime.html">DateTime</a></li>
 <li class="toctree-l3"><a class="reference internal" href="device.html">Device</a></li>
-<li class="toctree-l3"><a class="reference internal" href="fold.html">Fold</a></li>
 <li class="toctree-l3"><a class="reference internal" href="function.html">PipelineFunction</a></li>
-<li class="toctree-l3"><a class="reference internal" href="monitor-rule.html">MonitorRule</a></li>
 <li class="toctree-l3"><a class="reference internal" href="period.html">Period</a></li>
 <li class="toctree-l3"><a class="reference internal" href="pipeline.html">Pipeline</a></li>
 <li class="toctree-l3"><a class="reference internal" href="read-action.html">ReadAction</a></li>
@@ -115,7 +105,6 @@
 <li class="toctree-l3 current"><a class="current reference internal" href="">Selector</a></li>
 <li class="toctree-l3"><a class="reference internal" href="sensor.html">Sensor</a></li>
 <li class="toctree-l3"><a class="reference internal" href="timezone.html">TimeZone</a></li>
-<li class="toctree-l3"><a class="reference internal" href="value-descriptor.html">ValueDescriptor</a></li>
 <li class="toctree-l3"><a class="reference internal" href="write-request.html">WriteRequest</a></li>
 </ul>
 </li>
@@ -172,7 +161,7 @@
 <dd></dd></dl>
 
 <p>Criteria for selecting objects in a Search.</p>
-<p>See: Search, ValueDescriptor</p>
+<p>See: Search</p>
 <div class="section" id="and">
 <h2>and<a class="headerlink" href="#and" title="Permalink to this headline">¶</a></h2>
 <p>Select an object if it matches all the provided selectors.</p>
@@ -196,17 +185,13 @@
 </div>
 <div class="section" id="key">
 <h2>key<a class="headerlink" href="#key" title="Permalink to this headline">¶</a></h2>
-<p>Select an object if its key matches the provided ValueDescriptor.</p>
-<p>Arguments: ValueDescriptor</p>
+<p>Select an object if its key matches the provided value</p>
+<p>Arguments: String</p>
 </div>
 <div class="section" id="attribute">
 <h2>attribute<a class="headerlink" href="#attribute" title="Permalink to this headline">¶</a></h2>
-<p>Select an object based on an attribute.
-If a value is provided, selects objects where the attribute matches the
-ValueDescriptor.
-If a value is omitted, select all objects which define the provided
-attribute key.</p>
-<p>Arguments: key (String, required); value (ValueDescriptor, optional)</p>
+<p>Select an object based on an attribute.</p>
+<p>Arguments: key (String, required); value (String, required)</p>
 </div>
 </div>
 

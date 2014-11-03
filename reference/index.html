@@ -32,7 +32,7 @@
   <link rel="stylesheet" href="../_static/css/tempoiq_theme.css" type="text/css" />
     <link rel="top" title="TempoIQ Manual 1.0 documentation" href="../index.html"/>
         <link rel="next" title="Methods" href="methods/index.html"/>
-        <link rel="prev" title="Monitoring" href="../concepts/monitoring.html"/> 
+        <link rel="prev" title="Analytics pipeline" href="../concepts/pipeline.html"/> 
 
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
@@ -79,13 +79,6 @@
 <li class="toctree-l2"><a class="reference internal" href="../concepts/pipeline.html">Analytics pipeline</a><ul class="simple">
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../concepts/aggregation.html">Aggregation</a><ul class="simple">
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../concepts/filter-combine.html">Combine operations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../concepts/monitoring.html">Monitoring</a><ul class="simple">
-</ul>
-</li>
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">API Reference</a><ul>
@@ -93,7 +86,6 @@
 <li class="toctree-l3"><a class="reference internal" href="methods/device-sensor-crud.html">Device and Sensor CRUD</a></li>
 <li class="toctree-l3"><a class="reference internal" href="methods/write.html">Writing Data</a></li>
 <li class="toctree-l3"><a class="reference internal" href="methods/read.html">Reading Historical Data</a></li>
-<li class="toctree-l3"><a class="reference internal" href="methods/monitoring-crud.html">Monitoring Rules</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="objects/index.html">Domain Objects</a><ul>
@@ -102,9 +94,7 @@
 <li class="toctree-l3"><a class="reference internal" href="objects/datapoint.html">DataPoint</a></li>
 <li class="toctree-l3"><a class="reference internal" href="objects/datetime.html">DateTime</a></li>
 <li class="toctree-l3"><a class="reference internal" href="objects/device.html">Device</a></li>
-<li class="toctree-l3"><a class="reference internal" href="objects/fold.html">Fold</a></li>
 <li class="toctree-l3"><a class="reference internal" href="objects/function.html">PipelineFunction</a></li>
-<li class="toctree-l3"><a class="reference internal" href="objects/monitor-rule.html">MonitorRule</a></li>
 <li class="toctree-l3"><a class="reference internal" href="objects/period.html">Period</a></li>
 <li class="toctree-l3"><a class="reference internal" href="objects/pipeline.html">Pipeline</a></li>
 <li class="toctree-l3"><a class="reference internal" href="objects/read-action.html">ReadAction</a></li>
@@ -114,7 +104,6 @@
 <li class="toctree-l3"><a class="reference internal" href="objects/selector.html">Selector</a></li>
 <li class="toctree-l3"><a class="reference internal" href="objects/sensor.html">Sensor</a></li>
 <li class="toctree-l3"><a class="reference internal" href="objects/timezone.html">TimeZone</a></li>
-<li class="toctree-l3"><a class="reference internal" href="objects/value-descriptor.html">ValueDescriptor</a></li>
 <li class="toctree-l3"><a class="reference internal" href="objects/write-request.html">WriteRequest</a></li>
 </ul>
 </li>
@@ -167,7 +156,6 @@
 <li class="toctree-l2"><a class="reference internal" href="methods/device-sensor-crud.html">Device and Sensor CRUD</a></li>
 <li class="toctree-l2"><a class="reference internal" href="methods/write.html">Writing Data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="methods/read.html">Reading Historical Data</a></li>
-<li class="toctree-l2"><a class="reference internal" href="methods/monitoring-crud.html">Monitoring Rules</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="objects/index.html">Domain Objects</a><ul>
@@ -176,9 +164,7 @@
 <li class="toctree-l2"><a class="reference internal" href="objects/datapoint.html">DataPoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="objects/datetime.html">DateTime</a></li>
 <li class="toctree-l2"><a class="reference internal" href="objects/device.html">Device</a></li>
-<li class="toctree-l2"><a class="reference internal" href="objects/fold.html">Fold</a></li>
 <li class="toctree-l2"><a class="reference internal" href="objects/function.html">PipelineFunction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="objects/monitor-rule.html">MonitorRule</a></li>
 <li class="toctree-l2"><a class="reference internal" href="objects/period.html">Period</a></li>
 <li class="toctree-l2"><a class="reference internal" href="objects/pipeline.html">Pipeline</a></li>
 <li class="toctree-l2"><a class="reference internal" href="objects/read-action.html">ReadAction</a></li>
@@ -188,7 +174,6 @@
 <li class="toctree-l2"><a class="reference internal" href="objects/selector.html">Selector</a></li>
 <li class="toctree-l2"><a class="reference internal" href="objects/sensor.html">Sensor</a></li>
 <li class="toctree-l2"><a class="reference internal" href="objects/timezone.html">TimeZone</a></li>
-<li class="toctree-l2"><a class="reference internal" href="objects/value-descriptor.html">ValueDescriptor</a></li>
 <li class="toctree-l2"><a class="reference internal" href="objects/write-request.html">WriteRequest</a></li>
 </ul>
 </li>
@@ -205,7 +190,7 @@
         <a href="methods/index.html" class="btn btn-neutral float-right" title="Methods">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="../concepts/monitoring.html" class="btn btn-neutral" title="Monitoring"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="../concepts/pipeline.html" class="btn btn-neutral" title="Analytics pipeline"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

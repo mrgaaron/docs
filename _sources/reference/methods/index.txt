@@ -18,4 +18,3 @@ as a JSON body in the HTTP request.
    device-sensor-crud
    write
    read
-   monitoring-crud
