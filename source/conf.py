@@ -13,9 +13,12 @@ sys.path.append(os.path.abspath('sphinxext'))
 
 # -- General configuration ------------------------------------------------
 
+html_context = {}
+
 # For development builds, invoke sphinx-build with '-t dev'.
 if not tags.has('dev'):
     tags.add('publish')
+    html_context['publish'] = True
 
 # If your documentation needs a minimal Sphinx version, state it here.
 #needs_sphinx = '1.0'
