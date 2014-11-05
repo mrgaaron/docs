@@ -32,14 +32,13 @@ indicating which Devices succeeded and which failed in writing.
 Deleting data
 -------------
 
-.. method:: deleteDataPoints(start, stop)
+.. method:: deleteDataPoints(device, sensor, start, stop)
+
+   Delete a range of data points for a given sensor.
 
    :endpoint: ``DELETE /v2/devices/:devicekey/sensors/:sensorkey/datapoints``
 
    :arg DateTime start: Beginning of time range to delete (inclusive)
-
    :arg DateTime stop: End of time range to delete (exclusive)
 
    :returns: The number of data points that were deleted
-
-   Delete a range of data points for a given sensor.
