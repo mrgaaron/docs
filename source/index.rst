@@ -20,6 +20,13 @@ Harness the power of TempoIQ in your application in a few easy steps:
 2. :doc:`Write sensor data </concepts/writing>`
 3. :doc:`Analyze the data </concepts/reading>`
 
+Code examples
+-------------
+
+Here's how to create devices:
+
+.. snippet-display:: create-device
+
 
 SDKs
 ----

@@ -1,5 +1,5 @@
 
-.. ezample create-client node:
+.. snippet:: create-client javascript
 
     var tempoiq = require('tempoiq');
     var client = tempoiq.Client(<TEMPO_KEY>,
@@ -7,7 +7,7 @@
                                 <TEMPO_HOST>);
 
 
-.. ezample create-device node:
+.. snippet:: create-device javascript
 
     client.createDevice(new tempoiq.Device("device", {
         name: "My Awesome Device",
@@ -22,7 +22,7 @@
         attributes: {unit: "C"}
           })
         ]
-      }), 
+      }),
       function(err, device) {
         if (err) throw err;
         callback(device);
