@@ -1,5 +1,5 @@
 
-.. ezample create-client python:
+.. snippet:: create-client python
 
     import tempoiq.session
 
@@ -9,7 +9,7 @@
                                 "your-secret")
 
 
-.. ezample create-device python:
+.. snippet:: create-device python
 
     from tempoiq.protocol.device import Device
     from tempoiq.protocol.sensor import Sensor

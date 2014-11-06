@@ -22,6 +22,13 @@ Harness the power of TempoIQ in your application in a few easy steps:
 3. :doc:`Analyze the data </concepts/reading>`
 4. :doc:`Set up real-time monitoring rules </concepts/monitoring>`
 
+Code examples
+-------------
+
+Here's how to create devices:
+
+.. snippet-display:: create-device
+
 
 SDKs
 ----
