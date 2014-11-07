@@ -22,13 +22,13 @@ class CodeSnippet(Directive):    # Arguments: title, language
 
         env = self.state.document.settings.env
 
-        literal = nodes.literal_block(self.content, self.content)
+        code = u'\n'.join(self.content)
+        literal = nodes.literal_block(code, code)
         literal['language'] = language     # For syntax hilighting.
                         # TODO: don't require same language terms in directive
 
-        text = "Snippet: title({}), language({})".format(title, language)
+        text = "Snippet: title: {}, language: {}".format(title, language)
         heading = nodes.paragraph(text, text)
-        register_nodes = [heading] + literal
 
         print("registering" + text)
         # Register in the environment for use in the resolve stage
@@ -43,7 +43,7 @@ class CodeSnippet(Directive):    # Arguments: title, language
             'content': literal
         })
 
-        return register_nodes
+        return [literal]
 
 
 class SnippetDisplay(Directive):  # Param: title, prints all snippets related to that title
