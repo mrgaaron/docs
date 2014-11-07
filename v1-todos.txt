@@ -15,10 +15,10 @@ Need to do
 
 X ++   Remove all references to monitoring
 X ++   Update write examples to reflect API
-x-ish ++   Update read examples to reflect API
+done-ish ++   Update read examples to reflect API
 +++  Update selector/search etc for new API (dep: 2)
 X ++   Document rollups
-++   Document other pipeline fns
+done-ish ++   Document other pipeline fns
 +    Document Latest endpoint (dep: 3)
 +    Code example of reading data (dep: 1)
 X +    Remove aggregation and combine docs
@@ -38,6 +38,8 @@ Want to do
 +   Look into unicode support
 ++   Higher level documentation of Pipeline
 +   Other fields in ReadAction?
++   Talk about bodies in GETs
++   Be more clear about what is/isn't mutable on a device
 
 
 Bonus points

@@ -27,3 +27,18 @@ Errors
 If you attempt to write to a sensor or device that does not exist, or
 specify an invalid DataPoint format, a MultiStatus will be returned
 indicating which Devices succeeded and which failed in writing.
+
+
+Deleting data
+-------------
+
+.. method:: deleteDataPoints(device, sensor, start, stop)
+
+   :endpoint: ``DELETE /v2/devices/:devicekey/sensors/:sensorkey/datapoints``
+
+   Delete a range of data points for a given sensor.
+
+   :arg DateTime start: Beginning of time range to delete (inclusive)
+   :arg DateTime stop: End of time range to delete (exclusive)
+
+   :returns: The number of data points that were deleted
