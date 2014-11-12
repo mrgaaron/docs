@@ -17,17 +17,22 @@ class CodeSnippet(Directive):    # Arguments: title, language
     final_argument_whitespace = False
 
     def run(self):
+        env = self.state.document.settings.env
+
         key = self.arguments[0]
         language = self.arguments[1]
 
-        env = self.state.document.settings.env
+        node = SingleSnippetNode()
+        node['key'] = key
+        node['language'] = language
+        node['language-pretty'] = language.capitalize()
+                        # TODO: don't require same language terms in directive
 
         code = u'\n'.join(self.content)
         literal = nodes.literal_block(code, code)
-        literal['key'] = key
         literal['language'] = language     # For syntax hilighting.
-        literal['language-pretty'] = language.capitalize()
-                        # TODO: don't require same language terms in directive
+
+        node.append(literal)    # Wrap the code block in our SingleSnippetNode
 
         # Register in the environment for use in the resolve stage
         if not hasattr(env, 'snippets_all'):
@@ -35,9 +40,7 @@ class CodeSnippet(Directive):    # Arguments: title, language
 
         env.snippets_all.append({
             'docname': env.docname,
-            'key': key,
-            'langugage': language,
-            'content': literal
+            'content': node
         })
 
         return [literal]
@@ -47,12 +50,10 @@ class SnippetDisplay(Directive):  # Param: title, prints all snippets related to
     """
     Directive to insert all snippets with a given title.
     """
-
     required_arguments = 1
 
     def run(self):
         key = self.arguments[0]
-
         node = SnippetDisplayNode()
         node['key'] = key
 
@@ -61,6 +62,18 @@ class SnippetDisplay(Directive):  # Param: title, prints all snippets related to
 
 class SnippetDisplayNode(nodes.General, nodes.Element):
     pass
+
+
+class SingleSnippetNode(nodes.General, nodes.Element):
+    pass
+
+
+def visit_single_snippet(self, node):
+    self.body.append('<div data-language="{}">'.format(node['language']))
+
+
+def depart_single_snippet(self, node):
+    self.body.append('</div>')
 
 
 def visit_snippet_display(self, node):
@@ -78,6 +91,7 @@ def depart_snippet_display(self, node):
     self.body.append('</div>')
 
 
+# TODO: invalidate docs which include updated snippets
 def purge_snippets(app, env, docname):
     if not hasattr(env, 'snippets_all'):
         return
@@ -95,7 +109,7 @@ def resolve_snippets(app, doctree, docname):
 
         for snippet in env.snippets_all:
             # Only process snippets with the right title
-            if snippet['key'] != node['key']:
+            if snippet['content']['key'] != node['key']:
                 continue
 
             node.append(snippet['content'])
@@ -108,6 +122,8 @@ def resolve_snippets(app, doctree, docname):
 def setup(app):
     app.add_node(SnippetDisplayNode,
                  html=(visit_snippet_display, depart_snippet_display))
+    app.add_node(SingleSnippetNode,
+                 html=(visit_single_snippet, depart_single_snippet))
 
     app.add_directive('snippet-display', SnippetDisplay)
     app.add_directive('snippet', CodeSnippet)
