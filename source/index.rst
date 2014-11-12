@@ -31,6 +31,13 @@ Here's one with no defined snippets:
 
 .. snippet-display:: blabla
 
+Code examples
+-------------
+
+Here's how to create devices:
+
+.. snippet-display:: create-device
+
 
 SDKs
 ----
