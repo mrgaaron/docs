@@ -17,29 +17,26 @@ class CodeSnippet(Directive):    # Arguments: title, language
     final_argument_whitespace = False
 
     def run(self):
-        title = self.arguments[0]
+        key = self.arguments[0]
         language = self.arguments[1]
 
         env = self.state.document.settings.env
 
         code = u'\n'.join(self.content)
         literal = nodes.literal_block(code, code)
+        literal['key'] = key
         literal['language'] = language     # For syntax hilighting.
+        literal['language-pretty'] = language.capitalize()
                         # TODO: don't require same language terms in directive
 
-        text = "Snippet: title: {}, language: {}".format(title, language)
-        heading = nodes.paragraph(text, text)
-
-        print("registering" + text)
         # Register in the environment for use in the resolve stage
         if not hasattr(env, 'snippets_all'):
             env.snippets_all = []
 
         env.snippets_all.append({
             'docname': env.docname,
-            'title': title,
+            'key': key,
             'langugage': language,
-            'heading': heading,
             'content': literal
         })
 
@@ -54,16 +51,31 @@ class SnippetDisplay(Directive):  # Param: title, prints all snippets related to
     required_arguments = 1
 
     def run(self):
-        title = self.arguments[0]
+        key = self.arguments[0]
 
         node = SnippetDisplayNode()
-        node['title'] = title
+        node['key'] = key
 
         return [node]
 
 
 class SnippetDisplayNode(nodes.General, nodes.Element):
     pass
+
+
+def visit_snippet_display(self, node):
+    self.body.append('<div class="snippets" data-key="{}">'
+                     .format(node['key']))
+
+    self.body.append('<div class="headings">')
+    for child in node.children:
+        self.body.append('<div data-language="{}">{}</div>'
+                         .format(child['language'], child['language-pretty']))
+    self.body.append('</div>')
+
+
+def depart_snippet_display(self, node):
+    self.body.append('</div>')
 
 
 def purge_snippets(app, env, docname):
@@ -73,8 +85,7 @@ def purge_snippets(app, env, docname):
                         if snippet['docname'] != docname]
 
 
-# TODO: translate this from todo example to this extension
-def resolve_snippets(app, doctree, fromdocname):
+def resolve_snippets(app, doctree, docname):
     # Replace all SnippetDisplayNodes with a list of the relevant snippets.
 
     env = app.builder.env
@@ -84,22 +95,19 @@ def resolve_snippets(app, doctree, fromdocname):
 
         for snippet in env.snippets_all:
             # Only process snippets with the right title
-            if snippet['title'] != node['title']:
+            if snippet['key'] != node['key']:
                 continue
 
-            # Insert into the todolist
-            content.append(snippet['heading'])
-            content.append(snippet['content'])
+            node.append(snippet['content'])
 
-        if len(content) > 0:
-            node.replace_self(content)
-        else:
-            msg = "No snippets found for title({})".format(node['title'])
-            node.replace_self([nodes.paragraph(msg, msg)])
+        if len(node) == 0:
+            msg = "No snippets found for key '{}'".format(node['key'])
+            app.warn(msg, (docname, 0))
 
 
 def setup(app):
-    app.add_node(SnippetDisplayNode)    # TODO: add visit/depart functions for Theme hooks
+    app.add_node(SnippetDisplayNode,
+                 html=(visit_snippet_display, depart_snippet_display))
 
     app.add_directive('snippet-display', SnippetDisplay)
     app.add_directive('snippet', CodeSnippet)

@@ -14,12 +14,12 @@
         attributes: {building: "1234"},
         sensors: [
           new tempoiq.Sensor("sensor1", {
-        name: "My Sensor",
-        attributes: {unit: "F"}
+            name: "My Sensor",
+            attributes: {unit: "F"}
           }),
           new tempoiq.Sensor("sensor2", {
-        name: "My Sensor2",
-        attributes: {unit: "C"}
+            name: "My Sensor2",
+            attributes: {unit: "C"}
           })
         ]
       }),

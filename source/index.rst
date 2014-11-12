@@ -27,6 +27,10 @@ Here's how to create devices:
 
 .. snippet-display:: create-device
 
+Here's one with no defined snippets:
+
+.. snippet-display:: blabla
+
 
 SDKs
 ----
