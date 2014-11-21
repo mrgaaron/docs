@@ -1,18 +1,14 @@
-.rst-content .section ul {
-    list-style: none;
-    margin-bottom: 0;
-}
-
-.rst-content .section ul li {
-    list-style: none;
-    margin-left: 0;
-}
 
 .snippets-container {
     margin-bottom: 20px;
 }
 
-.headings {}
+.rst-content .section .snippets-container li, .rst-content .section .snippets-container ul {
+    list-style: none;
+    margin-left: 0;
+    margin-bottom: 0;
+}
+
 
 .headings li {
     display: inline-block;
