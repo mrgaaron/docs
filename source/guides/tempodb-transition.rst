@@ -42,8 +42,8 @@ Feature Comparison
       - :method:`writeData`
       - See :ref:`tdb-write-interface`
     * - `Delete data points <https://tempo-db.com/docs/api/delete/datapoints/>`_
-      - :method:`deleteData`
-      - In progress. Will be available 2014-10-20
+      - :method:`deleteDataPoints`
+      -
     * - `Basic reading <https://tempo-db.com/docs/api/read/datapoints/basic>`_
       - :method:`read`
       - TempoIQ does not have a specialized method for reading from a single device.
@@ -74,7 +74,7 @@ Feature Comparison
       - :class:`MultiRollup`
       - See :ref:`tdb-summary-endpoint` below
     * - `Single value <https://tempo-db.com/docs/api/read/datapoints/single-value>`_
-      - :method:`lastValue`
+      - :method:`latest`
       - Not a 100% replacement, see :ref:`tdb-single-value` below
 
 

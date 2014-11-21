@@ -10,7 +10,7 @@ Definition
 
    Object containing the results of a :method:`read` operation.
 
-   Contains a sequence of :class:`MultiPoint`\ s. If the read operation contains
+   Contains a sequence of :class:`Row`\ s. If the read operation contains
    data from multiple streams, the value of each DataPoint will contain data for
    every stream with a value defined at that timestamp. See :ref:`examples` below.
 
