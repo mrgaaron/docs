@@ -28,7 +28,8 @@ if not tags.has('dev'):
 # ones.
 extensions = [
     'sphinx.ext.todo',
-    'tempoiq_sphinx'
+    'tempoiq_sphinx',
+    'snippets'
 ]
 
 # Name of the default domain.

@@ -35,12 +35,13 @@
   {% if not READTHEDOCS %}
     <link rel="stylesheet" href="{{ pathto('_static/' + style, 1) }}" type="text/css" />
   {% endif %}
-  <link rel="stylesheet" href="{{ pathto('_static/', 1) }}css/fonts.css" type="text/css" />
   {% for cssfile in css_files %}
     <link rel="stylesheet" href="{{ pathto(cssfile, 1) }}" type="text/css" />
   {% endfor %}
-  <link rel="stylesheet" href="{{ pathto('_static/', 1) }}css/nav.css" type="text/css" />
-  <link rel="stylesheet" href="{{ pathto('_static/', 1) }}css/tempoiq_theme.css" type="text/css" />
+  <link rel="stylesheet" href="{{ pathto('_static/css/nav.css', 1) }}" type="text/css" />
+  <link rel="stylesheet" href="{{ pathto('_static/css/tempoiq_theme.css', 1) }}" type="text/css" />
+  <link rel="stylesheet" href="{{ pathto('_static/css/multilanguage.css', 1) }}" type="text/css" />
+
 
   {%- block linktags %}
     {%- if hasdoc('about') %}
@@ -151,15 +152,24 @@
     <script type="text/javascript" src="{{ pathto('_static/js/theme.js', 1) }}"></script>
   {% endif %}
 
+  <script type="text/javascript" src="{{ pathto('_static/js/cookies.min.js', 1) }}"></script>
+  <script type="text/javascript" src="{{ pathto('_static/js/multilang_examples.js', 1) }}"></script>
+
   {# STICKY NAVIGATION #}
   {% if theme_sticky_navigation %}
   <script type="text/javascript">
-      jQuery(function () {
-          SphinxRtdTheme.StickyNav.enable();
+      $(function(){
+        jQuery(function () {
+              SphinxRtdTheme.StickyNav.enable();
+          });
       });
   </script>
   {% endif %}
-
+  <script type="text/javascript">
+      $(function(){
+        $.tempoiq.docs.exampleManager = new $.tempoiq.docs.MultiLanguageExampleManager();
+      });
+  </script>
   {%- block footer %} {% endblock %}
 
 {% if publish %}
