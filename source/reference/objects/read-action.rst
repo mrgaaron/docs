@@ -4,7 +4,7 @@ ReadAction
 
 .. class:: ReadAction
 
-Specifies the range of data to read in a :class:`ReadRequest`.
+Specifies the range of data to read in a :method:`read` query.
 
 
 Fields

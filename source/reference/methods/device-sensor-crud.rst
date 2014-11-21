@@ -13,6 +13,7 @@ Create device
    :arg Device device: The device to create
    :returns: The :class:`Device` that was created
 
+
 Get device
 ----------
 
@@ -41,7 +42,8 @@ Find devices
             "attributes": {"building": "3"}
           }
         }
-      }
+      },
+      "find": {"quantifier": "all"}
     }
 
 .. todo:: Be more explicit about search/select/filters relationship

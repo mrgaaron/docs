@@ -24,22 +24,6 @@ that they should be specified when constructing the request. For example::
    Rollups are defined by a folding function and a time period.
 
 
-   **Folding Functions**
-
-   The folding function specifies how the datapoints are reduced within each
-   period. The following folding functions are supported:
-
-   * mean - Simple average of values in each period
-   * sum - Sum of values
-   * min - Minimum value
-   * max - Maximum value
-   * stddev - Standard deviation
-   * variance - Variance, or sum of squares
-   * count - Total number of datapoints in each period
-   * range - Maximum value less the minimum value
-   * first - First data point in each period
-   * last - Last data point in each period
-
    **Name:** ``rollup``
 
    **Arguments:**
@@ -47,7 +31,7 @@ that they should be specified when constructing the request. For example::
    =======  =====================  ===========
    Name     Type                   Description
    =======  =====================  ===========
-   fold     Fold as defined above  Folding function to apply
+   fold     :class:`Fold`          Folding function to apply
    period   :class:`Period`        Time period for performing the rollup
    start    :class:`DateTime`      Same as the start time in the read interval
    =======  =====================  ===========
@@ -64,7 +48,7 @@ that they should be specified when constructing the request. For example::
    =======  ======================  ===========
    Name     Type                    Description
    =======  ======================  ===========
-   folds    Array of Folds          The list of folding functions to apply
+   folds    Array of :class:`Fold`  The list of folding functions to apply
    period   :class:`Period`         Time period for performing the rollup
    start    :class:`DateTime`       Same as the start time in the read interval
    =======  ======================  ===========
