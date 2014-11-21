@@ -1,0 +1,57 @@
+.rst-content .section ul {
+    list-style: none;
+    margin-bottom: 0;
+}
+
+.rst-content .section ul li {
+    list-style: none;
+    margin-left: 0;
+}
+
+.snippets-container {
+    margin-bottom: 20px;
+}
+
+.headings {}
+
+.headings li {
+    display: inline-block;
+    font-size: 16px;
+    background: white;
+    border-right: 1px solid #e1e4e5;
+    border-left: 1px solid #e1e4e5;
+    border-top: 1px solid #e1e4e5;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.headings .heading {
+    display: block;
+    color: #666;
+    padding: 8px 20px;
+}
+
+.headings .heading:visited {
+    color: #666;
+}
+
+.headings .heading.active-heading {
+    font-family: "GothamHTF-Book", Calibri, sans-serif;
+    color: #343131
+}
+
+div[class^='highlight'] {
+    margin-bottom: 0;
+}
+
+div[class^='highlight'] pre {
+    padding: 20px;
+}
+
+.hidden-snippet {
+    display: none;
+}
+
+.active-snippet {
+    display: block;
+}

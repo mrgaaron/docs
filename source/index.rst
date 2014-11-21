@@ -23,9 +23,9 @@ Harness the power of TempoIQ in your application in a few easy steps:
 Code examples
 -------------
 
-Here's how to create devices:
+Here's how to create a client:
 
-.. snippet-display:: create-device
+.. snippet-display:: create-client
 
 Here's one with no defined snippets:
 

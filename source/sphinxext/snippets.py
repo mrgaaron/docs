@@ -69,25 +69,27 @@ class SingleSnippetNode(nodes.General, nodes.Element):
 
 
 def visit_single_snippet(self, node):
-    self.body.append('<div data-language="{}">'.format(node['language']))
+    self.body.append('<li class="snippet" data-language="{}">'.format(node['language']))
 
 
 def depart_single_snippet(self, node):
-    self.body.append('</div>')
+    self.body.append('</li>')
 
 
 def visit_snippet_display(self, node):
-    self.body.append('<div class="snippets" data-key="{}">'
+    self.body.append('<div class="snippets-container" data-key="{}">'
                      .format(node['key']))
 
-    self.body.append('<div class="headings">')
+    self.body.append('<ul class="headings">')
     for child in node.children:
-        self.body.append('<div data-language="{}">{}</div>'
+        self.body.append('<li><a class="heading" href="#" data-language="{}">{}</a></li>'
                          .format(child['language'], child['language-pretty']))
-    self.body.append('</div>')
+    self.body.append('</ul>')
+    self.body.append('<ul class="snippets">')
 
 
 def depart_snippet_display(self, node):
+    self.body.append('</ul>')
     self.body.append('</div>')
 
 
