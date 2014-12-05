@@ -20,17 +20,26 @@ class CodeSnippet(Directive):    # Arguments: title, language
         env = self.state.document.settings.env
 
         key = self.arguments[0]
-        language = self.arguments[1]
+        lang = self.arguments[1]
+        lang_pretty = lang.capitalize()
+        lang_hilight = lang
+
+        # Custom pretty names and hilight schemes from config file
+        for (lkey, lname, lhilight) in env.config.snippet_langs:
+            if lkey == lang:
+                lang_pretty = lname
+                lang_hilight = lhilight
+                break
 
         node = SingleSnippetNode()
         node['key'] = key
-        node['language'] = language
-        node['language-pretty'] = language.capitalize()
+        node['language'] = lang
+        node['language-pretty'] = lang_pretty
                         # TODO: don't require same language terms in directive
 
         code = u'\n'.join(self.content)
         literal = nodes.literal_block(code, code)
-        literal['language'] = language     # For syntax hilighting.
+        literal['language'] = lang_hilight     # For syntax hilighting.
 
         node.append(literal)    # Wrap the code block in our SingleSnippetNode
 
@@ -122,6 +131,7 @@ def resolve_snippets(app, doctree, docname):
 
 
 def setup(app):
+    app.add_config_value('snippet_langs', [], 'env')
     app.add_node(SnippetDisplayNode,
                  html=(visit_snippet_display, depart_snippet_display))
     app.add_node(SingleSnippetNode,

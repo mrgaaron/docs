@@ -13,6 +13,8 @@ Create device
    :arg Device device: The device to create
    :returns: The :class:`Device` that was created
 
+   .. snippet-display:: create-device
+
 
 Get device
 ----------
