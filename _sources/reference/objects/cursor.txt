@@ -1,9 +1,0 @@
-======
-Cursor
-======
-
-Description
------------
-
-.. class:: Cursor
-   
