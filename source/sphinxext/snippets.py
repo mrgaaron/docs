@@ -35,7 +35,6 @@ class CodeSnippet(Directive):    # Arguments: title, language
         node['key'] = key
         node['language'] = lang
         node['language-pretty'] = lang_pretty
-                        # TODO: don't require same language terms in directive
 
         code = u'\n'.join(self.content)
         literal = nodes.literal_block(code, code)
