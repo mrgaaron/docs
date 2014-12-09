@@ -54,20 +54,46 @@ Read two days of raw data from temperature sensors on devices in the "foo" regio
     }
 
 
-Latest value
+Single point
 ------------
 
-.. method:: latest(search, [pipeline])
+.. method:: single(search, function, timestamp, [pipeline])
 
    :endpoint: ``GET /v2/single``
 
-   Returns the single latest data point for each of a selection of sensors.
-   *Latest* in this case means the data point with the highest timestamp, even
-   if it is in the future.
+   Returns a single data point for each of a selection of sensors. The function
+   parameter indicates how to search for the point. The following functions
+   are supported:
+
+   - ``latest`` - Return the data point in the series with the latest timestamp,
+     even if it is in the future.
+
+   - ``earliest`` - Return the point in the series with the earliest timestamp.
+
+   - ``exact`` - Return the point with the exact same timestamp as the provided
+     *timestamp* argument, if one exists.
+
+   - ``before`` - Return the point closest to the provided *timestamp* argument,
+     searching only backwards in time.
+
+   - ``after`` - Return the point closest to the provided *timestamp* argument,
+     searching only forwards in time.
+
+   - ``nearest`` - Return the point closest to the provided *timestamp* argument,
+     searching both forwards and backwards.
 
    :arg Search search:
 
       Required. Selects the sensors to read
+
+   :arg String function:
+
+      Required. One of: ``earliest``, ``latest``, ``before``, ``after``,
+      ``nearest``, ``exact``.
+
+   :arg DateTime timestamp:
+
+      Required for all functions except ``earliest`` and ``latest``.
 
    :arg Pipeline pipeline:
 
@@ -76,3 +102,8 @@ Latest value
    :returns:
 
       :class:`ReadResponse` with the requested data.
+
+Example
+~~~~~~~
+
+.. snippet-display:: single-point
