@@ -21,24 +21,20 @@ class CodeSnippet(Directive):    # Arguments: title, language
 
         key = self.arguments[0]
         lang = self.arguments[1]
-        lang_pretty = lang.capitalize()
-        lang_hilight = lang
 
         # Custom pretty names and hilight schemes from config file
-        for (lkey, lname, lhilight) in env.config.snippet_langs:
-            if lkey == lang:
-                lang_pretty = lname
-                lang_hilight = lhilight
-                break
+        lang_config = env.config.snippet_langs.get(lang)
+        if not lang_config:
+            raise KeyError('Language "{}" not found in snippet_langs configuration'.format(lang))
 
         node = SingleSnippetNode()
         node['key'] = key
         node['language'] = lang
-        node['language-pretty'] = lang_pretty
+        node['language-pretty'] = lang_config['pretty']
 
         code = u'\n'.join(self.content)
         literal = nodes.literal_block(code, code)
-        literal['language'] = lang_hilight     # For syntax hilighting.
+        literal['language'] = lang_config['highlight']   # For syntax hilighting.
 
         node.append(literal)    # Wrap the code block in our SingleSnippetNode
 
