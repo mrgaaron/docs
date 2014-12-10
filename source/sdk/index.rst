@@ -2,11 +2,11 @@
 SDKs and API Libraries
 ======================
 
-TempoIQ provides API libraries for many common languages and frameworks. You
-can find links to download the latest versions of these libraries below:
+TempoIQ provides officially supported API libraries for many common 
+languages and frameworks:
 
-* `Java <https://tempoiq.com/static/sdks/tempoiq-java.zip>`_
-* `.NET/C# <https://tempoiq.com/static/sdks/tempoiq-net.zip>`_
-* `NodeJS <https://tempoiq.com/static/sdks/tempoiq-node-js.zip>`_
-* `Python <https://tempoiq.com/static/sdks/tempoiq-python.zip>`_
-* `Ruby <https://tempoiq.com/static/sdks/tempoiq-ruby.zip>`_
+* `Java <https://github.com/TempoIQ/tempoiq-java>`_
+* `.NET/C# <https://github.com/TempoIQ/tempoiq-net>`_
+* `Node.JS <https://github.com/TempoIQ/tempoiq-node-js>`_
+* `Python <https://github.com/TempoIQ/tempoiq-python>`_
+* `Ruby <https://github.com/TempoIQ/tempoiq-ruby>`_

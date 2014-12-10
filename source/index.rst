@@ -29,14 +29,6 @@ languages and frameworks. See the :doc:`SDKs page </sdk/index>` for the
 complete list of supported languages.
 
 
-Transitioning from TempoDB
---------------------------
-
-Are you migrating from TempoDB to TempoIQ? Our
-:doc:`migration guide </guides/tempodb-transition>` includes a mapping
-of TempoDB functions to TempoIQ, as well as other useful information.
-
-
 :ref:`genindex`
 
 .. only:: dev

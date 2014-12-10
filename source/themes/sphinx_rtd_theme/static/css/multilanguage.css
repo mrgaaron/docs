@@ -6,7 +6,7 @@
 .rst-content .section .snippets-container li, .rst-content .section .snippets-container ul {
     list-style: none;
     margin-left: 0;
-    margin-bottom: 0;
+    margin-bottom: 0 !important;
 }
 
 
@@ -34,10 +34,6 @@
 .headings .heading.active-heading {
     font-family: "GothamHTF-Book", Calibri, sans-serif;
     color: #343131
-}
-
-div[class^='highlight'] {
-    margin-bottom: 0;
 }
 
 div[class^='highlight'] pre {

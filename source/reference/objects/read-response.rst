@@ -16,8 +16,6 @@ Definition
 
 .. todo:: note about cursoring in readResponses
 
-.. todo:: document MultiPoint format
-
 .. _examples:
 
 Examples
