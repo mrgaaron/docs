@@ -1,5 +1,5 @@
 
-.. snippet:: create-client javascript
+.. snippet:: create-client node
 
     var tempoiq = require('tempoiq');
     var client = tempoiq.Client(<TEMPO_KEY>,
@@ -7,7 +7,7 @@
                                 <TEMPO_HOST>);
 
 
-.. snippet:: create-device javascript
+.. snippet:: create-device node
 
     client.createDevice(new tempoiq.Device("device", {
         name: "My Awesome Device",
@@ -28,3 +28,7 @@
         callback(device);
       }
     );
+
+.. snippet:: create-device java
+
+    Device outDevice = client.createDevice(dev);

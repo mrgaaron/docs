@@ -32,6 +32,17 @@ extensions = [
     'snippets'
 ]
 
+# Dict of valid snippet languages. In the form:
+# {key: {'pretty': prettyname, 'highlight': pygmentsscheme)}
+snippet_langs = {
+    'http': {'pretty': 'Curl (HTTP)', 'highlight': 'javascript'},
+    'python': {'pretty': 'Python', 'highlight': 'python'},
+    'node': {'pretty': 'Node.js', 'highlight': 'javascript'},
+    'ruby': {'pretty': 'Ruby', 'highlight': 'ruby'},
+    'java': {'pretty': 'Java', 'highlight': 'java'},
+    'csharp': {'pretty': 'C#/.NET', 'highlight': 'csharp'}
+}
+
 # Name of the default domain.
 primary_domain = 'tempoiq'
 
