@@ -6,11 +6,11 @@ Read data
 
 .. method:: read(search, read, [pipeline])
 
+   Reads data points from one or more devices and sensors.
+
    :endpoint: ``GET /v2/read/``
 
    :cursored: Yes
-
-   Reads data points from one or more devices and sensors.
 
    :arg Search search:
 
@@ -29,10 +29,9 @@ Read data
       :class:`ReadResponse` with the requested data.
 
 
-Example
-~~~~~~~
+   **Example**
 
-Read two days of raw data from temperature sensors on devices in the "foo" region::
+   Read two days of raw data from temperature sensors on devices in the "foo" region::
 
     {
       "search": {
@@ -54,12 +53,11 @@ Read two days of raw data from temperature sensors on devices in the "foo" regio
     }
 
 
+
 Single point
 ------------
 
 .. method:: single(search, function, timestamp, [pipeline])
-
-   :endpoint: ``GET /v2/single``
 
    Returns a single data point for each of a selection of sensors. The function
    parameter indicates how to search for the point. The following functions
@@ -82,6 +80,9 @@ Single point
    - ``nearest`` - Return the point closest to the provided *timestamp* argument,
      searching both forwards and backwards.
 
+
+   :endpoint: ``GET /v2/single``
+
    :arg Search search:
 
       Required. Selects the sensors to read
@@ -103,7 +104,7 @@ Single point
 
       :class:`ReadResponse` with the requested data.
 
-Example
-~~~~~~~
 
-.. snippet-display:: single-point
+   **Example:**
+
+   .. snippet-display:: single-point
