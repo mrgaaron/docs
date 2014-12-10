@@ -29,6 +29,7 @@
       }
     );
 
+
 .. snippet:: single-point node
 
     var ts = new Date("2014-09-15T02:00:00Z");
