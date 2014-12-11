@@ -98,7 +98,7 @@ Single point
 
    :arg Pipeline pipeline:
 
-      Optional. A sequence of operations to transform the raw sensor data
+      Optional. Only supports the :class:`ConvertTZ` pipeline operation.
 
    :returns:
 
@@ -106,5 +106,8 @@ Single point
 
 
    **Example:**
+
+   Find the data point at or before the given timestamp for the *temperature* sensor
+   on *device1*.
 
    .. snippet-display:: single-point
