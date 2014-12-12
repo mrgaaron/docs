@@ -29,6 +29,26 @@
       }
     );
 
-.. snippet:: create-device java
 
-    Device outDevice = client.createDevice(dev);
+.. snippet:: single-point node
+
+    var ts = new Date("2014-09-15T02:00:00Z");
+    var selection = {
+      devices: { key: "device1" },
+      sensors: { key: "temperature" }
+    };
+
+    client.single(selection, "before", ts, null, function(err, data) {
+      if (err) {
+        console.log("ERROR: "+ JSON.stringify(err));
+      } else {
+        if (data.length == 0) {
+          console.log("No point found!");
+        } else {
+          var row = data[0];
+          var point_time = row.t;
+          var point_value = row.data['device1']['temperature']
+          console.log("Found point: t="+point_time+" v="+point_value);
+        }
+      }
+    });
