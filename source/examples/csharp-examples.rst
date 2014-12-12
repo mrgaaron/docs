@@ -23,7 +23,7 @@
 
     client.CreateDevice(device);
 
-.. snippet:: single-point ruby
+.. snippet:: single-point csharp
 
     var selection = new Selection()
                         .Add(Select.Type.Devices, Select.Key("device1"))
@@ -33,3 +33,6 @@
     var single = new SingleValueAction(DirectionFunction.Before, timestamp);
 
     client.Single(selection, single);
+    foreach (var row in cursor) {
+      Console.WriteLine(String.Format("The latest point for 'device1.temperature` is: {0}", row.getValue("device1", "temperature")));
+    }
