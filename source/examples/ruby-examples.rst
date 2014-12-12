@@ -20,4 +20,5 @@
       :sensors => {:key => "temperature"}
     }
 
-    client.single(selection, :before, ts)
+    cursor = client.single(selection, :before, ts).to_a
+    puts cursor[0].value("device1", "temperature")

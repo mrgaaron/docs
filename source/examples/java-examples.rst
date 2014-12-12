@@ -26,7 +26,7 @@
 
     client.createDevice(device);
 
-.. snippet:: single-point node
+.. snippet:: single-point java
 
     DateTime timestamp = new DateTime(2014, 9, 15, 2, 0, 0, 0, DateTimeZone.UTC);
 
@@ -34,4 +34,7 @@
                         .addSelector(Selector.Type.DEVICES, Selector.key("device1"))
                         .addSelector(Selector.Type.SENSORS, Selector.key("temperature"));
 
-    client.single(sel, new Pipeline(), new Single(DirectionFunction.BEFORE, new DateTime(2012, 1, 1, 3, 0, 0, 0, timezone)));
+    Cursor<Row> cursor = client.single(sel, new Pipeline(), new Single(DirectionFunction.BEFORE, new DateTime(2012, 1, 1, 3, 0, 0, 0, timezone)));
+    for (Row row : cursor) {
+      System.out.println("The latest point for 'device1.temperature` is: " + row.getValue("device1", "temperature").toString());
+    }
