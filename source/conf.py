@@ -35,12 +35,53 @@ extensions = [
 # Dict of valid snippet languages. In the form:
 # {key: {'pretty': prettyname, 'highlight': pygmentsscheme)}
 snippet_langs = {
-    'http': {'pretty': 'Curl (HTTP)', 'highlight': 'javascript'},
-    'python': {'pretty': 'Python', 'highlight': 'python'},
-    'node': {'pretty': 'Node.js', 'highlight': 'javascript'},
-    'ruby': {'pretty': 'Ruby', 'highlight': 'ruby'},
-    'java': {'pretty': 'Java', 'highlight': 'java'},
-    'csharp': {'pretty': 'C#/.NET', 'highlight': 'csharp'}
+    'http': {
+        'pretty': 'Curl (HTTP)',
+        'highlight': 'javascript',
+        'gh_repository': '',
+        'gh_branch': 'master',
+        'gh_path': ''
+    },
+    'python': {
+        'pretty': 'Python',
+        'highlight': 'python',
+        'gh_repository': 'TempoIQ/tempoiq-python',
+        'gh_branch': 'master',
+        'gh_path': 'tests/test-snippets.py',
+        'comment': '#'
+    },
+    'node': {
+        'pretty': 'Node.js',
+        'highlight': 'javascript',
+        'gh_repository': 'meshulam/tempoiq-node-js',
+        'gh_branch': 'test-snippets',
+        'gh_path': 'test/test_snippets.js',
+        'comment': '//'
+    },
+    'ruby': {
+        'pretty': 'Ruby',
+        'highlight': 'ruby',
+        'gh_repository': 'TempoIQ/tempoiq-ruby',
+        'gh_branch': 'master',
+        'gh_path': 'tests/bla.rb',
+        'comment': '#'
+    },
+    'java': {
+        'pretty': 'Java',
+        'highlight': 'java',
+        'gh_repository': 'TempoIQ/tempoiq-java',
+        'gh_branch': 'master',
+        'gh_path': 'tests/bla.java',
+        'comment': '//'
+    },
+    'csharp': {
+        'pretty': 'C#/.NET',
+        'highlight': 'csharp',
+        'gh_repository': 'TempoIQ/tempoiq-net',
+        'gh_branch': 'master',
+        'gh_path': 'tests/bla.cs',
+        'comment': '//'
+    }
 }
 
 # Name of the default domain.
