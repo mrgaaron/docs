@@ -6,9 +6,9 @@ from sphinx.directives.code import CodeBlock
 from sphinx.util.compat import Directive, make_admonition
 
 
-class CodeSnippet(Directive):    # Arguments: title, language
+class CodeSnippet(Directive):
     """
-    A code snippet in a language.
+    A code snippet in a language. Arguments: title, language
     """
 
     has_content = True
@@ -50,16 +50,22 @@ class CodeSnippet(Directive):    # Arguments: title, language
         return [literal]
 
 
-class SnippetDisplay(Directive):  # Param: title, prints all snippets related to that title
+class SnippetDisplay(Directive):
     """
     Directive to insert all snippets with a given title.
     """
     required_arguments = 1
 
     def run(self):
+        env = self.state.document.settings.env
+
         key = self.arguments[0]
         node = SnippetDisplayNode()
         node['key'] = key
+
+        if not hasattr(env, 'snippets_display'):
+            env.snippets_display = []
+        env.snippets_display.append(node)
 
         return [node]
 
@@ -109,21 +115,32 @@ def resolve_snippets(app, doctree, docname):
     # Replace all SnippetDisplayNodes with a list of the relevant snippets.
 
     env = app.builder.env
+    langs = env.config.snippet_langs.keys()
 
     for node in doctree.traverse(SnippetDisplayNode):
-        content = []
-
+        missing_languages = list(langs)
         for snippet in env.snippets_all:
             # Only process snippets with the right title
             if snippet['content']['key'] != node['key']:
                 continue
 
+            missing_languages.remove(snippet['content']['language'])
             node.append(snippet['content'])
 
-        if len(node) == 0:
-            msg = "No snippets found for key '{}'".format(node['key'])
+        if len(missing_languages) > 0:
+            msg = "Missing languages for snippet key '{}': {}" \
+                        .format(node['key'], missing_languages)
             app.warn(msg, (docname, 0))
 
+def check_snippets(app, env):
+    langs = env.config.snippet_langs.keys()
+    displayed = [node['key'] for node in env.snippets_display]
+    for snippet in env.snippets_all:
+        if snippet['content']['key'] not in displayed:
+            msg = "Defined snippet never displayed: key={}, lang={}" \
+                    .format(snippet['content']['key'],
+                            snippet['content']['language'])
+            app.warn(msg)
 
 def setup(app):
     app.add_config_value('snippet_langs', [], 'env')
@@ -137,3 +154,4 @@ def setup(app):
 
     app.connect('env-purge-doc', purge_snippets)
     app.connect('doctree-resolved', resolve_snippets)
+    app.connect('env-updated', check_snippets)
