@@ -45,7 +45,7 @@ class Language(dict):
         self['key'] = key
 
     def get_raw_url(self):
-        raw_url = "https://raw.githubusercontent.com/{}/{}/{}" \
+        return "https://raw.githubusercontent.com/{}/{}/{}" \
                     .format(self.get('gh_repository'),
                             self.get('gh_branch'),
                             self.get('gh_path'))
@@ -97,7 +97,7 @@ class SingleSnippetNode(nodes.General, nodes.Element):
         if isinstance(content, basestring):
             body = content
         else:
-            body = u'\n'.join(content)
+            body = u'\n'.join([line.rstrip() for line in content])
 
         literal = nodes.literal_block(body, body)
         literal['language'] = language['highlight']   # For syntax hilighting.
