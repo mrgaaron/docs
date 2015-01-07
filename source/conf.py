@@ -32,57 +32,59 @@ extensions = [
     'snippets'
 ]
 
-# Dict of valid snippet languages. In the form:
-# {key: {'pretty': prettyname, 'highlight': pygmentsscheme)}
-snippet_langs = {
-    'http': {
-        'pretty': 'Curl (HTTP)',
+# List of valid snippet languages.
+snippet_language_list = [
+    {
+        'key': 'http',
+        'name': 'Curl (HTTP)',
         'highlight': 'javascript',
-        'gh_repository': '',
-        'gh_branch': 'master',
-        'gh_path': ''
     },
-    'python': {
-        'pretty': 'Python',
+    {
+        'key': 'python',
+        'name': 'Python',
         'highlight': 'python',
         'gh_repository': 'TempoIQ/tempoiq-python',
         'gh_branch': 'master',
         'gh_path': 'tests/test-snippets.py',
-        'comment': '#'
+        'line_comment': '#'
     },
-    'node': {
-        'pretty': 'Node.js',
+    {
+        'key': 'node',
+        'name': 'Node.js',
         'highlight': 'javascript',
         'gh_repository': 'meshulam/tempoiq-node-js',
         'gh_branch': 'test-snippets',
         'gh_path': 'test/test_snippets.js',
-        'comment': '//'
+        'line_comment': '//'
     },
-    'ruby': {
-        'pretty': 'Ruby',
+    {
+        'key': 'ruby',
+        'name': 'Ruby',
         'highlight': 'ruby',
         'gh_repository': 'TempoIQ/tempoiq-ruby',
         'gh_branch': 'master',
         'gh_path': 'tests/bla.rb',
-        'comment': '#'
+        'line_comment': '#'
     },
-    'java': {
-        'pretty': 'Java',
+    {
+        'key': 'java',
+        'name': 'Java',
         'highlight': 'java',
         'gh_repository': 'TempoIQ/tempoiq-java',
         'gh_branch': 'master',
         'gh_path': 'tests/bla.java',
-        'comment': '//'
+        'line_comment': '//'
     },
-    'csharp': {
-        'pretty': 'C#/.NET',
+    {
+        'key': 'csharp',
+        'name': 'C#/.NET',
         'highlight': 'csharp',
         'gh_repository': 'TempoIQ/tempoiq-net',
         'gh_branch': 'master',
         'gh_path': 'tests/bla.cs',
-        'comment': '//'
+        'line_comment': '//'
     }
-}
+]
 
 # Name of the default domain.
 primary_domain = 'tempoiq'
