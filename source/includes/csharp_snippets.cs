@@ -1,10 +1,11 @@
 
-.. snippet:: create-client csharp
-
+// snippet-begin create-client
     using TempoIQ;
     var client = new Client(<TEMPO_KEY>, <TEMPO_SECRET>, <TEMPO_HOST>);
 
-.. snippet:: create-device csharp 
+// snippet-end
+
+// snippet-begin create-device
 
     attributes = new Dictionary<String, String>();
     attributes.Add("building", "1234");
@@ -22,9 +23,9 @@
     device = new Device("key1234", "My Awesome Device", attributes, sensors)
 
     client.CreateDevice(device);
+// snippet-end
 
-.. snippet:: single-point csharp
-
+// snippet-begin single-point
     var selection = new Selection()
                         .Add(Select.Type.Devices, Select.Key("device1"))
                         .Add(Select.Type.Sensors, Select.Key("temperature"));
@@ -36,3 +37,4 @@
     foreach (var row in cursor) {
       Console.WriteLine(String.Format("The latest point for 'device1.temperature` is: {0}", row.getValue("device1", "temperature")));
     }
+// snippet-end

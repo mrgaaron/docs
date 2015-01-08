@@ -1,13 +1,13 @@
 
-.. snippet:: create-client java
-
+// snippet-begin create-client
     import com.TempoIQ;
 
     Credentials creds = new Credentials(<TEMPO_KEY>, <TEMPO_SECRET>);
     Client client = new Client(creds, <TEMPO_HOST>, "https");
 
-.. snippet:: create-device java
+// snippet-end
 
+// snippet-begin create-device
     Map<String, String> attributes = new HashMap<String, String>();
     attributes.put("building", "1234");
 
@@ -26,8 +26,8 @@
 
     client.createDevice(device);
 
-.. snippet:: single-point java
-
+// snippet-end
+// snippet-begin single-point
     DateTime timestamp = new DateTime(2014, 9, 15, 2, 0, 0, 0, DateTimeZone.UTC);
 
     Selection sel = new Selection()
@@ -38,3 +38,4 @@
     for (Row row : cursor) {
       System.out.println("The latest point for 'device1.temperature` is: " + row.getValue("device1", "temperature").toString());
     }
+// snippet-end

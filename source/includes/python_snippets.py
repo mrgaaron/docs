@@ -1,5 +1,5 @@
 
-.. snippet:: create-client python
+# snippet-begin create-client
 
     import tempoiq.session
 
@@ -8,8 +8,8 @@
                                 "your-key",
                                 "your-secret")
 
-
-.. snippet:: create-device python
+# snippet-end
+# snippet-begin create-device
 
     from tempoiq.protocol.device import Device
     from tempoiq.protocol.sensor import Sensor
@@ -26,8 +26,8 @@
     if response.successful != tempoiq.response.SUCCESS:
         print("Error creating device!")
 
-
-.. snippet:: single-point python
+# snippet-end
+# snippet-begin single-point
 
     result = client.query(Sensor) \
                    .filter(Device.key == "device1") \
@@ -39,9 +39,9 @@
     if len(rows) == 0:
         print("No point found!")
     else:
-        var row = rows[0];
-        var point_time = row.timestamp;
+        var row = rows[0]
+        var point_time = row.timestamp
         var point_value = row.values['device1']['temperature']
         print("Found point: t={} v={}".format(point_time, point_value))
-    
 
+# snippet-end
