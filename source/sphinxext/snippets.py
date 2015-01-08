@@ -25,7 +25,7 @@ class Language(object):
                                   hasattr(self, 'gh_branch') and
                                   hasattr(self, 'gh_path'))
 
-    def get_raw_url(self):
+    def get_remote_url(self):
         if not self.has_remote_source:
             return None
         return "https://raw.githubusercontent.com/{}/{}/{}" \
@@ -33,7 +33,7 @@ class Language(object):
                        self.gh_branch,
                        self.gh_path)
 
-    def get_pretty_url(self, lineno=None):
+    def get_pretty_remote_url(self, lineno=None):
         if not self.has_remote_source:
             return None
         url = "https://github.com/{}/blob/{}/{}" \
@@ -42,7 +42,6 @@ class Language(object):
                       self.gh_path)
         if lineno:
             url += "#L" + repr(lineno)
-
         return url
 
 
@@ -88,14 +87,14 @@ class SnippetDisplayNode(nodes.General, nodes.Element):
 
 
 class SingleSnippetNode(nodes.General, nodes.Element):
-    def __init__(self, key, language, content="", lineno=None):
+    def __init__(self, key, language, content="", lineno=None, remote=False):
         super(SingleSnippetNode, self).__init__()
         self['key'] = key
         self['language'] = language.key
         self['language-name'] = language.name
 
-        if lineno:
-            self['source-url'] = language.get_pretty_url(lineno)
+        if remote:
+            self['source-url'] = language.get_pretty_remote_url(lineno)
 
         # Support strings, or a list of strings
         if isinstance(content, basestring):
@@ -114,8 +113,9 @@ class SingleSnippetNode(nodes.General, nodes.Element):
 
     @staticmethod
     def html_visit(translator, node):
-        translator.body.append('<li class="snippet" data-language="{}">'
-                               .format(node['language']))
+        translator.body.append(
+            '<li class="snippet" data-language="{}" data-source="{}">'
+            .format(node.get('language'), node.get('source-url', '')))
 
     @staticmethod
     def html_depart(translator, node):
@@ -126,7 +126,7 @@ class SnippetNodeBuilder:
     """Builds snippet nodes by parsing a code file in the given language"""
 
     @staticmethod
-    def parse(code_file, language, app):
+    def parse(code_file, language, app, remote=False):
         begin_string = "{} snippet-begin".format(language.line_comment)
         end_string = "{} snippet-end".format(language.line_comment)
         ignore_string = "{} snippet-ignore".format(language.line_comment)
@@ -145,15 +145,16 @@ class SnippetNodeBuilder:
                 tokens = line.strip().split()
                 if (len(tokens) > 2):
                     key = tokens[2]
-                    builder = SnippetNodeBuilder(key, language, lineno)
+                    builder = SnippetNodeBuilder(key, language, lineno, remote)
                 else:
                     app.warn("Missing snippet name in {} - line {} - {}"
                              .format(language.key, lineno, line))
 
-    def __init__(self, key, language, lineno):
+    def __init__(self, key, language, lineno, remote=False):
         self.key = key
         self.language = language
         self.lineno = lineno
+        self.remote = remote
         self._lines = []
 
     def append(self, line):
@@ -175,7 +176,7 @@ class SnippetNodeBuilder:
             lines.append(line[spaces:])
 
         return SingleSnippetNode(self.key, self.language,
-                                 lines, self.lineno)
+                                 lines, self.lineno, remote=self.remote)
 
 
 def setup(app):
@@ -197,14 +198,13 @@ def initialize(app):
     env = app.builder.env
     env.snippet_all = []
     env.snippet_display = []
-    env.snippet_languages = {}
+    env.snippet_languages = []
     env.snippet_pulled = False
 
     if hasattr(env.config, 'snippet_language_list'):
         for lang_config in env.config.snippet_language_list:
             language_obj = Language(lang_config)
-            key = language_obj.key
-            env.snippet_languages[key] = language_obj
+            env.snippet_languages.append(language_obj)
     else:
         ex = SphinxError("No configuration found for snippets languages! " +
                          "Please add snippet_language_list to conf.py")
@@ -212,7 +212,7 @@ def initialize(app):
 
 def read_snippet_content(app, env):
     """Called when Sphinx has finished building the environment"""
-    for language in env.snippet_languages.itervalues():
+    for language in env.snippet_languages:
         read_local_snippets(app, env, language)
         if not env.snippet_pulled:
             read_remote_snippets(app, env, language)
@@ -226,13 +226,13 @@ def read_local_snippets(app, env, language):
 
     filename = os.path.join(env.srcdir, language.local_file)
     try:
-        nodes = SnippetNodeBuilder.parse(open(filename), language, app)
+        nodes = SnippetNodeBuilder.parse(open(filename), language, app, remote=False)
         env.snippet_all.extend(nodes)
     except IOError as e:
         app.warn("Can't read local snippet file: " + filename)
 
 def read_remote_snippets(app, env, language):
-    raw_url = language.get_raw_url()
+    raw_url = language.get_remote_url()
     if not raw_url:
         app.verbose("No remote snippet location configured for " + language.key)
         return
@@ -245,7 +245,7 @@ def read_remote_snippets(app, env, language):
                  .format(language.key, e.code, e.reason))
         return
 
-    nodes = SnippetNodeBuilder.parse(response, language, app)
+    nodes = SnippetNodeBuilder.parse(response, language, app, remote=True)
     env.snippet_all.extend(nodes)
 
 
@@ -254,7 +254,7 @@ def resolve_snippets(app, doctree, docname):
     Replace all SnippetDisplayNodes with a list of the relevant snippets."""
 
     env = app.builder.env
-    langs = env.snippet_languages.keys()
+    langs = [language.key for language in env.snippet_languages]
 
     for node in doctree.traverse(SnippetDisplayNode):
         missing_languages = list(langs)
