@@ -7,22 +7,6 @@ from sphinx.errors import SphinxError
 from sphinx.directives.code import CodeBlock
 from sphinx.util.compat import Directive
 
-def initialize(app):
-    env = app.builder.env
-    env.snippet_all = []
-    env.snippet_display = []
-    env.snippet_languages = {}
-
-    if hasattr(env.config, 'snippet_language_list'):
-        for lang_config in env.config.snippet_language_list:
-            language_obj = Language(lang_config)
-            key = language_obj.key
-            env.snippet_languages[key] = language_obj
-    else:
-        ex = SphinxError("No configuration found for snippets languages! " +
-                         "Please add snippet_language_list to conf.py")
-        raise ex
-
 
 class CodeSnippet(Directive):
     """
@@ -104,7 +88,26 @@ class SnippetDisplay(Directive):
 
 
 class SnippetDisplayNode(nodes.General, nodes.Element):
-    pass
+    @classmethod
+    def register_to(cls, app):
+        app.add_node(cls, html=(cls.html_visit, cls.html_depart))
+
+    @staticmethod
+    def html_visit(translator, node):
+        translator.body.append('<div class="snippets-container" data-key="{}">'
+                               .format(node['key']))
+
+        translator.body.append('<ul class="headings">')
+        for child in node.children:
+            translator.body.append('<li><a class="heading" href="#" data-language="{}">{}</a></li>'
+                                   .format(child['language'], child['language-name']))
+        translator.body.append('</ul>')
+        translator.body.append('<ul class="snippets">')
+
+    @staticmethod
+    def html_depart(translator, node):
+        translator.body.append('</ul>')
+        translator.body.append('</div>')
 
 
 class SingleSnippetNode(nodes.General, nodes.Element):
@@ -128,56 +131,104 @@ class SingleSnippetNode(nodes.General, nodes.Element):
 
         self.append(literal)    # Wrap the code block in our SingleSnippetNode
 
+    @classmethod
+    def register_to(cls, app):
+        app.add_node(cls, html=(cls.html_visit, cls.html_depart))
 
-def visit_single_snippet(self, node):
-    self.body.append('<li class="snippet" data-language="{}">'.format(node['language']))
+    @staticmethod
+    def html_visit(translator, node):
+        translator.body.append('<li class="snippet" data-language="{}">'
+                               .format(node['language']))
 
-
-def depart_single_snippet(self, node):
-    self.body.append('</li>')
-
-
-def visit_snippet_display(self, node):
-    self.body.append('<div class="snippets-container" data-key="{}">'
-                     .format(node['key']))
-
-    self.body.append('<ul class="headings">')
-    for child in node.children:
-        self.body.append('<li><a class="heading" href="#" data-language="{}">{}</a></li>'
-                         .format(child['language'], child['language-name']))
-    self.body.append('</ul>')
-    self.body.append('<ul class="snippets">')
+    @staticmethod
+    def html_depart(translator, node):
+        translator.body.append('</li>')
 
 
-def depart_snippet_display(self, node):
-    self.body.append('</ul>')
-    self.body.append('</div>')
+class SnippetNodeBuilder:
+    """Builds snippet nodes by parsing a code file in the given language"""
+
+    @staticmethod
+    def parse(code_file, language, app):
+        begin_string = "{} snippet-start".format(language.line_comment)
+        end_string = "{} snippet-end".format(language.line_comment)
+        ignore_string = "{} snippet-ignore".format(language.line_comment)
+
+        lineno = 0
+        builder = None
+
+        for line in code_file:
+            lineno += 1
+            if end_string in line and builder:
+                yield builder.to_node()
+                builder = None
+            elif ignore_string not in line and builder:
+                builder.append(line)
+            elif begin_string in line:
+                tokens = line.strip().split()
+                if (len(tokens) > 2):
+                    key = tokens[2]
+                    builder = SnippetNodeBuilder(key, language, lineno)
+                else:
+                    app.warn("Missing snippet name in {} - line {} - {}"
+                             .format(language.key, lineno, line))
+
+    def __init__(self, key, language, lineno):
+        self.key = key
+        self.language = language
+        self.lineno = lineno
+        self._lines = []
+
+    def append(self, line):
+        self._lines.append(line.expandtabs(8))
+
+    def to_node(self):
+        if len(self._lines) > 0:
+            # Snip off leading indentation based on the whitespace found
+            # on the first line
+            spaces = len(self._lines[0]) - len(self._lines[0].lstrip())
+            justified_lines = [line[spaces:] for line in self._lines]
+        else:
+            justified_lines = []    # OK with empty snippets, I guess
+
+        return SingleSnippetNode(self.key, self.language,
+                                 justified_lines, self.lineno)
 
 
-def resolve_snippets(app, doctree, docname):
-    # Replace all SnippetDisplayNodes with a list of the relevant snippets.
+def setup(app):
+    """Magic function that registers this extension in sphinx"""
+    app.add_config_value('snippet_language_list', [], 'env')
 
+    SingleSnippetNode.register_to(app)
+    SnippetDisplayNode.register_to(app)
+
+    app.add_directive('snippet-display', SnippetDisplay)
+    app.add_directive('snippet', CodeSnippet)
+
+    app.connect('builder-inited', initialize)
+    app.connect('env-updated', pull_snippet_content)
+    app.connect('doctree-resolved', resolve_snippets)
+
+
+def initialize(app):
+    """Called once the builder object has been initialized."""
     env = app.builder.env
-    langs = env.snippet_languages.keys()
+    env.snippet_all = []
+    env.snippet_display = []
+    env.snippet_languages = {}
 
-    for node in doctree.traverse(SnippetDisplayNode):
-        missing_languages = list(langs)
-        for snippet in env.snippet_all:
-            # Only process snippets with the right title
-            if snippet['key'] != node['key']:
-                continue
-
-            missing_languages.remove(snippet['language'])
-            node.append(snippet)    # TODO: sort these deterministically?
-                                    # That will happen for free if all snippets
-                                    # are downloaded from remotes
-
-        if len(missing_languages) > 0:
-            msg = "Missing languages for snippet key '{}': {}" \
-                        .format(node['key'], missing_languages)
-            app.warn(msg, (docname, 0))
+    if hasattr(env.config, 'snippet_language_list'):
+        for lang_config in env.config.snippet_language_list:
+            language_obj = Language(lang_config)
+            key = language_obj.key
+            env.snippet_languages[key] = language_obj
+    else:
+        ex = SphinxError("No configuration found for snippets languages! " +
+                         "Please add snippet_language_list to conf.py")
+        raise ex
 
 def pull_snippet_content(app, env):
+    """Called when Sphinx has finished building the environment"""
     if hasattr(env, 'snippet_pulled') and env.snippet_pulled:
         app.verbose('Found cached snippets in environment, skipping download')
         return
@@ -202,50 +253,31 @@ def pull_single_language(app, env, language):
                  .format(language.key, e.code, e.reason))
         return
 
-    begin_string = "{} snippet-start".format(language.line_comment)
-    end_string = "{} snippet-end".format(language.line_comment)
-    ignore_string = "{} snippet-ignore".format(language.line_comment)
-
-    parsed = None
-    lineno = 0
-    for raw_line in response:
-        lineno += 1
-        if end_string in raw_line and parsed:
-            app.debug("Ending parsing for {}".format(parsed.key))
-            env.snippet_all.append(parsed.to_node())
-            parsed = None
-        elif ignore_string not in raw_line and parsed:
-            parsed.append(raw_line)
-        elif begin_string in raw_line:
-            key = raw_line.strip().split()[2]
-            parsed = TextInterpreter(key, language, lineno)
+    node_generator = SnippetNodeBuilder.parse(response, language, app)
+    env.snippet_all.extend(node_generator)
 
 
-class TextInterpreter:
-    def __init__(self, key, language, lineno):
-        self.key = key
-        self.language = language
-        self.lines = []
-        self.lineno = lineno
+def resolve_snippets(app, doctree, docname):
+    """ Called once the doctree has been resolved.
+    Replace all SnippetDisplayNodes with a list of the relevant snippets."""
 
-    def append(self, line):
-        self.lines.append(line)
+    env = app.builder.env
+    langs = env.snippet_languages.keys()
 
-    def to_node(self):
-        return SingleSnippetNode(self.key, self.language,
-                                 self.lines, self.lineno)
+    for node in doctree.traverse(SnippetDisplayNode):
+        missing_languages = list(langs)
+        for snippet in env.snippet_all:
+            # Only process snippets with the right title
+            if snippet['key'] != node['key']:
+                continue
 
+            missing_languages.remove(snippet['language'])
+            node.append(snippet)    # TODO: sort these deterministically?
+                                    # That will happen for free if all snippets
+                                    # are downloaded from remotes
 
-def setup(app):
-    app.add_config_value('snippet_language_list', [], 'env')
-    app.add_node(SnippetDisplayNode,
-                 html=(visit_snippet_display, depart_snippet_display))
-    app.add_node(SingleSnippetNode,
-                 html=(visit_single_snippet, depart_single_snippet))
+        if len(missing_languages) > 0:
+            msg = "Missing languages for snippet key '{}': {}" \
+                        .format(node['key'], missing_languages)
+            app.warn(msg, (docname, 0))
 
-    app.add_directive('snippet-display', SnippetDisplay)
-    app.add_directive('snippet', CodeSnippet)
-
-    app.connect('builder-inited', initialize)
-    app.connect('env-updated', pull_snippet_content)
-    app.connect('doctree-resolved', resolve_snippets)
