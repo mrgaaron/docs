@@ -1,38 +1,12 @@
 # Extension for embedding code examples in docs
 
 import urllib2
+import os.path
 from docutils import nodes
 
 from sphinx.errors import SphinxError
 from sphinx.directives.code import CodeBlock
 from sphinx.util.compat import Directive
-
-
-class CodeSnippet(Directive):
-    """
-    A code snippet in a language. Arguments: title, language
-    Not used for remote snippets, just those defined in ReST
-    """
-
-    has_content = True
-    required_arguments = 2
-    optional_arguments = 0
-    final_argument_whitespace = False
-
-    def run(self):
-        env = self.state.document.settings.env
-
-        key = self.arguments[0]
-        lang_id = self.arguments[1]
-
-        # Custom pretty names and hilight schemes from config file
-        language = env.snippet_languages[lang_id]
-
-        node = SingleSnippetNode(key, language, self.content)
-
-        env.snippet_all.append(node)
-
-        return []   # Display nothing where snippets are defined
 
 
 class Language(object):
@@ -41,8 +15,11 @@ class Language(object):
     'gh_repository', 'gh_branch', 'gh_path'"""
 
     def __init__(self, config):
-        for key in config:
-            setattr(self, key, config[key])
+        for config_key in config:
+            setattr(self, config_key, config[config_key])
+
+        if not hasattr(self, 'highlight'):
+            self.highlight = self.key
 
         self.has_remote_source = (hasattr(self, 'gh_repository') and
                                   hasattr(self, 'gh_branch') and
@@ -150,7 +127,7 @@ class SnippetNodeBuilder:
 
     @staticmethod
     def parse(code_file, language, app):
-        begin_string = "{} snippet-start".format(language.line_comment)
+        begin_string = "{} snippet-begin".format(language.line_comment)
         end_string = "{} snippet-end".format(language.line_comment)
         ignore_string = "{} snippet-ignore".format(language.line_comment)
 
@@ -183,16 +160,22 @@ class SnippetNodeBuilder:
         self._lines.append(line.expandtabs(8))
 
     def to_node(self):
-        if len(self._lines) > 0:
-            # Snip off leading indentation based on the whitespace found
-            # on the first line
-            spaces = len(self._lines[0]) - len(self._lines[0].lstrip())
-            justified_lines = [line[spaces:] for line in self._lines]
-        else:
-            justified_lines = []    # OK with empty snippets, I guess
+        lines = []
+        first = True
+        spaces = 0
+
+        for line in self._lines:
+            if first and len(line.strip()) == 0:   # Omit leading blank lines
+                continue
+            elif first:
+                # Snip off leading indentation based on the whitespace found
+                # on the first line
+                spaces = len(line) - len(line.lstrip())
+                first = False
+            lines.append(line[spaces:])
 
         return SingleSnippetNode(self.key, self.language,
-                                 justified_lines, self.lineno)
+                                 lines, self.lineno)
 
 
 def setup(app):
@@ -203,10 +186,9 @@ def setup(app):
     SnippetDisplayNode.register_to(app)
 
     app.add_directive('snippet-display', SnippetDisplay)
-    app.add_directive('snippet', CodeSnippet)
 
     app.connect('builder-inited', initialize)
-    app.connect('env-updated', pull_snippet_content)
+    app.connect('env-updated', read_snippet_content)
     app.connect('doctree-resolved', resolve_snippets)
 
 
@@ -216,6 +198,7 @@ def initialize(app):
     env.snippet_all = []
     env.snippet_display = []
     env.snippet_languages = {}
+    env.snippet_pulled = False
 
     if hasattr(env.config, 'snippet_language_list'):
         for lang_config in env.config.snippet_language_list:
@@ -227,22 +210,31 @@ def initialize(app):
                          "Please add snippet_language_list to conf.py")
         raise ex
 
-def pull_snippet_content(app, env):
+def read_snippet_content(app, env):
     """Called when Sphinx has finished building the environment"""
-    if hasattr(env, 'snippet_pulled') and env.snippet_pulled:
-        app.verbose('Found cached snippets in environment, skipping download')
-        return
-
     for language in env.snippet_languages.itervalues():
-        pull_single_language(app, env, language)
+        read_local_snippets(app, env, language)
+        if not env.snippet_pulled:
+            read_remote_snippets(app, env, language)
 
     env.snippet_pulled = True
 
+def read_local_snippets(app, env, language):
+    if not hasattr(language, 'local_file'):
+        app.verbose("No local snippet file configured for " + language.key)
+        return
 
-def pull_single_language(app, env, language):
+    filename = os.path.join(env.srcdir, language.local_file)
+    try:
+        nodes = SnippetNodeBuilder.parse(open(filename), language, app)
+        env.snippet_all.extend(nodes)
+    except IOError as e:
+        app.warn("Can't read local snippet file: " + filename)
+
+def read_remote_snippets(app, env, language):
     raw_url = language.get_raw_url()
     if not raw_url:
-        app.verbose("Snippets: No remote location configured for " + language.key)
+        app.verbose("No remote snippet location configured for " + language.key)
         return
 
     app.verbose("Getting snippets from " + raw_url)
@@ -253,8 +245,8 @@ def pull_single_language(app, env, language):
                  .format(language.key, e.code, e.reason))
         return
 
-    node_generator = SnippetNodeBuilder.parse(response, language, app)
-    env.snippet_all.extend(node_generator)
+    nodes = SnippetNodeBuilder.parse(response, language, app)
+    env.snippet_all.extend(nodes)
 
 
 def resolve_snippets(app, doctree, docname):
