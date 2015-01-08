@@ -255,19 +255,21 @@ def resolve_snippets(app, doctree, docname):
     Replace all SnippetDisplayNodes with a list of the relevant snippets."""
 
     env = app.builder.env
-    langs = [language.key for language in env.snippet_languages]
+    all_langs = [language.key for language in env.snippet_languages]
 
     for node in doctree.traverse(SnippetDisplayNode):
-        missing_languages = list(langs)
+        missing_languages = list(all_langs)
         for snippet in env.snippet_all:
             # Only process snippets with the right title
             if snippet['key'] != node['key']:
                 continue
+            if snippet['language'] not in missing_languages:
+                app.warn('Found multiple snippets with key "{}" and language "{}"'
+                         .format(snippet['key'], snippet['language']))
+                continue
 
             missing_languages.remove(snippet['language'])
-            node.append(snippet)    # TODO: sort these deterministically?
-                                    # That will happen for free if all snippets
-                                    # are downloaded from remotes
+            node.append(snippet)
 
         if len(missing_languages) > 0:
             msg = "Missing languages for snippet key '{}': {}" \
