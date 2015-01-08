@@ -221,7 +221,7 @@ def read_snippet_content(app, env):
 
 def read_local_snippets(app, env, language):
     if not hasattr(language, 'local_file'):
-        app.verbose("No local snippet file configured for " + language.key)
+        app.debug("No local snippet file configured for " + language.key)
         return
 
     filename = os.path.join(env.srcdir, language.local_file)
@@ -232,18 +232,19 @@ def read_local_snippets(app, env, language):
         app.warn("Can't read local snippet file: " + filename)
 
 def read_remote_snippets(app, env, language):
-    raw_url = language.get_remote_url()
-    if not raw_url:
-        app.verbose("No remote snippet location configured for " + language.key)
+    url = language.get_remote_url()
+    if not url:
+        app.debug("No remote snippet location configured for " + language.key)
         return
 
-    app.verbose("Getting snippets from " + raw_url)
     try:
-        response = urllib2.urlopen(raw_url)
+        response = urllib2.urlopen(url)
     except urllib2.URLError as e:
-        app.warn("Failed to get remote snippets for {}: status {} - {}"
-                 .format(language.key, e.code, e.reason))
+        app.warn("Failed to get remote snippets for {} ({}): {}"
+                 .format(language.key, url, e.reason))
         return
+    app.debug("Successfully downloaded remote snippets for {} ({}) "
+              .format(language.key, url))
 
     nodes = SnippetNodeBuilder.parse(response, language, app, remote=True)
     env.snippet_all.extend(nodes)
