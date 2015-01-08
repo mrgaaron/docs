@@ -2,6 +2,7 @@
 
 import urllib2
 import os.path
+import re
 from docutils import nodes
 
 from sphinx.errors import SphinxError
@@ -127,21 +128,21 @@ class SnippetNodeBuilder:
 
     @staticmethod
     def parse(code_file, language, app, remote=False):
-        begin_string = "{} snippet-begin".format(language.line_comment)
-        end_string = "{} snippet-end".format(language.line_comment)
-        ignore_string = "{} snippet-ignore".format(language.line_comment)
+        begin_rexp = re.compile(language.line_comment + r"\s*snippet-begin")
+        end_rexp = re.compile(language.line_comment + r"\s*snippet-end")
+        ignore_rexp = re.compile(language.line_comment + r"\s*snippet-ignore")
 
         lineno = 0
         builder = None
 
         for line in code_file:
             lineno += 1
-            if end_string in line and builder:
+            if builder and end_rexp.search(line):
                 yield builder.to_node()
                 builder = None
-            elif ignore_string not in line and builder:
+            elif builder and not ignore_rexp.search(line):
                 builder.append(line)
-            elif begin_string in line:
+            elif begin_rexp.search(line):
                 tokens = line.strip().split()
                 if (len(tokens) > 2):
                     key = tokens[2]
