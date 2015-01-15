@@ -1,0 +1,17 @@
+
+# snippet-begin create-device
+curl -X "POST" 
+   --user=KEY:SECRET
+   "https://tm7d35-matt.backend.tempoiq.com/v2/devices/" \
+   -d '
+   {"key": "test1",
+     "attributes": {"customer": "123"},
+     "sensors": [
+       {"key": "temp"},
+       {"key": "humidity"}
+     ]
+   }'
+>>
+{"key": "test1", "attributes": {"customer": "123"}, "sensors": [{"key": "temp"},{"key": "humidity"}]}
+
+# snippet-end create-device
