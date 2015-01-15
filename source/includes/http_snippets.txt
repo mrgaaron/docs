@@ -14,4 +14,4 @@ curl -X "POST"
 >>
 {"key": "test1", "attributes": {"customer": "123"}, "sensors": [{"key": "temp"},{"key": "humidity"}]}
 
-# snippet-end create-device
+# snippet-end
