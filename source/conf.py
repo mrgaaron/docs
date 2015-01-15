@@ -37,7 +37,7 @@ snippet_language_list = [
     {
         'key': 'http',
         'name': 'Curl (HTTP)',
-        'highlight': 'javascript',
+        'highlight': 'bash',
         'line_comment': '#',
         'local_file': 'includes/http_snippets.txt'
 
@@ -48,7 +48,7 @@ snippet_language_list = [
         'local_file': 'includes/python_snippets.py',
         'gh_repository': 'TempoIQ/tempoiq-python',
         'gh_branch': 'master',
-        'gh_path': 'tests/test_snippets.py',
+        #'gh_path': 'tests/test_snippets.py',
         'line_comment': '#'
     },
     {
@@ -72,7 +72,7 @@ snippet_language_list = [
         'local_file': 'includes/java_snippets.java',
         'gh_repository': 'TempoIQ/tempoiq-java',
         'gh_branch': 'master',
-        'gh_path': 'src/integration-test/java/com/tempoiq/SnippetIT.java',
+        #'gh_path': 'src/integration-test/java/com/tempoiq/SnippetIT.java',
         'line_comment': '//'
     },
     {
@@ -81,7 +81,7 @@ snippet_language_list = [
         'local_file': 'includes/csharp_snippets.cs',
         'gh_repository': 'TempoIQ/tempoiq-net',
         'gh_branch': 'master',
-        'gh_path': 'TempoIQ.Tests/SnippetTests.cs',
+        #'gh_path': 'TempoIQ.Tests/SnippetTests.cs',
         'line_comment': '//'
     }
 ]
