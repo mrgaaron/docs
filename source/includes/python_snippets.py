@@ -79,14 +79,14 @@
 
     result = client.query(Device).order_by('key', 'desc').read()
 
-# snippent-end
+# snippet-end
 # snippet-begin device-ordering-date-created
 
     result = client.query(Device).order_by('date_created', 'asc').read()
 
-# snippent-end
+# snippet-end
 # snippet-begin device-ordering-date-modified
 
     result = client.query(Device).order_by('date_modified', 'desc').read()
 
-# snippent-end
+# snippet-end
