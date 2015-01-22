@@ -57,7 +57,7 @@
 
     stream2 = result.data.bind_one(sensor_key='humidity')
     for point in stream2:
-        print ("Humidity: t={} v={}".format(point.timestamp, point.value))
+        print("Humidity: t={} v={}".format(point.timestamp, point.value))
 
 
 # snippet-end
@@ -70,7 +70,7 @@
 
     for stream in result.data.streams:
         for point in stream:
-            print ("Device: {}, sensor: {}".format(stream.device.key,
+            print("Device: {}, sensor: {}".format(stream.device.key,
                                                   stream.sensor.key))
             print("Point: t={} v={}".format(point.timestamp, point.value))
 
