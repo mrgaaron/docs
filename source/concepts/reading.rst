@@ -50,26 +50,7 @@ She wishes to compare the humidity across all her sites between 2014-06-01 and 2
 The selector in this case must select the 'hum' sensor on thermostat devices where
 the customer attribute is '123'.
 
-.. code-block:: javascript
-
-    sensors = {
-                devices: {
-                  attributes: {
-                    type: "thermostat",
-                    customer: "123"
-                  }
-                },
-                sensors: {
-                  key: "hum"
-                }
-              };
-
-    start = "2014-06-01T00:00:00Z";
-    end = "2014-06-06T00:00:00Z";
-
-    results = client.read(sensors, start, end);
-
-    // TODO: example code for iterating over sensor metadata and data points
+.. snippet-display:: read-data
 
 
 Latest value

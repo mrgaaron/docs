@@ -46,8 +46,8 @@ snippet_language_list = [
         'key': 'python',
         'name': 'Python',
         'local_file': 'includes/python_snippets.py',
-        'gh_repository': 'TempoIQ/tempoiq-python',
-        'gh_branch': 'master',
+        #'gh_repository': 'TempoIQ/tempoiq-python',
+        #'gh_branch': 'master',
         #'gh_path': 'tests/test_snippets.py',
         'line_comment': '#'
     },
@@ -70,18 +70,12 @@ snippet_language_list = [
         'key': 'java',
         'name': 'Java',
         'local_file': 'includes/java_snippets.java',
-        'gh_repository': 'TempoIQ/tempoiq-java',
-        'gh_branch': 'master',
-        #'gh_path': 'src/integration-test/java/com/tempoiq/SnippetIT.java',
         'line_comment': '//'
     },
     {
         'key': 'csharp',
         'name': 'C#/.NET',
         'local_file': 'includes/csharp_snippets.cs',
-        'gh_repository': 'TempoIQ/tempoiq-net',
-        'gh_branch': 'master',
-        #'gh_path': 'TempoIQ.Tests/SnippetTests.cs',
         'line_comment': '//'
     }
 ]
