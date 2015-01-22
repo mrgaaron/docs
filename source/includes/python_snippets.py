@@ -51,11 +51,11 @@
                    .filter(Device.key == "device1") \
                    .read(start=datetime.datetime(2015, 1, 1),
                          end=datetime.datetime(2015, 1, 1))
-    stream1 = result.data.bind_one(sensor_key='temperature')
+    stream1 = result.data.bind_stream(sensor_key='temperature')
     for point in stream1:
         print("Temperature: t={} v={}".format(point.timestamp, point.value))
 
-    stream2 = result.data.bind_one(sensor_key='humidity')
+    stream2 = result.data.bind_stream(sensor_key='humidity')
     for point in stream2:
         print("Humidity: t={} v={}".format(point.timestamp, point.value))
 
