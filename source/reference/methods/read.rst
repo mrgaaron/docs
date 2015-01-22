@@ -28,31 +28,16 @@ Read data
 
       :class:`ReadResponse` with the requested data.
 
+Read responses can be consumed in a number of ways.  The first way is to bind
+to a single stream of data contained in the response.  The stream must be 
+identified uniquely in the call or an exception will be thrown:
 
-   **Example**
+.. snippet-display:: bind-single-stream
 
-   Read two days of raw data from temperature sensors on devices in the "foo" region::
+Another way is to simply iterate through each of the possible streams, 
+consuming data from each in turn:
 
-    {
-      "search": {
-        "filters": {
-          "devices": {
-            "attributes": {
-              "region": "foo"
-            }
-          },
-          "sensors": {
-            "key": "temperature"
-          }
-        }
-      },
-      "read": {
-        "start": "2014-09-01T00:00:00Z",
-        "stop": "2014-09-03T00:00:00Z"
-      }
-    }
-
-
+.. snippet-display:: bind-all-streams
 
 Single point
 ------------
