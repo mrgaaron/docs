@@ -40,7 +40,6 @@ snippet_language_list = [
         'highlight': 'bash',
         'line_comment': '#',
         'local_file': 'includes/http_snippets.txt'
-
     },
     {
         'key': 'python',

@@ -28,31 +28,18 @@ Read data
 
       :class:`ReadResponse` with the requested data.
 
+Read responses contain two relevant data fields: a list of :class:`StreamHeader` 
+objects and the data from the read itself.  Each stream header represents a 
+one-dimensional set of data points that were included by the given search 
+criteria:
 
-   **Example**
+.. snippet-display:: bind-all-streams
 
-   Read two days of raw data from temperature sensors on devices in the "foo" region::
+Another way is to bind to a single stream of data contained in the response.  
+The stream must be identified uniquely in the call or an exception will be 
+thrown:
 
-    {
-      "search": {
-        "filters": {
-          "devices": {
-            "attributes": {
-              "region": "foo"
-            }
-          },
-          "sensors": {
-            "key": "temperature"
-          }
-        }
-      },
-      "read": {
-        "start": "2014-09-01T00:00:00Z",
-        "stop": "2014-09-03T00:00:00Z"
-      }
-    }
-
-
+.. snippet-display:: bind-single-stream
 
 Single point
 ------------

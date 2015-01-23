@@ -45,3 +45,45 @@
         print("Found point: t={} v={}".format(point_time, point_value))
 
 # snippet-end
+# snippet-begin bind-single-stream
+
+    result = client.query(Sensor) \
+                   .filter(Device.key == "device1") \
+                   .read(start=datetime.datetime(2015, 1, 1),
+                         end=datetime.datetime(2015, 1, 1))
+    stream1 = result.data.bind_stream(sensor_key='temperature')
+    for point in stream1:
+        print("Temperature: t={} v={}".format(point.timestamp, point.value))
+
+    stream2 = result.data.bind_stream(sensor_key='humidity')
+    for point in stream2:
+        print("Humidity: t={} v={}".format(point.timestamp, point.value))
+
+
+# snippet-end
+# snippet-begin bind-all-streams
+
+    result = client.query(Sensor) \
+                   .filter(Device.key == "device1") \
+                   .read(start=datetime.datetime(2015, 1, 1),
+                         end=datetime.datetime(2015, 1, 1))
+
+    for stream in result.data.streams:
+        for point in stream:
+            print("Device: {}, sensor: {}".format(stream.device.key,
+                                                  stream.sensor.key))
+            print("Point: t={} v={}".format(point.timestamp, point.value))
+
+# snippet-end
+# snippet-begin device-ordering
+
+    #query by device key, descending order
+    result = client.query(Device).order_by('key', 'desc').read()
+
+    #query by when the device was created, ascending order
+    result = client.query(Device).order_by('date_created', 'asc').read()
+
+    #query by when the device was last modified, descending order
+    result = client.query(Device).order_by('date_modified', 'desc').read()
+
+# snippet-end
