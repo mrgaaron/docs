@@ -27,6 +27,42 @@
         print("Error creating device!")
 
 # snippet-end
+
+# snippet-begin write-data
+    import datetime
+    from tempoiq.protocol.point import Point
+
+    current = datetime.datetime.now()
+
+    device_data = {"temperature": [Point(current, 23.5)],
+                   "humidity": [Point(current, 72.0)]}
+
+    response = client.write({"thermostat.1": device_data})
+
+    if res.successful != tempoiq.response.SUCCESS:
+        print("Error writing data!")
+# snippet-end
+# snippet-begin get-devices
+    from tempoiq.protocol.query.selection import and_, or_
+
+    regions = or_([Device.attributes["region"] == "south",
+                  Device.attributes["region"] == "east"])
+
+    result = client.query(Device) \
+                   .filter(regions) \
+                   .read()
+
+    for dev in result.data:
+        print("Got device with key: {}".format(dev.key))
+# snippet-end
+# snippet-begin delete-data
+start = datetime.datetime(2015, 1, 5, 0, 0)
+end = datetime.datetime(2015, 1, 5, 1, 0)
+
+response = client.query(Sensor).filter(Device.key == "thermostat.1") \
+                               .filter(Sensor.key == "humidity") \
+                               .delete(start, end)
+# snippet-end
 # snippet-begin single-point
 
     result = client.query(Sensor) \
@@ -59,9 +95,8 @@
     for point in stream2:
         print("Humidity: t={} v={}".format(point.timestamp, point.value))
 
-
 # snippet-end
-# snippet-begin bind-all-streams
+# snippet-begin read-data
 
     result = client.query(Sensor) \
                    .filter(Device.key == "device1") \
@@ -86,4 +121,11 @@
     #query by when the device was last modified, descending order
     result = client.query(Device).order_by('date_modified', 'desc').read()
 
+# snippet-end
+
+# snippet-begin pipeline
+# Specify pipeline functions fluently in the QueryBuilder
+result = client.query(Sensor).filter(filter) \
+                             .rollup("max", "1hour") \
+                             .read(start=start, end=end)
 # snippet-end

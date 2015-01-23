@@ -73,7 +73,7 @@ snippet_language_list = [
     },
     {
         'key': 'http',
-        'name': 'Curl (HTTP)',
+        'name': 'HTTP',
         'highlight': 'bash',
         'line_comment': '#',
         'local_file': 'includes/http_snippets.txt'
@@ -99,8 +99,8 @@ nitpick_ignore = [
 ]
 
 # General information about the project.
-project = u'TempoIQ Manual'
-copyright = u'2014, TempoIQ Inc'
+project = u'Documentation'
+copyright = u'2015 TempoIQ Inc'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -119,16 +119,8 @@ exclude_patterns = ['includes/*']
 if tags.has('dev'):
     todo_include_todos = True
 
-# The reST default role (used for this markup: `text`) to use for all
-# documents.
-#default_role = None
-
 # If true, '()' will be appended to :func: etc. cross-reference text.
-#add_function_parentheses = True
-
-# If true, the current module name will be prepended to all description
-# unit titles (such as .. function::).
-#add_module_names = True
+add_function_parentheses = False
 
 # The name of the Pygments (syntax highlighting) style to use.
 pygments_style = 'sphinx'
@@ -153,19 +145,10 @@ html_theme_path = ["themes"]
 
 # The name for this set of Sphinx documents.  If None, it defaults to
 # "<project> v<release> documentation".
-#html_title = None
+html_title = "TempoIQ documentation"
 
 # A shorter title for the navigation bar.  Default is the same as html_title.
 #html_short_title = None
-
-# The name of an image file (relative to this directory) to place at the top
-# of the sidebar.
-#html_logo = None
-
-# The name of an image file (within the static path) to use as favicon of the
-# docs.  This file should be a Windows icon file (.ico) being 16x16 or 32x32
-# pixels large.
-#html_favicon = None
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
@@ -185,38 +168,5 @@ html_static_path = ['_static']
 # typographically correct entities.
 #html_use_smartypants = True
 
-# Custom sidebar templates, maps document names to template names.
-#html_sidebars = {}
-
-# Additional templates that should be rendered to pages, maps page names to
-# template names.
-#html_additional_pages = {}
-
-# If false, no module index is generated.
-#html_domain_indices = True
-
-# If false, no index is generated.
-#html_use_index = True
-
-# If true, the index is split into individual pages for each letter.
-#html_split_index = False
-
 # If true, links to the reST sources are added to the pages.
 #html_show_sourcelink = True
-
-# If true, "Created using Sphinx" is shown in the HTML footer. Default is True.
-#html_show_sphinx = True
-
-# If true, "(C) Copyright ..." is shown in the HTML footer. Default is True.
-#html_show_copyright = True
-
-# If true, an OpenSearch description file will be output, and all pages will
-# contain a <link> tag referring to it.  The value of this option must be the
-# base URL from which the finished HTML is served.
-#html_use_opensearch = ''
-
-# This is the file name suffix for HTML files (e.g. ".xhtml").
-#html_file_suffix = None
-
-# Output file base name for HTML help builder.
-htmlhelp_basename = 'TempoIQManualdoc'

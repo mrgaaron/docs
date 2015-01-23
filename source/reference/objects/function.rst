@@ -4,16 +4,9 @@ PipelineFunction
 
 .. class:: PipelineFunction
 
-Transforms data in a pipeline. The arguments below are listed in the order
-that they should be specified when constructing the request. For example::
+Transforms data streams in a pipeline.
 
-    "functions": [
-      {
-        "name": "rollup",
-        "arguments": ["max", "1day"]      // [Fold, Period]
-      }
-    ]
-
+.. snippet-display:: pipeline
 
 .. class:: Rollup
 
@@ -36,10 +29,13 @@ that they should be specified when constructing the request. For example::
    start    :class:`DateTime`      Same as the start time in the read interval
    =======  =====================  ===========
 
+.. todo:: note about start param in rollups
+
 
 .. class:: MultiRollup
 
-   The multi-rollup function applies several folds to the same sensor data.
+   The multi-rollup function applies several folds to the same sensor data. The
+   result will contain multiple streams for each sensor, one per rollup function.
 
    **Name:** ``multi_rollup``
 

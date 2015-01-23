@@ -25,6 +25,9 @@ Get device
    :arg String key: The key of the device to get
    :returns: The :class:`Device` with the given key
 
+   .. snippet-display:: get-device
+
+
 Find devices
 ------------
 
@@ -34,21 +37,10 @@ Find devices
   :arg Search search:
   :returns: A :class:`Cursor` over the devices
 
-  Example::
+Example
+~~~~~~~
 
-    {
-      "search": {
-        "select": "devices",
-        "filters": {
-          "device": {
-            "attributes": {"building": "3"}
-          }
-        }
-      },
-      "find": {"quantifier": "all"}
-    }
-
-.. todo:: Be more explicit about search/select/filters relationship
+.. snippet-display:: get-devices
 
 Ordering
 ~~~~~~~~
@@ -58,31 +50,6 @@ key, date created, and date last modified in either ascending or descending
 direction is possible:
 
 .. snippet-display:: device-ordering
-
-Example
-~~~~~~~
-
-Return devices with keys *dev32*, *dev33*, and *dev37*. Note that in the HTTP
-API, the search object is wrapped in another object with an additional "find"
-field::
-
-    {
-      "search": {
-        "select": "devices",
-        "filters": {
-          "devices": {
-            "or": [
-              {"key": "dev32"},
-              {"key": "dev33"},
-              {"key": "dev37"},
-            ]
-          }
-        },
-      }
-      "find": {
-        "quantifier": "all"
-      }
-    }
 
 
 Update device
@@ -107,6 +74,12 @@ Update device
    A device's sensor configuration is currently also immutable.
 
 
+Example
+~~~~~~~
+
+.. snippet-display:: update-device
+
+
 Delete devices
 --------------
 
@@ -122,3 +95,8 @@ Delete devices
    :endpoint: ``DELETE /v2/devices/``
    :arg Search search: Selector defining which devices to delete
    :returns: The number of devices that were deleted
+
+Example
+~~~~~~~
+
+.. snippet-display:: delete-devices

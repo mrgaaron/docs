@@ -33,7 +33,7 @@ objects and the data from the read itself.  Each stream header represents a
 one-dimensional set of data points that were included by the given search 
 criteria:
 
-.. snippet-display:: bind-all-streams
+.. snippet-display:: read-data
 
 Another way is to bind to a single stream of data contained in the response.  
 The stream must be identified uniquely in the call or an exception will be 

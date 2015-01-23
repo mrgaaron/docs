@@ -1,3 +1,7 @@
+# snippet-begin create-client
+curl -X $METHOD -u $KEY:$SECRET "https://$BACKEND/$ENDPOINT" -d 'request body goes here'
+# snippet-end
+
 # snippet-begin create-device
 curl -X "POST" -u $KEY:$SECRET "https://$BACKEND/v2/devices/" -d '
    {"key": "test1",
@@ -13,18 +17,84 @@ curl -X "POST" -u $KEY:$SECRET "https://$BACKEND/v2/devices/" -d '
 "attributes":{}}]}
 # snippet-end
 
-# snippet-begin create-client
-curl -X $METHOD -u $KEY:$SECRET "https://$BACKEND/$ENDPOINT" -d 'request body goes here'
+# snippet-begin get-devices
+
+curl -X "GET" -u $KEY:$SECRET "https://$BACKEND/v2/devices/" -d '
+  { 
+    "search": {
+      "select": "devices",
+      "filters": {
+        "devices": { 
+          "or": [
+            {"attributes": {"region": "south"}},
+            {"attributes": {"region": "east"}}
+          ]
+        }
+      } 
+    },
+    "find":{
+      "quantifier":"all"
+    }
+  }'
+>>
+{"data": [
+  {
+    "key": "thermostat.3",
+    "name": "Thermostat ID 3",
+    "attributes": {
+      "region": "south",
+      "customer": "smith",
+      "type": "thermostat"
+    },
+    "sensors": [
+      {
+        "key": "temperature",
+        "name": "",
+        "attributes": {
+          "unit": "celsius"
+        }
+      },
+      {
+        "key": "humidity",
+        "name": "",
+        "attributes": {}
+      }
+    ]
+  },
+  {
+    "key": "thermostat.4",
+    "name": "Thermostat ID 4",
+    "attributes": {
+      "region": "south",
+      "customer": "willis",
+      "type": "thermostat"
+    },
+    "sensors": [
+      {
+        "key": "temperature",
+        "name": "",
+        "attributes": {
+          "unit": "celsius"
+        }
+      },
+      {
+        "key": "humidity",
+        "name": "",
+        "attributes": {}
+      }
+    ]
+  }
+]}
 # snippet-end
 
-# snippet-begin bind-all-streams
+# snippet-begin read-data
 curl -X "GET" -u $KEY:$SECRET -H "Accept: application/prs.tempoiq.datapoint-collection.v3+json" "https://$BACKEND/v2/read/" -d '
   {
     "search": {
       "select": "sensors",
       "filters": {
         "devices": {
-          "key": "key-1"
+          "key": "thermostat.1"
         }
       }
     },
@@ -48,5 +118,55 @@ curl -X "GET" -u $KEY:$SECRET -H "Accept: application/prs.tempoiq.datapoint-coll
       "id": "2394921"
     }
   ]
+}
+# snippet-end
+
+# snippet-begin pipeline
+// In JSON, arguments are supplied in an array, in the order in 
+// which they're documented.
+
+"functions": [
+  {
+    "name": "rollup",
+    "arguments": ["max", "1day"]      // [Fold, Period]
+  }
+]
+# snippet-end
+
+# snippet-begin write-data
+curl -X "POST" -i -u $KEY:$SECRET "https://$BACKEND/v2/write" -d '
+  {
+    "thermostat.1": {
+      "temperature": [
+        {"t": "2015-01-05T00:00:00Z", "v": 3.14159},
+        {"t": "2015-01-05T00:01:00Z", "v": 2.71828}
+      ],
+      "humidity": [
+        {"t": "2015-01-05T00:00:00Z", "v": 42},
+        {"t": "2015-01-05T00:01:00Z", "v": 43}
+      ]
+    }
+  }'
+# snippet-end
+
+# snippet-begin delete-data
+curl -X "DELETE" -i -u $KEY:$SECRET \
+    "https://$BACKEND/v2/devices/thermostat.1/sensors/humidity/datapoints" \
+    -d '{"start": "2015-01-05T00:00:00Z", "stop": "2015-01-05T01:00:00Z"}'
+>>
+{"deleted":13}
+
+# snippet-end
+
+# snippet-begin search
+{
+  "devices": {
+    "attributes": {
+      "building": "headquarters"
+    }
+  },
+  "sensors": {
+    "key": "temperature"
+  }
 }
 # snippet-end

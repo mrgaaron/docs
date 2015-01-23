@@ -23,7 +23,6 @@ Example
 Select sensors with key "temperature" that are attached to devices in
 the "headquarters" building::
 
-
     {
       "devices": {
         "attributes": {
@@ -34,3 +33,5 @@ the "headquarters" building::
         "key": "temperature"
       }
     }
+
+.. snippet-display:: search

@@ -35,22 +35,11 @@ you must use special wildcard statements. See the API reference for the actual s
 Streams
 ~~~~~~~
 
-A :class:`Stream` is an ordered sequence of :class:`DataPoint`\s 
-along with some metadata describing the source of the data points.
+A stream is an ordered sequence of :class:`DataPoints <DataPoint>`
+along with a :class:`StreamHeader` describing the source of the data points.
 When you read data from several sensors, TempoIQ returns one stream per sensor,
 where each stream's metadata describes the device and sensor that the stream
 originated from.
-
-
-Example
-~~~~~~~
-Customer 123 has thermostats installed at three different sites: A, B, and C.
-She wishes to compare the humidity across all her sites between 2014-06-01 and 2014-06-06.
-
-The selector in this case must select the 'hum' sensor on thermostat devices where
-the customer attribute is '123'.
-
-.. snippet-display:: read-data
 
 
 Latest value
