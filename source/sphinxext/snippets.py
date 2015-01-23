@@ -22,21 +22,24 @@ class Language(object):
         if not hasattr(self, 'highlight'):
             self.highlight = self.key
 
-        self.has_remote_source = (hasattr(self, 'gh_repository') and
-                                  hasattr(self, 'gh_branch') and
-                                  hasattr(self, 'gh_path'))
+    def has_remote_source(self):
+        return (hasattr(self, 'gh_repository') and
+                hasattr(self, 'gh_branch') and
+                hasattr(self, 'gh_path'))
 
     def get_remote_url(self):
-        if not self.has_remote_source:
+        if not self.has_remote_source():
             return None
+
         return "https://raw.githubusercontent.com/{}/{}/{}" \
                .format(self.gh_repository,
                        self.gh_branch,
                        self.gh_path)
 
     def get_pretty_remote_url(self, lineno=None):
-        if not self.has_remote_source:
+        if not self.has_remote_source():
             return None
+
         url = "https://github.com/{}/blob/{}/{}" \
               .format(self.gh_repository,
                       self.gh_branch,
