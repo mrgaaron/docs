@@ -245,7 +245,7 @@ def read_remote_snippets(app, env, language):
         response = urllib2.urlopen(url)
     except urllib2.URLError as e:
         app.warn("Failed to get remote snippets for {} ({}): {}"
-                 .format(language.key, url, e.reason))
+                 .format(language.key, url, str(e)))
         return
     app.debug("Successfully downloaded remote snippets for {} ({}) "
               .format(language.key, url))

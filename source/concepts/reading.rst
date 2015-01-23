@@ -35,7 +35,7 @@ you must use special wildcard statements. See the API reference for the actual s
 Streams
 ~~~~~~~
 
-A stream is an ordered sequence of data points (i.e. ``timestamp, value`` tuples)
+A :class:`Stream` is an ordered sequence of :class:`DataPoint`\s 
 along with some metadata describing the source of the data points.
 When you read data from several sensors, TempoIQ returns one stream per sensor,
 where each stream's metadata describes the device and sensor that the stream
