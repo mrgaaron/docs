@@ -1,12 +1,12 @@
 # snippet-begin create-device
 curl -X "POST" -u $KEY:$SECRET "https://$BACKEND/v2/devices/" -d '
-  {"key": "test1",
-    "attributes": {"customer": "123"},
-    "sensors": [
-      {"key": "temp"},
-      {"key": "humidity"}
-    ]
-  }'
+   {"key": "test1",
+     "attributes": {"customer": "123"},
+     "sensors": [
+       {"key": "temp"},
+       {"key": "humidity"}
+     ]
+   }'
 >>
 {"key":"test1","name":"","attributes":{"customer":"123"},"sensors":
 [{"key":"temp","name":"","attributes":{}},{"key":"humidity","name":"",
