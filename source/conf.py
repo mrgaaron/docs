@@ -38,7 +38,8 @@ snippet_language_list = [
         'key': 'http',
         'name': 'Curl (HTTP)',
         'highlight': 'javascript',
-        'local_file': 'includes/http_snippets.txt'
+        'local_file': 'includes/http_snippets.txt',
+        'line_comment': '#'
     },
     {
         'key': 'python',
