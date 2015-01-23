@@ -35,13 +35,6 @@ extensions = [
 # List of valid snippet languages.
 snippet_language_list = [
     {
-        'key': 'http',
-        'name': 'Curl (HTTP)',
-        'highlight': 'bash',
-        'line_comment': '#',
-        'local_file': 'includes/http_snippets.txt'
-    },
-    {
         'key': 'python',
         'name': 'Python',
         'local_file': 'includes/python_snippets.py',
@@ -76,6 +69,13 @@ snippet_language_list = [
         'name': 'C#/.NET',
         'local_file': 'includes/csharp_snippets.cs',
         'line_comment': '//'
+    },
+    {
+        'key': 'http',
+        'name': 'Curl (HTTP)',
+        'highlight': 'bash',
+        'line_comment': '#',
+        'local_file': 'includes/http_snippets.txt'
     }
 ]
 
