@@ -75,18 +75,15 @@
             print("Point: t={} v={}".format(point.timestamp, point.value))
 
 # snippet-end
-# snippet-begin device-ordering-key
+# snippet-begin device-ordering
 
+    #query by device key, descending order
     result = client.query(Device).order_by('key', 'desc').read()
 
-# snippet-end
-# snippet-begin device-ordering-date-created
-
+    #query by when the device was created, ascending order
     result = client.query(Device).order_by('date_created', 'asc').read()
 
-# snippet-end
-# snippet-begin device-ordering-date-modified
-
+    #query by when the device was last modified, descending order
     result = client.query(Device).order_by('date_modified', 'desc').read()
 
 # snippet-end

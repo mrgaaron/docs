@@ -57,11 +57,7 @@ Devices can be queried with a configurable ordering parameter.  Ordering by
 key, date created, and date last modified in either ascending or descending 
 direction is possible:
 
-.. snippet-display:: device-ordering-key 
-
-.. snippet-display:: device-ordering-date-created 
-
-.. snippet-display:: device-ordering-date-modified
+.. snippet-display:: device-ordering
 
 Example
 ~~~~~~~
