@@ -9,17 +9,17 @@ license.
 .. list-table::
 
    * - **Java**
-     - `Maven Central <https://search.maven.org/#search%7Cga%7C1%7Ca%3A%22tempoiq-java%22>`_
-     - `GitHub <https://github.com/TempoIQ/tempoiq-java>`_
+     - `Maven Central <https://search.maven.org/#search%7Cga%7C1%7Ca%3A%22tempoiq-java%22>`__
+     - `GitHub <https://github.com/TempoIQ/tempoiq-java>`__
    * - **.NET/C#**
-     - `NuGet <https://www.nuget.org/packages/TempoIQ/>`_
-     - `GitHub <https://github.com/TempoIQ/tempoiq-net>`_
+     - `NuGet <https://www.nuget.org/packages/TempoIQ/>`__
+     - `GitHub <https://github.com/TempoIQ/tempoiq-net>`__
    * - **Node.JS**
-     - `NPM <https://www.npmjs.com/package/tempoiq>`_
-     - `GitHub <https://github.com/TempoIQ/tempoiq-node-js>`_
+     - `NPM <https://www.npmjs.com/package/tempoiq>`__
+     - `GitHub <https://github.com/TempoIQ/tempoiq-node-js>`__
    * - **Python**
-     - `PyPI <https://pypi.python.org/pypi/tempoiq/>`_
-     - `GitHub <https://github.com/TempoIQ/tempoiq-python>`_
+     - `PyPI <https://pypi.python.org/pypi/tempoiq/>`__
+     - `GitHub <https://github.com/TempoIQ/tempoiq-python>`__
    * - **Ruby**
-     - `RubyGems <https://rubygems.org/gems/tempoiq>`_
-     - `GitHub <https://github.com/TempoIQ/tempoiq-ruby>`_
+     - `RubyGems <https://rubygems.org/gems/tempoiq>`__
+     - `GitHub <https://github.com/TempoIQ/tempoiq-ruby>`__

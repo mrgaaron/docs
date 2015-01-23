@@ -47,6 +47,7 @@ snippet_language_list = [
         'key': 'node',
         'name': 'Node.js',
         'highlight': 'javascript',
+        'local_file': 'includes/nodejs_snippets.js',
         'gh_repository': 'meshulam/tempoiq-node-js',
         'gh_branch': 'test-snippets',
         'gh_path': 'test/test_snippets.js',
