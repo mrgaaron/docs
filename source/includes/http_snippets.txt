@@ -1,12 +1,12 @@
 # snippet-begin create-device
 curl -X "POST" -u $KEY:$SECRET "https://$BACKEND/v2/devices/" -d '
-  {"key": "test1",
-    "attributes": {"customer": "123"},
-    "sensors": [
-      {"key": "temp"},
-      {"key": "humidity"}
-    ]
-  }'
+   {"key": "test1",
+     "attributes": {"customer": "123"},
+     "sensors": [
+       {"key": "temp"},
+       {"key": "humidity"}
+     ]
+   }'
 >>
 {"key":"test1","name":"","attributes":{"customer":"123"},"sensors":
 [{"key":"temp","name":"","attributes":{}},{"key":"humidity","name":"",
@@ -18,19 +18,19 @@ curl -X $METHOD -u $KEY:$SECRET "https://$BACKEND/$ENDPOINT" -d 'request body go
 # snippet-end
 
 # snippet-begin bind-all-streams
-curl -X "GET" -u $KEY:$SECRET -H "Accept: application/prs.tempoiq.datapoint-collection.v3+json" "https://$BACKEND/v2/read/" -d '
+curl -X "POST" -u $KEY:$SECRET -H "Accept: application/prs.tempoiq.datapoint-collection.v3+json" "https://$BACKEND/v2/read/" -d '
   {
     "search": {
       "select": "sensors",
       "filters": {
-        "devices": {
+        "device": {
           "key": "key-1"
         }
       }
     },
     "read": {
       "start": "2015-01-01T00:00:00.000Z",
-      "stop": "2015-01-02T00:00:00.000Z"
+      "end": "2015-01-02T00:00:00.000Z",
     }
   }'
 >>
@@ -38,14 +38,14 @@ curl -X "GET" -u $KEY:$SECRET -H "Accept: application/prs.tempoiq.datapoint-coll
   "data": [
     {
       "t": "2015-01-01T01:00:00.000Z",
-      "data": {2394921: 3.0}
+      "data": {"2394921": 3.0}
     }
   ],
   "streams": [
     {
       "device": {"key": "key-1", "name": "", "attributes": {}},
       "sensor": {"key": "temp", "name": "", "attributes": {}},
-      "id": 2394921
+      "id": "2394921"
     }
   ]
 }
