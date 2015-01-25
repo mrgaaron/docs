@@ -133,6 +133,47 @@ curl -X DELETE -u $KEY:$SECRET "https://$BACKEND/v2/devices" -d '
 # snippet-end
 
 # snippet-begin read-data
+curl -X GET -u $KEY:$SECRET "https://$BACKEND/v2/read/" -d '
+  {
+    "search": {
+      "select": "sensors",
+      "filters": {
+        "devices": {
+          "key": "thermostat.1"
+        }
+      }
+    },
+    "read": {
+      "start": "2015-01-01T00:00:00.000Z",
+      "stop": "2015-01-02T00:00:00.000Z"
+    }
+  }'
+>>
+{
+  "data": [
+    {
+      "t": "2015-01-01T00:00:00.000Z",
+      "data": {
+        "thermostat.1": {
+          "humidity": 71.7521424,
+          "temperature":76.85015
+        }
+      }
+    },
+    { 
+      "t": "2015-01-01T00:05:00.000Z",
+      "data": {
+        "thermostat.1": {
+          "humidity": 71.7260744,
+          "temperature":76.85015
+        }
+      }
+    }
+  ]
+}
+# snippet-end 
+
+# snippet-begin read-data-streams
 curl -X GET -u $KEY:$SECRET \
      -H "Accept: application/prs.tempoiq.datapoint-collection.v3+json" \
      "https://$BACKEND/v2/read/" -d '

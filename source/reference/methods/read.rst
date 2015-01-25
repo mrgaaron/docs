@@ -28,18 +28,24 @@ Read data
 
       :class:`ReadResponse` with the requested data.
 
-Read responses contain two relevant data fields: a list of :class:`StreamHeader` 
-objects and the data from the read itself.  Each stream header represents a 
-one-dimensional set of data points that were included by the given search 
-criteria:
-
 .. snippet-display:: read-data
 
-Another way is to bind to a single stream of data contained in the response.  
-The stream must be identified uniquely in the call or an exception will be 
-thrown:
+.. only:: dev
 
-.. snippet-display:: bind-single-stream
+   UPCOMING READ API
+
+   Read responses contain two relevant data fields: a list of :class:`StreamHeader` 
+   objects and the data from the read itself.  Each stream header represents a 
+   one-dimensional set of data points that were included by the given search 
+   criteria:
+
+   .. snippet-display:: read-data-streams
+
+   Another way is to bind to a single stream of data contained in the response.  
+   The stream must be identified uniquely in the call or an exception will be 
+   thrown:
+
+   .. snippet-display:: bind-single-stream
 
 Single point
 ------------

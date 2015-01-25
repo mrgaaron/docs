@@ -112,12 +112,25 @@ response = client.query(Sensor).filter(Device.key == "thermostat.1") \
         print("Humidity: t={} v={}".format(point.timestamp, point.value))
 
 # snippet-end
+
 # snippet-begin read-data
+
+    result = client.query(Sensor) \
+                   .filter(Device.key == "thermostat.1") \
+                   .read(start=datetime.datetime(2015, 1, 1),
+                         end=datetime.datetime(2015, 2, 1))
+
+    for row in result.data:
+        for ((device, sensor), value) in row:
+            print(row.timestamp, device, sensor, value)
+# snippet-end
+
+# snippet-begin read-data-streams
 
     result = client.query(Sensor) \
                    .filter(Device.key == "device1") \
                    .read(start=datetime.datetime(2015, 1, 1),
-                         end=datetime.datetime(2015, 1, 1))
+                         end=datetime.datetime(2015, 2, 1))
 
     for stream in result.data.streams:
         for point in stream:
