@@ -16,8 +16,19 @@ Create device
    .. snippet-display:: create-device
 
 
-Get device
-----------
+Get devices
+-----------
+
+.. method:: findDevices(search)
+
+  :endpoint: ``GET /v2/devices``
+  :arg Search search:
+  :returns: A :class:`Cursor` over the devices
+
+  .. snippet-display:: get-devices
+
+Some libraries also support a special method to retrieve a single
+device by its key:
 
 .. method:: getDevice(key)
 
@@ -26,21 +37,6 @@ Get device
    :returns: The :class:`Device` with the given key
 
    .. snippet-display:: get-device
-
-
-Find devices
-------------
-
-.. method:: findDevices(search)
-
-  :endpoint: ``GET /v2/devices``
-  :arg Search search:
-  :returns: A :class:`Cursor` over the devices
-
-Example
-~~~~~~~
-
-.. snippet-display:: get-devices
 
 Ordering
 ~~~~~~~~
@@ -74,14 +70,19 @@ Update device
    A device's sensor configuration is currently also immutable.
 
 
-Example
-~~~~~~~
-
-.. snippet-display:: update-device
+   .. snippet-display:: update-device
 
 
 Delete devices
 --------------
+
+.. method:: deleteDevices(search)
+
+   :endpoint: ``DELETE /v2/devices/``
+   :arg Search search: Selector defining which devices to delete
+   :returns: The number of devices that were deleted
+
+   .. snippet-display:: delete-devices
 
 .. method:: deleteDevice(key)
 
@@ -90,13 +91,3 @@ Delete devices
    :returns: Nothing
 
 
-.. method:: deleteDevices(search)
-
-   :endpoint: ``DELETE /v2/devices/``
-   :arg Search search: Selector defining which devices to delete
-   :returns: The number of devices that were deleted
-
-Example
-~~~~~~~
-
-.. snippet-display:: delete-devices

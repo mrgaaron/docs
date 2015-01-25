@@ -17,14 +17,31 @@ curl -X "POST" -u $KEY:$SECRET "https://$BACKEND/v2/devices/" -d '
 "attributes":{}}]}
 # snippet-end
 
-# snippet-begin get-devices
+# snippet-begin get-device
+curl -X "GET" -u $KEY:$SECRET "https://$BACKEND/v2/devices/thermostat.1"
+>>
+{
+  "key": "thermostat.1",
+  "name": "Thermostat ID 1",
+  "attributes": {
+    "region": "north",
+    "customer": "jones",
+    "type":"thermostat"
+  },
+  "sensors": [
+    {"key":"humidity","name":"","attributes":{}},
+    {"key":"temperature","name":"","attributes":{"unit":"celsius"}}
+  ]
+}
+# snippet-end
 
+# snippet-begin get-devices
 curl -X "GET" -u $KEY:$SECRET "https://$BACKEND/v2/devices/" -d '
   { 
     "search": {
       "select": "devices",
       "filters": {
-        "devices": { 
+        "devices": {
           "or": [
             {"attributes": {"region": "south"}},
             {"attributes": {"region": "east"}}
@@ -47,18 +64,8 @@ curl -X "GET" -u $KEY:$SECRET "https://$BACKEND/v2/devices/" -d '
       "type": "thermostat"
     },
     "sensors": [
-      {
-        "key": "temperature",
-        "name": "",
-        "attributes": {
-          "unit": "celsius"
-        }
-      },
-      {
-        "key": "humidity",
-        "name": "",
-        "attributes": {}
-      }
+      {"key":"humidity","name":"","attributes":{}},
+      {"key":"temperature","name":"","attributes":{"unit":"celsius"}}
     ]
   },
   {
@@ -70,25 +77,65 @@ curl -X "GET" -u $KEY:$SECRET "https://$BACKEND/v2/devices/" -d '
       "type": "thermostat"
     },
     "sensors": [
-      {
-        "key": "temperature",
-        "name": "",
-        "attributes": {
-          "unit": "celsius"
-        }
-      },
-      {
-        "key": "humidity",
-        "name": "",
-        "attributes": {}
-      }
+      {"key":"humidity","name":"","attributes":{}},
+      {"key":"temperature","name":"","attributes":{"unit":"celsius"}}
     ]
   }
 ]}
 # snippet-end
 
+# snippet-begin update-device
+curl -X "PUT" -u $KEY:$SECRET "https://$BACKEND/v2/devices/thermostat.4" -d '
+  {
+    "key": "thermostat.4",
+    "name": "Thermostat ID 4",
+    "attributes": {
+      "region": "east",
+      "customer": "internal-test",
+      "type": "thermostat"
+    },
+    "sensors": [
+      {"key":"humidity","name":"","attributes":{}},
+      {"key":"temperature","name":"","attributes":{"unit":"celsius"}}
+    ]
+  }'
+>>
+{
+  "key": "thermostat.4",
+  "name": "Thermostat ID 4",
+  "attributes": {
+    "region": "east",
+    "customer": "internal-test",
+    "type": "thermostat"
+  },
+  "sensors": [
+    {"key":"humidity","name":"","attributes":{}},
+    {"key":"temperature","name":"","attributes":{"unit":"celsius"}}
+  ]
+}
+# snippet-end
+
+# snippet-begin delete-devices
+curl -X DELETE -u $KEY:$SECRET "https://$BACKEND/v2/devices" -d '
+  { 
+    "search": {
+      "select": "devices",
+      "filters": {
+        "devices": {
+          "key": "thermostat.5"
+        }
+      }
+    },
+    "find": {"quantifier":"all"}
+  }'
+>>
+{"deleted":1}
+# snippet-end
+
 # snippet-begin read-data
-curl -X "GET" -u $KEY:$SECRET -H "Accept: application/prs.tempoiq.datapoint-collection.v3+json" "https://$BACKEND/v2/read/" -d '
+curl -X GET -u $KEY:$SECRET \
+     -H "Accept: application/prs.tempoiq.datapoint-collection.v3+json" \
+     "https://$BACKEND/v2/read/" -d '
   {
     "search": {
       "select": "sensors",
@@ -119,6 +166,36 @@ curl -X "GET" -u $KEY:$SECRET -H "Accept: application/prs.tempoiq.datapoint-coll
     }
   ]
 }
+# snippet-end
+
+# snippet-begin single-point
+curl -X GET -u $KEY:$SECRET "https://$BACKEND/v2/single/" -d '
+  {
+    "search": {
+      "select": "sensors",
+      "filters": {
+        "devices": {"key": "thermostat.1"},
+        "sensors": {"key": "humidity"}
+      }
+    },
+    "single": {
+      "function": "nearest",
+      "timestamp": "2015-01-03T03:45:00Z"
+    }
+  }'
+>>
+{
+  "data": [
+    {
+      "t": "2015-01-03T03:45:00.000Z",
+      "data": {
+        "thermostat.1": {
+          "humidity": 69.592102
+        }
+      }
+    }
+  ]
+} 
 # snippet-end
 
 # snippet-begin pipeline

@@ -55,6 +55,22 @@
     for dev in result.data:
         print("Got device with key: {}".format(dev.key))
 # snippet-end
+
+# snippet-begin update-device
+result = client.query(Device).filter(Device.key == "thermostat.4").read()
+device = result.data.next()
+
+device.attributes["customer"] = "internal-test"
+device.attributes["region"] = "east"
+
+client.update_device(device)
+
+# snippet-end
+
+# snippet-begin delete-devices
+result = client.query(Device).filter(Device.key == "thermostat.5").delete()
+# snippet-ignore TODO: show how to access # of deleted devices
+# snippet-end
 # snippet-begin delete-data
 start = datetime.datetime(2015, 1, 5, 0, 0)
 end = datetime.datetime(2015, 1, 5, 1, 0)
