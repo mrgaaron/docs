@@ -30,11 +30,11 @@ e.g.:
 
     .. only:: dev
 
-       Insert profanity, secrets, or other not-safe-for-customers
-       content here.
+       Insert profanity, secrets, or other content that shouldn't be included
+       in published docs.
 
-The todo directive already has this behavior, so they won't be included in the
-output if the "dev" tag isn't set.
+The todo directive already has this behavior, so todos are never present in 
+production docs.
 
 
 ## Organization
@@ -66,9 +66,10 @@ Section heading
 
 h3:
 ```
-Subsection heading
-~~~~~~~~~~~~~~~~~~
+  Subsection heading
+  ~~~~~~~~~~~~~~~~~~
 ```
+
 
 h4 (but try to avoid hierarchies this deep):
 ```
@@ -76,12 +77,6 @@ Sub-subsection heading
 ^^^^^^^^^^^^^^^^^^^^^^
 ```
 
-### Indentation
-
-Indent directive contents (e.g. the body of a `.. class::` declaration) with
-two spaces. Typically in reST 3 spaces is used, so that the body lines up with
-the name of the directive, but an odd number of spaces is annoying to do without
-special configuration in your text editor.
 
 ### Terminology
 
