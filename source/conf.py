@@ -13,7 +13,12 @@ sys.path.append(os.path.abspath('sphinxext'))
 
 # -- General configuration ------------------------------------------------
 
-html_context = {}
+html_context = {
+    # Github info for generating source links in documents
+    'gh_repository': 'TempoIQ/docs',
+    'gh_branch': 'master',
+    'display_github': True
+}
 
 # For development builds, invoke sphinx-build with '-t dev'.
 if not tags.has('dev'):
@@ -31,6 +36,7 @@ extensions = [
     'tempoiq_sphinx',
     'snippets'
 ]
+
 
 # List of valid snippet languages.
 snippet_language_list = [
@@ -79,6 +85,7 @@ snippet_language_list = [
         'local_file': 'includes/http_snippets.txt'
     }
 ]
+
 
 # Name of the default domain.
 primary_domain = 'tempoiq'
@@ -163,10 +170,3 @@ html_static_path = ['_static']
 # If not '', a 'Last updated on:' timestamp is inserted at every page bottom,
 # using the given strftime format.
 #html_last_updated_fmt = '%b %d, %Y'
-
-# If true, SmartyPants will be used to convert quotes and dashes to
-# typographically correct entities.
-#html_use_smartypants = True
-
-# If true, links to the reST sources are added to the pages.
-#html_show_sourcelink = True
