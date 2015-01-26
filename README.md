@@ -85,7 +85,7 @@ h4 (but try to avoid hierarchies this deep):
 
 * "data point" is two words
 * "time zone" is two words
-* "real time" or "real-time", not "realtime"
+* "realtime", not "real time" or "real-time"
 * "timestamp" is one word
 
 ### Punctuation/capitalization
