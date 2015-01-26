@@ -4,6 +4,7 @@ import urllib2
 import os.path
 import re
 from docutils import nodes
+from docutils.parsers.rst import directives
 
 from sphinx.errors import SphinxError
 from sphinx.directives.code import CodeBlock
@@ -54,13 +55,19 @@ class SnippetDisplay(Directive):
     Directive to insert all snippets with a given title.
     """
     required_arguments = 1
+    option_spec = {'languages': directives.unchanged,
+                   'ignore-languages': directives.unchanged}
 
     def run(self):
         env = self.state.document.settings.env
 
-        key = self.arguments[0]
         node = SnippetDisplayNode()
-        node['key'] = key
+        node['key'] = self.arguments[0]
+
+        # pass optional lists of languages to the node
+        for key in SnippetDisplay.option_spec:
+            if key in self.options:
+                node[key] = self.options[key].split()
 
         env.snippet_display.append(node)
 
@@ -262,21 +269,23 @@ def resolve_snippets(app, doctree, docname):
     all_langs = [language.key for language in env.snippet_languages]
 
     for node in doctree.traverse(SnippetDisplayNode):
-        missing_languages = list(all_langs)
+        langs_needed = set(node.get('languages', all_langs))
+        if 'ignore-languages' in node:
+            langs_needed.difference_update(node['ignore-languages'])
         for snippet in env.snippet_all:
             # Only process snippets with the right title
             if snippet['key'] != node['key']:
                 continue
-            if snippet['language'] not in missing_languages:
-                app.warn('Found multiple snippets with key "{}" and language "{}"'
+            elif snippet['language'] not in langs_needed:
+                app.warn('Ignoring duplicate or unspecified language snippet {} - {}'
                          .format(snippet['key'], snippet['language']))
                 continue
+            else:
+                langs_needed.remove(snippet['language'])
+                node.append(snippet)
 
-            missing_languages.remove(snippet['language'])
-            node.append(snippet)
-
-        if len(missing_languages) > 0:
+        if len(langs_needed) > 0:
             msg = "Missing languages for snippet key '{}': {}" \
-                        .format(node['key'], missing_languages)
+                        .format(node['key'], list(langs_needed))
             app.warn(msg, (docname, 0))
 
