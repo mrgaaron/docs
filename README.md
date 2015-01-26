@@ -52,30 +52,28 @@ to prevent it from sprawling out of control.
 Use the following hierarchy for indicating headings in .rst:
 
 h1:
-```
-============
-Page heading
-============
-```
+
+    ============
+    Page heading
+    ============
+
 
 h2:
-```
-Section heading
----------------
-```
+
+    Section heading
+    ---------------
+
 
 h3:
-```
-  Subsection heading
-  ~~~~~~~~~~~~~~~~~~
-```
+
+    Subsection heading
+    ~~~~~~~~~~~~~~~~~~
 
 
 h4 (but try to avoid hierarchies this deep):
-```
-Sub-subsection heading
-^^^^^^^^^^^^^^^^^^^^^^
-```
+
+    Sub-subsection heading
+    ^^^^^^^^^^^^^^^^^^^^^^
 
 
 ### Terminology
