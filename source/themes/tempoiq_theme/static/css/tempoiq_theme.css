@@ -53,9 +53,10 @@ nav i.fa-bars {
 
 }
 
-.wy-menu-vertical .fa-home{
+.wy-menu-vertical .side-header{
+    -webkit-font-smoothing: antialiased;
     font-size: 24px;
-    padding: 5px 20px;
+    padding: 15px 20px;
 }
 
 .wy-nav-content-wrap {
@@ -68,10 +69,6 @@ nav i.fa-bars {
 
 .wy-menu-vertical li.toctree-l3 > a {
     padding-left: 60px;
-}
-
-.wy-menu-vertical {
-    margin-top: 20px;
 }
 
 .wy-nav-side {

@@ -16,17 +16,8 @@ Create device
    .. snippet-display:: create-device
 
 
-Get device
-----------
-
-.. method:: getDevice(key)
-
-   :endpoint: ``GET /v2/devices/:key``
-   :arg String key: The key of the device to get
-   :returns: The :class:`Device` with the given key
-
-Find devices
-------------
+Get devices
+-----------
 
 .. method:: findDevices(search)
 
@@ -34,21 +25,18 @@ Find devices
   :arg Search search:
   :returns: A :class:`Cursor` over the devices
 
-  Example::
+  .. snippet-display:: get-devices
 
-    {
-      "search": {
-        "select": "devices",
-        "filters": {
-          "device": {
-            "attributes": {"building": "3"}
-          }
-        }
-      },
-      "find": {"quantifier": "all"}
-    }
+Some libraries also support a special method to retrieve a single
+device by its key:
 
-.. todo:: Be more explicit about search/select/filters relationship
+.. method:: getDevice(key)
+
+   :endpoint: ``GET /v2/devices/:key``
+   :arg String key: The key of the device to get
+   :returns: The :class:`Device` with the given key
+
+   .. snippet-display:: get-device
 
 Ordering
 ~~~~~~~~
@@ -58,31 +46,6 @@ key, date created, and date last modified in either ascending or descending
 direction is possible:
 
 .. snippet-display:: device-ordering
-
-Example
-~~~~~~~
-
-Return devices with keys *dev32*, *dev33*, and *dev37*. Note that in the HTTP
-API, the search object is wrapped in another object with an additional "find"
-field::
-
-    {
-      "search": {
-        "select": "devices",
-        "filters": {
-          "devices": {
-            "or": [
-              {"key": "dev32"},
-              {"key": "dev33"},
-              {"key": "dev37"},
-            ]
-          }
-        },
-      }
-      "find": {
-        "quantifier": "all"
-      }
-    }
 
 
 Update device
@@ -107,8 +70,19 @@ Update device
    A device's sensor configuration is currently also immutable.
 
 
+   .. snippet-display:: update-device
+
+
 Delete devices
 --------------
+
+.. method:: deleteDevices(search)
+
+   :endpoint: ``DELETE /v2/devices/``
+   :arg Search search: Selector defining which devices to delete
+   :returns: The number of devices that were deleted
+
+   .. snippet-display:: delete-devices
 
 .. method:: deleteDevice(key)
 
@@ -117,8 +91,3 @@ Delete devices
    :returns: Nothing
 
 
-.. method:: deleteDevices(search)
-
-   :endpoint: ``DELETE /v2/devices/``
-   :arg Search search: Selector defining which devices to delete
-   :returns: The number of devices that were deleted

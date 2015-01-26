@@ -21,6 +21,12 @@ writing the same data to a sensor does not change what's stored. This
 can often simplify your application's write logic, because there's
 no risk of data corruption if you happen to write data multiple times.
 
+Example
+-------
+
+.. snippet-display:: write-data
+
+
 Errors
 ------
 
@@ -42,3 +48,6 @@ Deleting data
    :arg DateTime stop: End of time range to delete (exclusive)
 
    :returns: The number of data points that were deleted
+
+
+.. snippet-display:: delete-data

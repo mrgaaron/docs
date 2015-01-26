@@ -1,6 +1,7 @@
-"""Sphinx ReadTheDocs theme.
+"""TempoIQ Sphinx theme.
 
-From https://github.com/ryan-roemer/sphinx-bootstrap-theme.
+Adapted from the Sphinx ReadTheDocs theme:
+https://github.com/snide/sphinx_rtd_theme
 
 """
 import os

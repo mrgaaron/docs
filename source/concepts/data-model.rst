@@ -11,7 +11,7 @@ TempoIQ uses a simple two-level data hierarchy, consisting of Devices and Sensor
 Devices
 ~~~~~~~
 
-A device generally corresponds to a discrete physical unit that has one
+A :class:`Device` generally corresponds to a discrete physical unit that has one
 or more associated sensors. For example: solar panels, vehicles, or activity
 monitors.
 
@@ -28,7 +28,7 @@ attributes include user ID, geographic region, and device model number.
 Sensors
 ~~~~~~~
 
-A sensor corresponds to a single measurement coming from a specific device.
+A :class:`Sensor` corresponds to a single measurement coming from a specific device.
 For example: internal temperature, DC voltage, or wind speed.
 
 A sensor is required to have a key unique within its device. Sensors

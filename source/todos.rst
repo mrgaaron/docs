@@ -4,9 +4,7 @@ List of TODOs
 =============
 
 .. included in dev builds so we can keep track of missing docs in a central place.
-   Poor man's case management system.
-
-.. todo:: Serve fonts locally instead of relying on google/cloudflare
-
+   Eventually should be transitioned to Jira or another ticketing system, but this
+   works for now
 
 .. todolist::
