@@ -1,9 +1,8 @@
 Docs!
 ====
 
-Public documentation for TempoIQ.
-
-Built docs are currently hosted on GitHub pages: http://tempoiq.github.io/docs/
+Public documentation for TempoIQ. Officially hosted at 
+https://developers.tempoiq.com/docs/
 
 To build docs locally:
 
@@ -36,6 +35,12 @@ e.g.:
 The todo directive already has this behavior, so todos are never present in 
 production docs.
 
+## Code snippets
+
+Example code snippets can be included from files in this repo, or from remote 
+GitHub respositories. This will be used in the future to tie example code to 
+our client libraries, to enable integration testing the examples. See 
+source/sphinxext/snippets.py for more information.
 
 ## Organization
 
