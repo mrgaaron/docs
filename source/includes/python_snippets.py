@@ -15,11 +15,11 @@
     from tempoiq.protocol.sensor import Sensor
     import tempoiq.response
 
-    temp_sensor = Sensor("temperature", attributes={"unit": "degC"})
-    humid_sensor = Sensor("humidity", attributes={"unit": "percent"})
+    temp_sensor = Sensor("temperature")
+    humid_sensor = Sensor("humidity")
 
-    device = Device("thermostat-12345",
-                    attributes={"type": "thermostat", "building": "24"},
+    device = Device("thermostat.0",
+                    attributes={"model": "v1"},
                     sensors=[temp_sensor, humid_sensor])
     response = client.create_device(device)
 
@@ -32,12 +32,13 @@
     import datetime
     from tempoiq.protocol.point import Point
 
-    current = datetime.datetime.now()
+    t1 = datetime.datetime(2015, 1, 1, 0, 0)
+    t2 = t1 + datetime.timedelta(minutes=5)
 
-    device_data = {"temperature": [Point(current, 23.5)],
-                   "humidity": [Point(current, 72.0)]}
+    device_data = {"temperature": [Point(t1, 68), Point(t2, 67.5)],
+                   "humidity": [Point(t1, 71.5), Point(t2, 70.0)]}
 
-    response = client.write({"thermostat.1": device_data})
+    response = client.write({"thermostat.0": device_data})
 
     if res.successful != tempoiq.response.SUCCESS:
         print("Error writing data!")
@@ -116,9 +117,9 @@ response = client.query(Sensor).filter(Device.key == "thermostat.1") \
 # snippet-begin read-data
 
     result = client.query(Sensor) \
-                   .filter(Device.key == "thermostat.1") \
+                   .filter(Device.key == "thermostat.0") \
                    .read(start=datetime.datetime(2015, 1, 1),
-                         end=datetime.datetime(2015, 2, 1))
+                         end=datetime.datetime(2015, 1, 2))
 
     for row in result.data:
         for ((device, sensor), value) in row:

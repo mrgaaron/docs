@@ -4,16 +4,16 @@ curl -X $METHOD -u $KEY:$SECRET "https://$BACKEND/$ENDPOINT" -d 'request body go
 
 # snippet-begin create-device
 curl -X "POST" -u $KEY:$SECRET "https://$BACKEND/v2/devices/" -d '
-   {"key": "test1",
-     "attributes": {"customer": "123"},
+   {"key": "thermostat.0",
+     "attributes": {"model": "v1"},
      "sensors": [
-       {"key": "temp"},
+       {"key": "temperature"},
        {"key": "humidity"}
      ]
    }'
 >>
-{"key":"test1","name":"","attributes":{"customer":"123"},"sensors":
-[{"key":"temp","name":"","attributes":{}},{"key":"humidity","name":"",
+{"key":"thermostat.0","name":"","attributes":{"model":"v1"},"sensors":
+[{"key":"temperature","name":"","attributes":{}},{"key":"humidity","name":"",
 "attributes":{}}]}
 # snippet-end
 
@@ -132,14 +132,14 @@ curl -X DELETE -u $KEY:$SECRET "https://$BACKEND/v2/devices" -d '
 {"deleted":1}
 # snippet-end
 
-# snippet-begin read-data
+# snippet-begin read-data-one-device
 curl -X GET -u $KEY:$SECRET "https://$BACKEND/v2/read/" -d '
   {
     "search": {
       "select": "sensors",
       "filters": {
         "devices": {
-          "key": "thermostat.1"
+          "key": "thermostat.0"
         }
       }
     },
@@ -154,18 +154,18 @@ curl -X GET -u $KEY:$SECRET "https://$BACKEND/v2/read/" -d '
     {
       "t": "2015-01-01T00:00:00.000Z",
       "data": {
-        "thermostat.1": {
-          "humidity": 71.7521424,
-          "temperature":76.85015
+        "thermostat.0": {
+          "humidity": 71.5,
+          "temperature": 68
         }
       }
     },
     { 
       "t": "2015-01-01T00:05:00.000Z",
       "data": {
-        "thermostat.1": {
-          "humidity": 71.7260744,
-          "temperature":76.85015
+        "thermostat.0": {
+          "humidity": 70.1,
+          "temperature": 67.5
         }
       }
     }
@@ -254,14 +254,14 @@ curl -X GET -u $KEY:$SECRET "https://$BACKEND/v2/single/" -d '
 # snippet-begin write-data
 curl -X "POST" -i -u $KEY:$SECRET "https://$BACKEND/v2/write" -d '
   {
-    "thermostat.1": {
+    "thermostat.0": {
       "temperature": [
-        {"t": "2015-01-05T00:00:00Z", "v": 3.14159},
-        {"t": "2015-01-05T00:01:00Z", "v": 2.71828}
+        {"t": "2015-01-05T00:00:00Z", "v": 68},
+        {"t": "2015-01-05T00:05:00Z", "v": 67.5}
       ],
       "humidity": [
-        {"t": "2015-01-05T00:00:00Z", "v": 42},
-        {"t": "2015-01-05T00:01:00Z", "v": 43}
+        {"t": "2015-01-05T00:00:00Z", "v": 71.5},
+        {"t": "2015-01-05T00:05:00Z", "v": 70.0}
       ]
     }
   }'

@@ -1,16 +1,14 @@
 
 # snippet-begin create-client
-
     require 'tempoiq/client'
-    client = TempoIQ::Client.new("key", "secret", "backend.tempoiq.com")
+    client = TempoIQ::Client.new("my-key", "my-secret", "my-company.backend.tempoiq.com")
 # snippet-end
+
 # snippet-begin create-device
-
-    device = client.create_device('heatpump4789', 'Basement Heat Pump',
-                                  'building' => '445 W Erie', 'model' => '75ZX',
-
-                                  TempoIQ::Sensor.new('temp-1'), TempoIQ::Sensor.new('pressure-1'))
-
+device = client.create_device('thermostat.0', '',
+                              'model' => 'v1',
+                              TempoIQ::Sensor.new('temperature'), 
+                              TempoIQ::Sensor.new('humidity'))
 # snippet-end
 # snippet-begin single-point
 

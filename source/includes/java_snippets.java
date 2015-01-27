@@ -2,31 +2,25 @@
 // snippet-begin create-client
     import com.TempoIQ;
 
-    Credentials creds = new Credentials(<TEMPO_KEY>, <TEMPO_SECRET>);
-    Client client = new Client(creds, <TEMPO_HOST>, "https");
+    Credentials creds = new Credentials("my-key", "my-secret");
+    Client client = new Client(creds, "my-company.backend.tempoiq.com", "https");
 
 // snippet-end
 
 // snippet-begin create-device
     Map<String, String> attributes = new HashMap<String, String>();
-    attributes.put("building", "1234");
+    attributes.put("model", "v1");
 
-    Map<String, String> sensor1Attributes = new HashMap<String, String>();
-    sensor1Attributes.put("unit", "F");
-
-    Map<String, String> sensor2Attributes = new HashMap<String, String>();
-    sensor2Attributes.put("unit", "C");
-
-    Sensor sensor1 = new Sensor("sensor1", sensor1Attributes);
-    Sensor sensor2 = new Sensor("sensor2", sensor1Attributes);
+    Sensor sensor1 = new Sensor("temperature");
+    Sensor sensor2 = new Sensor("humidity");
     List<Sensor> sensors = new ArrayList<Sensor>();
     sensors.add(sensor1, sensor2);
 
-    Device device = new Device("key1234", "My Awesome Device", attributes, sensors)
+    Device device = new Device("thermostat.0", "", attributes, sensors)
 
     client.createDevice(device);
-
 // snippet-end
+
 // snippet-begin single-point
     DateTime timestamp = new DateTime(2014, 9, 15, 2, 0, 0, 0, DateTimeZone.UTC);
 
