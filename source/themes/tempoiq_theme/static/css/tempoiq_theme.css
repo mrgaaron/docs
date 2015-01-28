@@ -65,7 +65,6 @@ nav i.fa-bars {
     font-size: 14px;
 }
 
-/* for two-line CTA */
 .navbar-nav ul.signup-link {
     line-height: 20px;
     text-align: center;
@@ -84,7 +83,7 @@ nav i.fa-bars {
 }
 
 .rst-content table.field-list td {
-    padding-top: 8px;   /* unsetting rtd theme :-( */
+    padding-top: 8px;
 }
 
 body.wy-body-for-nav {
@@ -98,7 +97,7 @@ body.wy-body-for-nav {
     padding: 6px 12px;
 }
 
-.rst-content tt {  /* Could add literal class too */
+.rst-content tt {
     background: none;
     border: none;
     font-size: 100%;
