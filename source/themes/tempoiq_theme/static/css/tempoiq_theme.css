@@ -50,7 +50,15 @@ nav i.fa-bars {
         margin: 0;
         display: inline-block;
     }
+}
 
+.wy-nav-top {
+    background-color: #343131
+}
+
+.wy-nav-top a {
+    font-size: 24px;
+    font-weight: normal;
 }
 
 .wy-menu-vertical .side-header{
