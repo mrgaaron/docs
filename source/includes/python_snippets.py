@@ -114,7 +114,7 @@ response = client.query(Sensor).filter(Device.key == "thermostat.1") \
 
 # snippet-end
 
-# snippet-begin read-data
+# snippet-begin read-data-one-device
 
     result = client.query(Sensor) \
                    .filter(Device.key == "thermostat.0") \

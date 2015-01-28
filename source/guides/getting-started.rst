@@ -16,7 +16,7 @@ bottom of the `development console <https://developers.tempoiq.com/console/>`_:
 .. image:: /images/console-credentials.png
 
 When using a library, you instantiate a client object with your host, key, and 
-secret. When interacting directly via HTTP, the credentials must be included with
+secret. When interacting directly via HTTPS, the credentials must be included with
 every request.
 
 .. snippet-display:: create-client
@@ -27,11 +27,11 @@ Creating a device
 
 Next, create a device 'thermostat.0' with two sensors: temperature and humidity. 
 
-.. snippet-display:: create-device
+In addition to sensors, it's also possible to add metadata to devices in the 
+form of attributes. You can query devices based on attributes, allowing you 
+to perform operations on many devices at once.
 
-In addition to these sensors, you can also add metadata in the form of attributes.
-You can query devices based on attributes, allowing you to perform operations on
-many devices at once.
+.. snippet-display:: create-device
 
 
 Writing sensor data
