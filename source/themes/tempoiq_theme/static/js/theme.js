@@ -14,7 +14,7 @@ $( document ).ready(function() {
     });
 
     $(document).on('click', "a[href^='#']", SphinxRtdTheme.scrollToAnchor);
-    SphinxRtdTheme.scrollToAnchor(window.location.hash);
+    SphinxRtdTheme.scrollToAnchor(window.location.hash, false);
 });
 
 window.SphinxRtdTheme = (function (jquery) {
@@ -43,7 +43,7 @@ window.SphinxRtdTheme = (function (jquery) {
         };
     }());
 
-    var scrollToAnchor = function(href){
+    var scrollToAnchor = function(href, addToHistory){
         href = typeof(href) == "string" ? href : jquery(this).attr("href");
         if(!href) return;
         var fromTop = 80;
@@ -54,7 +54,7 @@ window.SphinxRtdTheme = (function (jquery) {
             setTimeout(function() {
                 jquery('html, body').scrollTop(topPos - fromTop);
             }, 2); // Tiny timeout to fire after browser's anchor scroll
-            if(history && "pushState" in history) {
+            if(addToHistory && history && "pushState" in history) {
                 history.pushState({}, document.title, window.location.pathname + href);
                 return false;
             }

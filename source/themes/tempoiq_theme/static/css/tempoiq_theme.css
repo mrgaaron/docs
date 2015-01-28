@@ -51,6 +51,11 @@ nav i.fa-bars {
         margin-left: 5px;
     }
 }
+@media screen and (max-width: 768px) {
+    img {
+        width: inherit;
+    }
+}
 
 @media only screen and (max-width: 480px) {
     #rtd-search-form input[type="text"] {
