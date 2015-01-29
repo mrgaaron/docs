@@ -28,7 +28,7 @@ Read data
 
       :class:`ReadResponse` with the requested data.
 
-.. snippet-display:: read-data
+.. snippet-display:: read-data-one-device
 
 .. only:: dev
 
