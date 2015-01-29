@@ -131,7 +131,16 @@
 
         base.onLanguageChanged = function (event) {
             if (event) event.preventDefault();
+            var ofsetFromTop = 80,
+                $body = $('body'),
+                scrollTop     = $body.scrollTop(),
+                elementOffset = base.$el.offset().top - ofsetFromTop,
+                distance = elementOffset - scrollTop;
+
             $(base).trigger("languageChanged", $(this).data("language"));
+            var newScrollTop = $('body').scrollTop(),
+                topPos = base.$el.offset().top;
+            $body.scrollTop(topPos - distance - ofsetFromTop);
         };
 
         base.setLanguage = function (lang) {
