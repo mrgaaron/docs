@@ -53,14 +53,6 @@ nav i.fa-bars {
 
 }
 
-.headerlink::before { 
-  display: block; 
-  content: ""; 
-  margin-top: -80px; 
-  height: 80px; 
-  visibility: hidden; 
-}
-
 .rst-content img {
     display: block;
     margin-left: auto;
