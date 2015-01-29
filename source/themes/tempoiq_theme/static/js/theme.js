@@ -46,7 +46,7 @@ window.SphinxRtdTheme = (function (jquery) {
     var scrollToAnchor = function(href, addToHistory){
         href = typeof(href) == "string" ? href : jquery(this).attr("href");
         if(!href) return;
-        var fromTop = 80;
+        var fromTop = 100;
         var target = jquery(href);
 
         if(target.length) {
