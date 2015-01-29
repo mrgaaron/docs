@@ -138,9 +138,7 @@
                 distance = elementOffset - scrollTop;
 
             $(base).trigger("languageChanged", $(this).data("language"));
-            var newScrollTop = $('body').scrollTop(),
-                topPos = base.$el.offset().top;
-            $body.scrollTop(topPos - distance - ofsetFromTop);
+            $body.scrollTop(base.$el.offset().top - distance - ofsetFromTop);
         };
 
         base.setLanguage = function (lang) {
