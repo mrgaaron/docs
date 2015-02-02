@@ -5,3 +5,4 @@ Guides
    :maxdepth: 1
 
    getting-started
+   realtime-alerts

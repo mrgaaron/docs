@@ -2,8 +2,7 @@
    :titlesonly:
    :hidden:
 
-   /guides/getting-started
-   /guides/realtime-alerts
+   /guides/index
    /concepts/index
    /reference/index
    /sdk/index
