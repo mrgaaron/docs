@@ -2,7 +2,7 @@
    :titlesonly:
    :hidden:
 
-   /guides/getting-started
+   /guides/index
    /concepts/index
    /reference/index
    /sdk/index
