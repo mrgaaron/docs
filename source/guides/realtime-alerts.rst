@@ -3,10 +3,15 @@ Realtime Alerts
 ===============
 
 This guide shows you how to use TempoIQ's Realtime Alert system to
-actively monitor your device infrastructure. The Alert system features
-the following three supported alert scopes:
+actively monitor your device infrastructure. At the moment, The
+TempoiQ Alerting system supports the following alerting criteria:
 
-- Alert on any sensor of a particular type
+- Simple threshold *above* a static value
+- Simple threshold *below* a static value
+
+The Alert system features the following supported alert scopes:
+
+- Alert on all sensors with a given key
 - Alert on any sensor from a subset of devices
 
 Notification Methods
@@ -42,8 +47,8 @@ Alert.
 Sensor Type Monitoring
 ~~~~~~~~~~~~~~~~~~~~~~
 
-If you want to monitor all sensors of a specific type, you fill out
-only the "Sensor Key" form field from the Rule Create page:
+If you want to monitor all sensors of a specific key, fill out only
+the "Sensor Key" form field from the Rule Create page:
 
 .. image:: /images/temp_simple.png
 
