@@ -2,6 +2,12 @@
 Realtime Alerts
 ===============
 
+.. note::
+   Realtime alerting features are in Early Access and are not yet available
+   to all customers. If you're interested in joining the Early Access 
+   program, please `contact us <https://www.tempoiq.com/contact/>`_.
+
+
 This guide shows you how to use TempoIQ's Realtime Alert system to
 actively monitor your device infrastructure. At the moment, The
 TempoiQ Alerting system supports the following alerting criteria:
