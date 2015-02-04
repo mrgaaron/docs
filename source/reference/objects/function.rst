@@ -50,25 +50,24 @@ Transforms data streams in a pipeline.
    =======  ======================  ===========
 
 
+
+.. class:: Interpolate
+
+   **Name:** ``interpolate``
+
+   **Arguments:**
+
+   ========  ==================  ===========
+   Name      Type                Description
+   ========  ==================  ===========
+   function  "linear" or "zoh"   The interpolation function to use
+   period    :class:`Period`     Period to interpolate to
+   start     :class:`DateTime`   Same as the start time in the read interval
+   stop      :class:`DateTime`   Same as the stop time in the read interval
+   ========  ==================  ===========
+
+
 .. only:: dev
-
-  .. todo:: Decide if interpolate/aggregate are ready to be exposed publicly
-
-  .. class:: Interpolate
-
-     **Name:** ``interpolate``
-
-     **Arguments:**
-
-     ========  ==================  ===========
-     Name      Type                Description
-     ========  ==================  ===========
-     function  "linear" or "zoh"   The interpolation function to use
-     period    :class:`Period`     Period to interpolate to
-     start     :class:`DateTime`   Same as the start time in the read interval
-     stop      :class:`DateTime`   Same as the stop time in the read interval
-     ========  ==================  ===========
-
 
   .. class:: Aggregate
 
