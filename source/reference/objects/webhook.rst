@@ -5,6 +5,7 @@ Webhook
 .. class:: Webhook
 
    A webhook is the JSON representation of one of TempoIQ's realtime alerts.
+   You can configure rules to send webhooks as HTTP POSTs to a provided URL.
    Webhooks are the most straightforward way to interact with realtime alerts programmatically.
 
    .. list-table::
