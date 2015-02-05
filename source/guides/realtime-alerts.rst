@@ -10,7 +10,7 @@ Realtime Alerts
 
 This guide shows you how to use TempoIQ's Realtime Alert system to
 actively monitor your device infrastructure. At the moment, The
-TempoiQ Alerting system supports the following alerting criteria:
+TempoIQ Alerting system supports the following alerting criteria:
 
 - Simple threshold *above* a static value
 - Simple threshold *below* a static value
