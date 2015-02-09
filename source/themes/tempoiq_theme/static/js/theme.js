@@ -11,9 +11,10 @@ $( document ).ready(function() {
     });
     $(document).on('click', "[data-toggle='rst-current-version']", function() {
       $("[data-toggle='rst-versions']").toggleClass("shift-up");
-    });  
-    // Make tables responsive
-    //$("table.docutils:not(.field-list)").wrap("<div class='wy-table-responsive'></div>");
+    });
+
+    $(document).on('click', "a[href^='#']", SphinxRtdTheme.scrollToAnchor);
+    SphinxRtdTheme.scrollToAnchor(window.location.hash, false);
 });
 
 window.SphinxRtdTheme = (function (jquery) {
@@ -41,7 +42,27 @@ window.SphinxRtdTheme = (function (jquery) {
             enable : enable
         };
     }());
+
+    var scrollToAnchor = function(href, addToHistory){
+        href = typeof(href) == "string" ? href : jquery(this).attr("href");
+        if(!href) return;
+        var fromTop = 100;
+        var target = jquery(href);
+
+        if(target.length) {
+            var topPos = target.offset().top; 
+            setTimeout(function() {
+                jquery('html, body').scrollTop(topPos - fromTop);
+            }, 2); // Tiny timeout to fire after browser's anchor scroll
+            if(addToHistory && history && "pushState" in history) {
+                history.pushState({}, document.title, window.location.pathname + href);
+                return false;
+            }
+        }
+    }
+
     return {
-        StickyNav : stickyNav
+        StickyNav: stickyNav,
+        scrollToAnchor: scrollToAnchor
     };
 }($));

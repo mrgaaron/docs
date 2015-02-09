@@ -1,26 +1,21 @@
 
 // snippet-begin create-client
     using TempoIQ;
-    var client = new Client(<TEMPO_KEY>, <TEMPO_SECRET>, <TEMPO_HOST>);
+    var client = new Client("my-key", "my-secret", 
+                            "my-company.backend.tempoiq.com");
 
 // snippet-end
 
 // snippet-begin create-device
 
     attributes = new Dictionary<String, String>();
-    attributes.Add("building", "1234");
+    attributes.Add("model", "v1");
 
-    sensor1Attributes = new Dictionary<String, String>();
-    sensor1Attributes.Add("unit", "F");
-
-    sensor2Attributes = new Dictionary<String, String>();
-    sensor2Attributes.Add("unit", "C");
-
-    sensor1 = new Sensor("sensor1", sensor1Attributes);
-    sensor2 = new Sensor("sensor2", sensor1Attributes);
+    sensor1 = new Sensor("temperature");
+    sensor2 = new Sensor("humidity");
     sensors = new List<Sensor> {sensor1, sensor2};
 
-    device = new Device("key1234", "My Awesome Device", attributes, sensors)
+    device = new Device("thermostat.0", "", attributes, sensors)
 
     client.CreateDevice(device);
 // snippet-end
