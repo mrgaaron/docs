@@ -4,8 +4,10 @@ Realtime Alerts
 
 .. note::
    Realtime alerting features are in Early Access and are not yet available
-   to all customers. If you're interested in joining the Early Access 
-   program, please `contact us <https://www.tempoiq.com/contact/>`_.
+   to all customers. You can read more about the Early Access program 
+   `here <https://blog.tempoiq.com/introducing-the-tempoiq-early-access-program>`_.
+   If you're interested in joining the Early Access program, please 
+   `contact us <https://www.tempoiq.com/contact/>`_.
 
 
 This guide shows you how to use TempoIQ's Realtime Alert system to
