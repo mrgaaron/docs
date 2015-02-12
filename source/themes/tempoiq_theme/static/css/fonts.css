@@ -54,6 +54,17 @@
 }
 
 @font-face {
+    font-family: 'GothamHTF-Light';
+    src: url('../fonts/gotham/htf/GothamHTF-Light.eot');
+    src: local('☺'),
+         url('../fonts/gotham/htf/GothamHTF-Light.woff') format('woff'),
+         url('../fonts/gotham/htf/GothamHTF-Light.ttf') format('truetype'),
+         url('../fonts/gotham/htf/GothamHTF-Light.svg') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
     font-family: 'GothamHTF-LightCondensed';
     src: url('../fonts/gotham/htf/GothamHTF-LightCondensed.eot');
     src: local('☺'),
