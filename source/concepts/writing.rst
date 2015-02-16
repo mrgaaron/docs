@@ -24,6 +24,13 @@ Write requests are simply lists of data points to write to one or more sensors.
 Some libraries may implement convenience methods for special cases, such as
 writing values for many sensors at the same timestamp.
 
+Upserting Data
+--------------
+
+TempoIQ allows you to write data to devices without explicitly
+creating them. When you write, any devices and sensors that don't
+exist will be created with empty attributes, and the datapoints will
+be processed like a normal write.
 
 Properties of sensor data
 -------------------------
