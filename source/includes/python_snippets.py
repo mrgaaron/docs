@@ -44,6 +44,8 @@
         print("Error writing data!")
 # snippet-end
 # snippet-begin get-devices
+    from tempoiq.protocol.device import Device
+    from tempoiq.protocol.sensor import Sensor
     from tempoiq.protocol.query.selection import and_, or_
 
     regions = or_([Device.attributes["region"] == "south",
@@ -58,6 +60,8 @@
 # snippet-end
 
 # snippet-begin update-device
+from tempoiq.protocol.device import Device
+
 result = client.query(Device).filter(Device.key == "thermostat.4").read()
 device = result.data.next()
 
@@ -69,10 +73,13 @@ client.update_device(device)
 # snippet-end
 
 # snippet-begin delete-devices
+from tempoiq.protocol.device import Device
 result = client.query(Device).filter(Device.key == "thermostat.5").delete()
 # snippet-ignore TODO: show how to access # of deleted devices
 # snippet-end
 # snippet-begin delete-data
+from tempoiq.protocol.sensor import Sensor
+
 start = datetime.datetime(2015, 1, 5, 0, 0)
 end = datetime.datetime(2015, 1, 5, 1, 0)
 
@@ -81,6 +88,8 @@ response = client.query(Sensor).filter(Device.key == "thermostat.1") \
                                .delete(start, end)
 # snippet-end
 # snippet-begin single-point
+    from tempoiq.protocol.device import Device
+    from tempoiq.protocol.sensor import Sensor
 
     result = client.query(Sensor) \
                    .filter(Device.key == "device1") \
@@ -99,6 +108,8 @@ response = client.query(Sensor).filter(Device.key == "thermostat.1") \
 
 # snippet-end
 # snippet-begin bind-single-stream
+    from tempoiq.protocol.device import Device
+    from tempoiq.protocol.sensor import Sensor
 
     result = client.query(Sensor) \
                    .filter(Device.key == "device1") \
@@ -115,6 +126,8 @@ response = client.query(Sensor).filter(Device.key == "thermostat.1") \
 # snippet-end
 
 # snippet-begin read-data-one-device
+    from tempoiq.protocol.device import Device
+    from tempoiq.protocol.sensor import Sensor
 
     result = client.query(Sensor) \
                    .filter(Device.key == "thermostat.0") \
@@ -127,6 +140,8 @@ response = client.query(Sensor).filter(Device.key == "thermostat.1") \
 # snippet-end
 
 # snippet-begin read-data-streams
+    from tempoiq.protocol.device import Device
+    from tempoiq.protocol.sensor import Sensor
 
     result = client.query(Sensor) \
                    .filter(Device.key == "device1") \
@@ -141,6 +156,7 @@ response = client.query(Sensor).filter(Device.key == "thermostat.1") \
 
 # snippet-end
 # snippet-begin device-ordering
+    from tempoiq.protocol.device import Device
 
     #query by device key, descending order
     result = client.query(Device).order_by('key', 'desc').read()
@@ -155,6 +171,7 @@ response = client.query(Sensor).filter(Device.key == "thermostat.1") \
 
 # snippet-begin pipeline
 # Specify pipeline functions fluently in the QueryBuilder
+from tempoiq.protocol.sensor import Sensor
 result = client.query(Sensor).filter(filter) \
                              .rollup("max", "1hour") \
                              .read(start=start, end=end)
