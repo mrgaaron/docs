@@ -67,9 +67,6 @@ Update device
    key with this method. Calling updateDevice with a key that does not already
    exist in TempoIQ results in an error.
 
-   A device's sensor configuration is currently also immutable.
-
-
    .. snippet-display:: update-device
 
 
