@@ -17,9 +17,9 @@ Webhook
       * - trigger
         - :class:`Trigger`
         - details on the rule's trigger; why it entered or exited an alert state
-      * - edge
+      * - transition_to
         - String
-        - Whether the rule is beginning to alert (rising) or returning to a normal state (falling)
+        - Whether the rule is beginning to alert (warning) or returning to a normal state (ok)
       * - instigator
         - :class:`Instigator`
         - The `DataPoint` which triggered the webhook, alongside its device and sensor keys
@@ -88,9 +88,10 @@ Alert from a rule detecting negative voltage from a turbine::
         "device": "turbine.1",
         "sensor": "voltage"
       },
-      "edge": "rising",
+      "transition_to": "warning",
       "rule_name": "negative_voltage",
-      "rule_key": "f05ab8db6cd240579b22543c6c0f06c7"
-      "rule_address": "https://developers.tempoiq.com/monitoring/rule/f05ab8db6cd240579b22543c6c0f06c7/"
+      "rule_key": "f05ab8db6cd240579b22543c6c0f06c7",
+      "rule_address": "https://developers.tempoiq.com/monitoring/rule/f05ab8db6cd240579b22543c6c0f06c7/",
+      "alert_address": "https://developers.tempoiq.com/monitoring/rule/f05ab8db6cd240579b22543c6c0f06c7/alerts/23"
     }
 
