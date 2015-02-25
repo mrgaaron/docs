@@ -34,7 +34,7 @@ methods for receiving alerts:
 For each notification method, you can expect to receive two event
 types:
 
-1. *ALERT*: Sent when a datapoint from a sensor meets the criteria of
+1. *WARNING*: Sent when a datapoint from a sensor meets the criteria of
    the rule. 
 2. *OK*: Sent when a datapoint from a sensor recovers to within the
    rule's criteria.
