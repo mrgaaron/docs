@@ -96,7 +96,6 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
         {% block sidebartitle %}
-          <a href="{{ pathto(master_doc) }}" class="side-header"> {{ project }}</a>
         {% endblock %}
         {% set toctree = toctree(maxdepth=3, collapse=False, includehidden=True) %}
         {% if toctree %}
@@ -114,7 +113,6 @@
       {# MOBILE NAV, TRIGGLES SIDE NAV ON TOGGLE #}
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
         <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="{{ pathto(master_doc) }}">{{ project }}</a>
       </nav>
 
 

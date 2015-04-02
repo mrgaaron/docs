@@ -96,7 +96,7 @@ templates_path = ['_templates']
 source_suffix = '.rst'
 
 # The master toctree document.
-master_doc = 'index'
+master_doc = 'toc-main'
 
 # A list of (type, target) tuples (by default empty) that should be ignored
 # when generating warnings in “nitpicky mode”
