@@ -2,39 +2,41 @@
 Getting Started
 ===============
 
-TempoIQ is a cloud service for monitoring, storing, and analyzing sensor data. 
+TempoIQ is a cloud service for monitoring, storing, and analyzing sensor data.
 
-Some key features of TempoIQ include:
-
-* HTTPS API for writing and reading data
-* Realtime alerting
-* Built-in concept of devices and sensors
+Connect your devices and sensors, and stream in data in realtime.  TempoIQ 
+watches all incoming data for anomalies and sends you push alerts (webhook, 
+email, etc) right when something happens.  We also store all of your sensor 
+data, and provide flexible APIs to look back and do analyses like summaries, 
+rollups, aggregations, and interpolations.
 
 
 Organizing your data
 --------------------
 
-TempoIQ is purpose-built for sensor data. What is sensor data? Typically it:
+You’ve got devices and sensors connected all over the world, measuring things and generating time series data non-stop.  TempoIQ helps you organize your raw data by tagging your devices and sensors.
 
-* Comes from a device that may be measuring several related types of data
-* Is a physical measurement that varies over time
-* Is reported periodically (e.g. once a minute)
-* Has context that does not change, such as a building ID or unit of measurement
-
-In TempoIQ, this data is organized into sensors, where each sensor belongs to a 
-device:
+It’s really easy: each sensor stores a time series of numeric values.  Group sensors together in a device.
 
 .. image:: /images/device_model.png
-
-Each sensor stores a sequence of numeric values and the timestamps corresponding to each
-value. TempoIQ can then process this data in a variety of ways.
 
 Some examples of devices and sensors you might have in your application:
 
 * Thermostat -> (Temperature, Humidity)
 * Solar Inverter -> (DC Power, AC Power, Voltage, Current)
 
-Your raw sensor data might not have an obvious mapping to this model. See our 
+After you’ve grouped your sensors into devices, you can further organize your 
+devices and sensors by tagging them with attributes (key/value pairs).  You 
+could add a tag to a device like, “location=home”, or you could add a tag to 
+a sensor like “unit=celsius”.
+
+Tags are very flexible, and you can create hierarchies between devices or 
+arbitrary grouping.  This becomes very powerful when running queries later.
+You could ask a question like, “give me the max temperature in location=home
+on an hourly basis for the last week”
+
+Your raw data might not have an obvious mapping to this model. Don’t worry, 
+tagging is quite flexible and we’re here to help. See our 
 `data organization guide` for a deeper look at how to organize your sensor data.
 
 
@@ -61,31 +63,26 @@ Then, use the client object to create the device:
 
 .. snippet-display:: create-device
 
-In addition to a unique key and human-readable name, devices and sensors can have 
-attributes. You can use attributes to define properties of devices or sensors, such
-as a location, user ID, or measurement unit. Attributes are covered in more detail
-in the `data organization guide`.
-
 
 Data collection
 ---------------
 
 .. image:: /images/datapoint_model.png
 
-Sensor data is a sequence of numeric values over time. 
-TempoIQ's data collection APIs enable you to stream or batch write this sensor data. 
+Sensor data is a time series of numeric values.
+Our data collection APIs enable you to stream or batch write this sensor data. 
 Then you can visualize, analyze, or transform the data in TempoIQ.
 
 If your devices have direct access to the internet, they can 
 write their data directly to TempoIQ, or you can use a gateway or cloud server
 to aggregate and write the data. Either way, the APIs are very flexible, and can 
-handle data being written in realtime, or in batches.
+handle data being written in realtime or in batches.
 
 
 Example
 ~~~~~~~
 
-In the example above, you created a device 'thermostat.6' which has two sensors,
+In the example above, you created a device 'thermostat.1' which has two sensors,
 'temperature' and 'humidity'. Now try writing some data points to these sensors.
 Each point consists of a timestamp and a value. It's possible to write multiple
 data points to one or more sensors in a single API call:
