@@ -70,11 +70,11 @@ in the `data organization guide`.
 Data collection
 ---------------
 
-<Image goes here?>
+.. image:: /images/datapoint_model.png
 
-TempoIQ's data collection APIs let you write your sensor data according to the structure
-defined above. Sensor data is a sequence of numeric values over time. This data can 
-then be visualized, analyzed, or transformed in TempoIQ.
+Sensor data is a sequence of numeric values over time. 
+TempoIQ's data collection APIs enable you to stream or batch write this sensor data. 
+Then you can visualize, analyze, or transform the data in TempoIQ.
 
 If your devices have direct access to the internet, they can 
 write their data directly to TempoIQ, or you can use a gateway or cloud server
