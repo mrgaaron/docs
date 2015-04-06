@@ -63,20 +63,23 @@ Then, use the client object to create the device:
 
 .. snippet-display:: create-device
 
+*Note:* TempoIQ will automatically create devices and sensors as you write data, 
+but it's still helpful to know how to explicitly create devices.
+
 
 Data collection
 ---------------
 
 .. image:: /images/datapoint_model.png
 
-Sensor data is a time series of numeric values.
+Each sensor has associated data in the form of a time series of 
+numeric values.
 Our data collection APIs enable you to stream or batch write this sensor data. 
 Then you can visualize, analyze, or transform the data in TempoIQ.
 
 If your devices have direct access to the internet, they can 
 write their data directly to TempoIQ, or you can use a gateway or cloud server
-to aggregate and write the data. Either way, the APIs are very flexible, and can 
-handle data being written in realtime or in batches.
+to aggregate and write the data.
 
 
 Example
@@ -85,7 +88,7 @@ Example
 In the example above, you created a device 'thermostat.1' which has two sensors,
 'temperature' and 'humidity'. Now try writing some data points to these sensors.
 Each point consists of a timestamp and a value. It's possible to write multiple
-data points to one or more sensors in a single API call:
+data points to one or more sensors or devices in a single API call:
 
 .. snippet-display:: write-data
 
@@ -97,9 +100,35 @@ computer's microphone. Check out the demo `here`.
 Building your app
 -----------------
 
-Todo
+.. image:: /images/apps_diagram.png
+
+Regardless of whether your app needs to analyze, alert on, or visualize your 
+sensor data, TempoIQ can help. The *Applications* section goes into much more
+detail, but to start, let's retreive the last hour of data from one
+device to be graphed in your application.
+
+Example
+~~~~~~~
+
+Read the last hour of data from the "thermostat.0" device. In the web UI,
+Open the `Data Visualization app <https://app.tempoiq.com/analytics/>`_.
+Select the device with key "thermostat.0":
+
+.. image:: /images/viz_select.png
+
+Specify a time range of the last hour, and click save to run the query:
+
+.. image:: /images/viz_result.png
+
+You will see the data points for the selected sensors plotted on the graph. Cool!
+
+Our libraries provide an analagous interface for reading historical data. The
+result is a list of points, which you can 
+then visualize with a graphing library of your choice:
 
 .. snippet-display:: read-data-one-device
+
+
 
 
 Next steps
