@@ -67,7 +67,9 @@ snippet_language_list = [
     {
         'key': 'java',
         'name': 'Java',
-        'local_file': 'includes/java_snippets.java',
+        'gh_repository': 'TempoIQ/tempoiq-java',
+        'gh_branch': 'master',
+        'gh_path': 'src/integration-test/java/com/tempoiq/Snippets.java',
         'line_comment': '//'
     },
     {
