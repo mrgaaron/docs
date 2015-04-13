@@ -1,8 +1,34 @@
-Writing Data
-============
+Collect your Data
+===================
 
-Description
------------
+.. contents::
+   :local:
+   :depth: 1
+
+.. image:: /images/datapoint_model.png
+
+Every sensor stores its data as a time series of data points. A data point consists
+of a timestamp and a value. To write a single data point, specify the sensor to
+write to (device key+sensor key), and the data point to write. 
+
+Write requests are simply lists of data points to write to one or more sensors.
+Some libraries may implement convenience methods for special cases, such as
+writing values for many sensors at the same timestamp.
+
+
+Properties of sensor data
+-------------------------
+
+TempoIQ's write APIs are designed to be as flexible and easy-to-use as possible.
+A few notes to help you make the most of them:
+
+* A sensor can only have one value for a given timestamp. If you write a data
+  point for the same timestamp as an existing point, the new value will overwrite
+  the old one.
+* A sensor's data points are allowed to be written out of order.
+
+Writing data
+------------
 
 .. method:: writeData(data)
 
@@ -22,16 +48,16 @@ can often simplify your application's write logic, because there's
 no risk of data corruption if you happen to write data multiple times.
 
 Example
--------
+~~~~~~~
 
 .. snippet-display:: write-data
 
 
 Errors
-------
+~~~~~~
 
-If you attempt to write to a sensor or device that does not exist, or
-specify an invalid DataPoint format, a MultiStatus will be returned
+If you attempt to write an invalid DataPoint, for instance, not sending
+a number as the value, a MultiStatus will be returned
 indicating which Devices succeeded and which failed in writing.
 
 

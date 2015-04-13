@@ -3,8 +3,9 @@
    :hidden:
 
    /index
-   /guides/index
-   /concepts/index
-   /reference/index
+   /concepts/organize
+   /concepts/collect
+   /concepts/build
    /sdk/index
+   /reference/index
    /faqs

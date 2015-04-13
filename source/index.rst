@@ -2,6 +2,15 @@
 Getting Started
 ===============
 
+.. contents::
+   :local:
+   :depth: 1
+
+
+.. only:: dev
+
+   **DEVELOPMENT BUILD** - :doc:`todos`
+
 TempoIQ is a cloud service for monitoring, storing, and analyzing sensor data.
 
 Connect your devices and sensors, and stream in data in realtime.  TempoIQ 
@@ -14,7 +23,8 @@ rollups, aggregations, and interpolations.
 Organizing your data
 --------------------
 
-You’ve got devices and sensors connected all over the world, measuring things and generating time series data non-stop.  TempoIQ helps you organize your raw data by tagging your devices and sensors.
+You’ve got devices and sensors connected all over the world, measuring things and 
+generating time series data non-stop.  TempoIQ helps you organize your raw data by tagging your devices and sensors.
 
 It’s really easy: each sensor stores a time series of numeric values.  Group sensors together in a device.
 
@@ -22,8 +32,13 @@ It’s really easy: each sensor stores a time series of numeric values.  Group s
 
 Some examples of devices and sensors you might have in your application:
 
-* Thermostat -> (Temperature, Humidity)
-* Solar Inverter -> (DC Power, AC Power, Voltage, Current)
+* Device: Thermostat 
+  
+  * Sensors: Temperature, Humidity
+
+* Device: Solar Inverter
+
+  * Sensors: DC Power, AC Power, Voltage, Current
 
 After you’ve grouped your sensors into devices, you can further organize your 
 devices and sensors by tagging them with attributes (key/value pairs).  You 
@@ -36,8 +51,8 @@ You could ask a question like, “give me the max temperature in location=home
 on an hourly basis for the last week”
 
 Your raw data might not have an obvious mapping to this model. Don’t worry, 
-tagging is quite flexible and we’re here to help. See our 
-`data organization guide` for a deeper look at how to organize your sensor data.
+tagging is quite flexible and we’re here to help. See the :doc:`/concepts/organize` 
+page for a deeper look at how to organize your sensor data.
 
 
 Example
@@ -55,7 +70,9 @@ You can create a device via the `web UI <https://developers.tempoiq.com/devices/
 Or through the API using one of our libraries.
 First you will need to instantiate a client object with
 your host, key, and secret, which can be found on the 
-`management console <https://developers.tempoiq.com/console/>`_:
+`management console <https://developers.tempoiq.com/console/>`_. You
+can also use our HTTP API directly with ``curl`` or from any language
+which supports HTTPS requests. 
 
 .. snippet-display:: create-client
 
@@ -94,7 +111,7 @@ data points to one or more sensors or devices in a single API call:
 
 Currently, it's not possible to write arbitrary sensor data via the web UI. 
 However, we do have a demo where TempoIQ can collect volume data from your 
-computer's microphone. Check out the demo `here`.
+computer's microphone. Check out the demo `here <https://app.tempoiq.com/quickstart/mic-check/>`_.
 
 
 Building your app
@@ -129,24 +146,12 @@ then visualize with a graphing library of your choice:
 .. snippet-display:: read-data-one-device
 
 
-
-
 Next steps
 ----------
 
-This guide just scratches the surface of TempoIQ's capabilities. From here,
-you can learn more about the :doc:`data model </concepts/data-model>` or the
-:doc:`analytics pipeline </concepts/pipeline>`. To dive into the details
-of the API, check out the :doc:`API reference </reference/index>`.
+This guide just scratches the surface of TempoIQ's capabilities. Read on
+to learn more about :doc:`Organizing your Sensors </concepts/organize>`,
+:doc:`Collecting your Data </concepts/collect>`, and 
+:doc:`Building your App </concepts/build>`.
 
-Harness the power of TempoIQ in your application in a few easy steps:
-
-1. :doc:`Model your devices and sensors </concepts/data-model>`
-2. :doc:`Write sensor data </concepts/writing>`
-3. :doc:`Analyze the data </concepts/reading>`
-
-
-.. only:: dev
-
-   :doc:`todos`
 
