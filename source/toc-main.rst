@@ -1,5 +1,4 @@
 .. toctree::
-   :titlesonly:
    :hidden:
 
    /index
