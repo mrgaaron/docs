@@ -45,13 +45,13 @@ devices and sensors by tagging them with attributes (key/value pairs).  You
 could add a tag to a device like, “location=home”, or you could add a tag to 
 a sensor like “unit=celsius”.
 
-Tags are very flexible, and you can create hierarchies between devices or 
+Attributes are very flexible, and you can create hierarchies between devices or 
 arbitrary grouping.  This becomes very powerful when running queries later.
 You could ask a question like, “give me the max temperature in location=home
 on an hourly basis for the last week”
 
 Your raw data might not have an obvious mapping to this model. Don’t worry, 
-tagging is quite flexible and we’re here to help. See the :doc:`/concepts/organize` 
+we’re here to help. See the :doc:`/organize` 
 page for a deeper look at how to organize your sensor data.
 
 
@@ -60,9 +60,11 @@ Example
 
 For your first device, create a thermostat with two sensors: temperature and humidity.
 If you haven't done so already, 
-`create a free trial account <https://developers.tempoiq.com/accounts/trial/>`_.
+`create a free trial account <https://app.tempoiq.com/accounts/trial/>`_.
 
-You can create a device via the `web UI <https://developers.tempoiq.com/devices/create/>`_:
+Like most TempoIQ functions, you can create a device via the 
+`web UI <https://app.tempoiq.com/devices/create/>`_ or the API.
+From the main console, go to *Device List* -> *Create Device*:
 
 .. image:: /images/create_device.png
    :scale: 50%
@@ -70,7 +72,7 @@ You can create a device via the `web UI <https://developers.tempoiq.com/devices/
 Or through the API using one of our libraries.
 First you will need to instantiate a client object with
 your host, key, and secret, which can be found on the 
-`management console <https://developers.tempoiq.com/console/>`_. You
+`management console <https://app.tempoiq.com/console/>`_. You
 can also use our HTTP API directly with ``curl`` or from any language
 which supports HTTPS requests. 
 
@@ -150,8 +152,8 @@ Next steps
 ----------
 
 This guide just scratches the surface of TempoIQ's capabilities. Read on
-to learn more about :doc:`Organizing your Sensors </concepts/organize>`,
-:doc:`Collecting your Data </concepts/collect>`, and 
-:doc:`Building your App </concepts/build>`.
+to learn more about :doc:`Organizing your Sensors </organize>`,
+:doc:`Collecting your Data </collect>`, and 
+:doc:`Building your App </build>`.
 
 

@@ -5,9 +5,7 @@ Credentials
 
 In order to send read or write requests to your TempoIQ backend, you must
 supply a valid set of Credentials. A backend can have multiple credentials
-with different permissions, for example, read-only or write-only. For
-more information on issuing credentials, see the :doc:`Administration Guide
-</guides/administration>`.
+with different permissions, for example, read-only or write-only.
 
 In the HTTP API, supply your credentials in each request via HTTP
 Basic Authentication.
