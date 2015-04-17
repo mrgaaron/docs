@@ -29,6 +29,10 @@ allow you to add additional metadata to a device, and construct powerful
 analytics queries by analyzing many devices at once. Examples of possible
 attributes include user ID, geographic region, and device model number.
 
+Finally, a device can optionally have a human-readable name. The name is not
+used internally in TempoIQ, but you can use it in your application for
+user-facing displays.
+
 
 Sensors
 ~~~~~~~
@@ -37,8 +41,8 @@ A :class:`Sensor` corresponds to a single measurement coming from a specific dev
 For example: internal temperature, DC voltage, or wind speed.
 
 A sensor is required to have a key unique within its device. Sensors
-are referenced by the combination of device key and sensor key. There
-is no concept of a sensor that is not associated with a device.
+are referenced by the combination of device key and sensor key. It's 
+not possible to have a sensor that is not associated with a device.
 
 In addition to a key, you can define additional attributes on a sensor.
 Sensor attributes should describe the specific sensor, rather than the
@@ -65,7 +69,7 @@ have two or three sensors, depending on if ``temp2`` is configured.
 Here's one way a thermostat device, sensors, and attributes could be modeled in
 TempoIQ:
 
-**Diagram goes here**
+.. image:: /images/device-attributes.png
 
 Create device
 -------------

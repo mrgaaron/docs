@@ -133,6 +133,7 @@ body.wy-body-for-nav {
 
 .rst-content img {
     display: block;
+    margin-bottom: 24px;
     margin-left: auto;
     margin-right: auto;
 }

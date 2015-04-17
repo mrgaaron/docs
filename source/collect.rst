@@ -26,6 +26,9 @@ A few notes to help you make the most of them:
   point for the same timestamp as an existing point, the new value will overwrite
   the old one.
 * A sensor's data points are allowed to be written out of order.
+* If you write data to a device or sensor that doesn't exist, TempoIQ will
+  automatically create it for you.
+
 
 Writing data
 ------------
@@ -36,14 +39,17 @@ Writing data
 
    :arg WriteRequest data: Data points to write
 
-   :returns: Nothing
+   :returns: :class:`WriteResponse`
 
-Writes data points to one or more devices and sensors.
+Writes data points to one or more devices and sensors. If the device or sensor
+doesn't already exist, it will automatically be created for you. The 
+:class:`WriteResponse` will indicate if a device was created or modified
+as a result of the request.
 
 If a sensor already has a DataPoint at a given timestamp, writing a new
 DataPoint with the same timestamp overwrites the old DataPoint's
-value. This means that writes are idempotent, in other words, repeatedly
-writing the same data to a sensor does not change what's stored. This
+value. This means that writing the same data to a sensor multiple times
+does not change what's stored. This characteristic
 can often simplify your application's write logic, because there's
 no risk of data corruption if you happen to write data multiple times.
 
@@ -57,8 +63,8 @@ Errors
 ~~~~~~
 
 If you attempt to write an invalid DataPoint, for instance, not sending
-a number as the value, a MultiStatus will be returned
-indicating which Devices succeeded and which failed in writing.
+a number as the value, the WriteResponse will indicate which devices 
+failed writing.
 
 
 Deleting data

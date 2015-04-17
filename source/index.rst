@@ -58,9 +58,13 @@ page for a deeper look at how to organize your sensor data.
 Example
 ~~~~~~~
 
-For your first device, create a thermostat with two sensors: temperature and humidity.
 If you haven't done so already, 
 `create a free trial account <https://app.tempoiq.com/accounts/trial/>`_.
+
+For your first device, create a thermostat device with two sensors: 
+temperature and humidity. The device key is the main identifier for
+the device. It can be anything you'd like, as long as it's unique. Sensor
+keys just need to be unique within their device.
 
 Like most TempoIQ functions, you can create a device via the 
 `web UI <https://app.tempoiq.com/devices/create/>`_ or the API.
@@ -69,9 +73,10 @@ From the main console, go to *Device List* -> *Create Device*:
 .. image:: /images/create_device.png
    :scale: 50%
 
-Or through the API using one of our libraries.
+To create a device through the API, start by 
+:doc:`downloading one of our SDKs </sdk/index>`.
 First you will need to instantiate a client object with
-your host, key, and secret, which can be found on the 
+your individual *host*, *key*, and *secret*. These can be found on the 
 `management console <https://app.tempoiq.com/console/>`_. You
 can also use our HTTP API directly with ``curl`` or from any language
 which supports HTTPS requests. 
