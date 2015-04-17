@@ -1,9 +1,10 @@
 .. toctree::
-   :titlesonly:
    :hidden:
 
-   /guides/index
-   /concepts/index
-   /reference/index
+   /index
+   /organize
+   /collect
+   /build
    /sdk/index
+   /reference/index
    /faqs

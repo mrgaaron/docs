@@ -7,19 +7,23 @@ languages and frameworks. All libraries are released under the MIT
 license.
 
 .. list-table::
+   :header-rows: 1
 
-   * - **Java**
+   * - Language/Framework
+     - Install command
+     - Package Respository
+   * - `Java <https://github.com/TempoIQ/tempoiq-java>`__
+     - Depends on build tool
      - `Maven Central <https://search.maven.org/#search%7Cga%7C1%7Ca%3A%22tempoiq-java%22>`__
-     - `GitHub <https://github.com/TempoIQ/tempoiq-java>`__
-   * - **.NET/C#**
+   * - `.NET/C# <https://github.com/TempoIQ/tempoiq-net>`__
+     - PM> ``Install-Package TempoIQ``
      - `NuGet <https://www.nuget.org/packages/TempoIQ/>`__
-     - `GitHub <https://github.com/TempoIQ/tempoiq-net>`__
-   * - **Node.JS**
+   * - `Node.JS <https://github.com/TempoIQ/tempoiq-node-js>`__
+     - ``npm install tempoiq``
      - `NPM <https://www.npmjs.com/package/tempoiq>`__
-     - `GitHub <https://github.com/TempoIQ/tempoiq-node-js>`__
-   * - **Python**
+   * - `Python <https://github.com/TempoIQ/tempoiq-python>`__
+     - ``pip install tempoiq``
      - `PyPI <https://pypi.python.org/pypi/tempoiq/>`__
-     - `GitHub <https://github.com/TempoIQ/tempoiq-python>`__
-   * - **Ruby**
+   * - `Ruby <https://github.com/TempoIQ/tempoiq-ruby>`__
+     - ``gem install tempoiq``
      - `RubyGems <https://rubygems.org/gems/tempoiq>`__
-     - `GitHub <https://github.com/TempoIQ/tempoiq-ruby>`__

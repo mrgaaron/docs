@@ -1,8 +1,8 @@
-API Reference
-=============
+Domain Object Reference
+=======================
 
 .. toctree::
-   :maxdepth: 2
+   :glob:
+   :titlesonly:
 
-   methods/index
-   objects/index
+   *

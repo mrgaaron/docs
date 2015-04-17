@@ -1,3 +1,5 @@
+:orphan:
+
 ===============
 Realtime Alerts
 ===============
@@ -39,7 +41,8 @@ types:
 2. *OK*: Sent when a datapoint from a sensor recovers to within the
    rule's criteria.
 
-For information regarding webhooks, see the :doc:`reference documentation for webhooks </reference/objects/webhook>`.
+.. comment
+   For information regarding webhooks, see the :doc:`reference documentation for webhooks </reference/objects/webhook>`.
 
 Prototyping With Webhooks
 -------------------------
