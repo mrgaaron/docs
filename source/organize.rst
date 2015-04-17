@@ -69,7 +69,7 @@ have two or three sensors, depending on if ``temp2`` is configured.
 Here's one way a thermostat device, sensors, and attributes could be modeled in
 TempoIQ:
 
-.. image:: /images/device-attributes.png
+.. image:: /images/device_attributes.png
 
 Create device
 -------------
