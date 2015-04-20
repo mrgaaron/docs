@@ -34,7 +34,8 @@ if not tags.has('dev'):
 extensions = [
     'sphinx.ext.todo',
     'tempoiq_sphinx',
-    'snippets'
+    'snippets',
+    'redirect'
 ]
 
 
