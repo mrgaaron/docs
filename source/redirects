@@ -1,1 +1,11 @@
+concepts/index.rst ../index.rst
+concepts/data-model.rst ../organize.rst
+concepts/pipeline.rst ../build.rst
+concepts/reading.rst ../build.rst
+concepts/writing.rst ../collect.rst
+guides/index.rst ../index.rst
 guides/getting-started.rst ../index.rst
+reference/methods/device-sensor-crud.rst ../../organize.rst
+reference/methods/index.rst ../../index.rst
+reference/methods/read.rst ../../build.rst
+reference/methods/write.rst ../../collect.rst

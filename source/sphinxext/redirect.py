@@ -4,8 +4,8 @@
 # redirection pages for changed filenames.
 #
 # Redirect file should contain one redirect per line, where each line
-# is the from and to path separated by a space. Both paths should be
-# relative to the directory that the redirect file is in.
+# has the from and to paths separated by a space. The from path is relative
+# to the redirect file, and the to path is relative to the from file.
 #
 # From:
 # https://github.com/openstack/nova-specs/blob/master/doc/source/redirect.py
