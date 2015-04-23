@@ -27,3 +27,6 @@ license.
    * - `Ruby <https://github.com/TempoIQ/tempoiq-ruby>`__
      - ``gem install tempoiq``
      - `RubyGems <https://rubygems.org/gems/tempoiq>`__
+
+We also maintain a `tempoiq-tools <https://github.com/TempoIQ/tempoiq-tools>`__
+repository with a collection of tools for importing, exporting, etc.
