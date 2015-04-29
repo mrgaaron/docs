@@ -50,8 +50,8 @@ window.SphinxRtdTheme = (function (jquery) {
         var target = jquery(href);
 
         if(target.length) {
-            var topPos = target.offset().top; 
             setTimeout(function() {
+                var topPos = target.offset().top;
                 jquery('html, body').scrollTop(topPos - fromTop);
             }, 2); // Tiny timeout to fire after browser's anchor scroll
             if(addToHistory && history && "pushState" in history) {
