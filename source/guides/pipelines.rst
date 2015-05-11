@@ -13,8 +13,8 @@ to be among the first to try it.
 Pipelines enable you to analyze and visualize your sensor data in realtime.
 The process is simple:
 
-1. Define a pipeline to calculate a metric based on your sensor data, such as
-   average temperature in a building or total energy generated today.
+1. Define a pipeline to calculate a streaming metric based on your live sensor data, 
+   such as average temperature in a building or total energy generated today.
 2. Get push updates in a graph or via an API as your devices
    write new data. That's it!
 
@@ -24,7 +24,7 @@ basic components of the Pipelines system: events, analytics, and publishers.
 Events
 ------
 
-You send data to the RealTime system as a sequence of events. An event is
+You send data to the Pipelines system as a sequence of events. An event is
 a JSON object, which can contain any number of attributes containing measurements, 
 metadata, or nested objects.
 
