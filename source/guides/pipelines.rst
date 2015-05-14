@@ -38,7 +38,7 @@ For example:
      "userInfo": {
        "id": 1423,
        "region": "south"
-     }
+     },
      "currentTemp": 71.0,
      "currentHumidity": 65.0
    }
