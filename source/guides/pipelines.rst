@@ -4,13 +4,13 @@
 TempoIQ Pipelines
 ================
 
-.. contents::
-   :local:
-
 *Pipelines* is a new service from TempoIQ, and we are inviting you
 to be among the first to try it.
 
 Pipelines enable you to analyze and visualize your sensor data in realtime.
+
+.. image:: /images/pipelines.png
+
 The process is simple:
 
 1. Define a pipeline to calculate a streaming metric based on your live sensor data, 
