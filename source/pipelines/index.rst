@@ -4,6 +4,7 @@
 TempoIQ Pipelines
 ================
 
+
 *Pipelines* is a new service from TempoIQ, and we are inviting you
 to be among the first to try it.
 
@@ -102,7 +103,7 @@ A solar company collects data from its inverters and sends it to TempoIQ in the 
 .. code::
 
    {
-     "__timestamp": "2015-04-29T13:01:00Z",  // Optional
+     "_$_ts": "2015-04-29T13:01:00Z",  // Optional
      "inverter_id": "asdf12345", 
      "installation": "3425",
      "measurements": {
@@ -136,3 +137,11 @@ A feed showing an installation's total energy production for the day. Given an
 installation ID, sums all *energy* values from events today from that installation. 
 This will continuously increase throughout the day and reset at midnight.
 
+
+Next steps
+----------
+
+.. toctree::
+   :titlesonly:
+
+   getting-started
