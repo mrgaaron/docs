@@ -22,6 +22,15 @@ which includes a *Group By* field and a *Value* field, as well as some additiona
 information such as aggregation function. These two fields are important, as they
 are how we know which data in the events we are using in the computation.
 
+Domains
+~~~~~~~
+
+To use your pipelines environment, you'll get two domains to work with. Both are formed by
+adding a prefix to your environment name.
+
+* Ingest (where you write data): ``ingest-$ENVIRONMENT.tempoiq.com``
+* Web (where you go to view the graphs): ``app-$ENVIRONMENT.tempoiq.com``
+
 
 Writing Events
 --------------
@@ -65,11 +74,19 @@ to be handled correctly. For example::
       "power": 1241.0
     }
 
-Events are automatically timestamped when the ingest server receives them. If 
+Events are automatically timestamped when we receive them. If 
 you wish to override the generated timestamp, you can provide an 
-ISO 8601-formatted time in a top-level field called ``_$_ts``. Depending on your pipeline
-configuration, events may not be processed if they have timestamps too far in the past or
-future.
+`ISO 8601 <http://en.wikipedia.org/wiki/ISO_8601>`_-formatted time in a 
+field called ``_$_ts``::
+
+    {
+      "_$_ts": "2015-06-01T12:05:00Z",
+      "meter_id": "house1",
+      "power": 1241.0
+    }
+
+Depending on your pipeline configuration, events may not be processed if they 
+have timestamps too far in the past or future.
 
 Output Graph
 ------------
@@ -79,7 +96,7 @@ the graph is:
 
 .. code-block:: none
 
-    http://app-$ENVIRONMENT.tempoiq.com/index.html?groupBy=<groupingfield>&valueField=<valfield>&<groupingfield>=<group>
+    http://app-$ENVIRONMENT.tempoiq.com/index.html?groupBy=$GROUPFIELD&valueField=$VALUEFIELD&$GROUPFIELD=$GROUPVAL
 
 This is best illustrated with the example above. If we want to view the graph of max power for
 *house1*, the URL would be:
