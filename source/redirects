@@ -5,7 +5,7 @@ concepts/reading.rst ../build.rst
 concepts/writing.rst ../collect.rst
 guides/index.rst ../index.rst
 guides/getting-started.rst ../index.rst
-guides/realtime.rst ./pipelines.rst
+guides/pipelines.rst ../pipelines/index.rst
 reference/methods/device-sensor-crud.rst ../../organize.rst
 reference/methods/index.rst ../../index.rst
 reference/methods/read.rst ../../build.rst
