@@ -10,7 +10,7 @@ Prerequisites
 -------------
 
 You should have already received a set of Pipelines credentials from us.
-This is composed of an *environment name*, *key*, and *secret*.
+This is composed of an *environment*, *key*, and *secret*.
 For example:
 
 * Environment: ``abc1``
@@ -26,7 +26,7 @@ are how we know which data in the events we are using in the computation.
 Writing Events
 --------------
 
-To write an event, POST a JSON object to ``http://ingest-$ENV.tempoiq.com/users/$KEY/event``. 
+To write an event, POST a JSON object to ``http://ingest-$ENVIRONMENT.tempoiq.com/users/$KEY/event``. 
 Authenticate to the endpoint by providing your key and secret as the username 
 and password via HTTP Basic Authentication. To send an event from the command line, 
 you can use ``curl``:
@@ -36,7 +36,7 @@ you can use ``curl``:
     curl -X POST -i 
         -u "$KEY:$SECRET" \
         -d '{"field1": "val1", "field2": 1.3}' \
-        "http://ingest-$ENV.tempoiq.com/users/$KEY/event"
+        "http://ingest-$ENVIRONMENT.tempoiq.com/users/$KEY/event"
 
 For example:
 
@@ -79,7 +79,7 @@ the graph is:
 
 .. code-block:: none
 
-    http://app-$ENV.tempoiq.com/index.html?groupBy=<groupingfield>&valueField=<valfield>&<groupingfield>=<group>
+    http://app-$ENVIRONMENT.tempoiq.com/index.html?groupBy=<groupingfield>&valueField=<valfield>&<groupingfield>=<group>
 
 This is best illustrated with the example above. If we want to view the graph of max power for
 *house1*, the URL would be:
