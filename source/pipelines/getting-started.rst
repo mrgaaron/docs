@@ -6,6 +6,8 @@ Thanks for participating in our Pipelines research project! This guide
 describes how to start working with your Pipelines environment: writing
 events and subscribing to analytics.
 
+For a higher-level overview of Pipelines concepts, see :doc:`index`.
+
 Prerequisites
 -------------
 
