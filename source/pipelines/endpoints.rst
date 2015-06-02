@@ -32,3 +32,17 @@ with a JSON object representing the error ::
       "error": "invalid json"
       "reason": "<Whatever linting information we can derive>"
     }
+
+Viewing the Latest Events
+-------------------------
+To view the latest events, GET from ``http://latest-$ENVIRONMENT.tempoiq.com/latest/``.
+Your environment will return a JSON array containing copies of the 
+last-emitted events per key. For example ::
+
+    [
+      { 
+        "groupby_field_name": "groupby_field_value",
+        "aggregate_field_name": "aggregate_field_value"
+      },
+      ...
+    ]
