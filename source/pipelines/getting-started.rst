@@ -7,6 +7,7 @@ describes how to start working with your Pipelines environment: writing
 events and subscribing to analytics.
 
 For a higher-level overview of Pipelines concepts, see :doc:`index`.
+
 For a reference of Pipelines endpoints and responses, see :doc:`endpoints`.
 
 Prerequisites
