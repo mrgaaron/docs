@@ -10,6 +10,10 @@ For a higher-level overview of Pipelines concepts, see :doc:`index`.
 
 For a reference of Pipelines endpoints and responses, see :doc:`endpoints`.
 
+.. contents::
+   :local:
+   :depth: 1
+
 Prerequisites
 -------------
 
