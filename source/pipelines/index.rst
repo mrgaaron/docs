@@ -1,8 +1,8 @@
 :orphan:
 
-================
+=================
 TempoIQ Pipelines
-================
+=================
 
 
 *Pipelines* is a new service from TempoIQ, and we are inviting you
@@ -145,3 +145,4 @@ Next steps
    :titlesonly:
 
    getting-started
+   endpoints
