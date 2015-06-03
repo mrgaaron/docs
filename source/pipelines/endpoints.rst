@@ -9,6 +9,9 @@ For a higher-level overview of Pipelines concepts, see :doc:`index`.
 
 For a guide to getting started with Pipelines, see :doc:`getting-started`.
 
+.. contents::
+   :local:
+
 Writing Events
 --------------
 
@@ -33,16 +36,22 @@ with a JSON object representing the error ::
       "reason": "<Whatever linting information we can derive>"
     }
 
-Viewing the Latest Events
--------------------------
+Latest Values
+-------------
 To view the latest events, GET from ``http://latest-$ENVIRONMENT.tempoiq.com/latest/``.
-Your environment will return a JSON array containing copies of the 
-last-emitted events per key. For example ::
+Your environment will return a JSON array containing the most recently emitted event
+for each grouping. For example, if you had a pipeline aggregating daily energy consumption
+grouped by meter_id::
 
     [
-      { 
-        "groupby_field_name": "groupby_field_value",
-        "aggregate_field_name": "aggregate_field_value"
+      {
+        "meter_id": "house1",
+        "energy": 245.0
+      },
+      {
+        "meter_id": "house2",
+        "energy": 1734.2
       },
       ...
     ]
+
