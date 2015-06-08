@@ -15,7 +15,7 @@ For a guide to getting started with Pipelines, see :doc:`getting-started`.
 Writing Events
 --------------
 
-To write an event, POST a valid event to ``http://ingest-$ENVIRONMENT.tempoiq.com/users/$KEY/event``.
+To write an event, POST a valid event to ``http://$ENVIRONMENT.tempoiq.com/channels/$CHANNEL/event/``.
 A valid event is a JSON object. In addition, events must have a key matching the measurement
 field you provided TempoIQ, mapped to a numeric value. In addition, except for the optional timestamp
 field ``_$_ts``, TempoIQ reserves all keys beginning with the prefix ``_$_``.
@@ -38,7 +38,7 @@ with a JSON object representing the error ::
 
 Latest Values
 -------------
-To view the latest events, GET from ``http://latest-$ENVIRONMENT.tempoiq.com/latest/``.
+To view the latest events, GET from ``http://$ENVIRONMENT.tempoiq.com/channels/$CHANNEL/pipelines/$PIPELINE/latest/``.
 Your environment will return a JSON array containing the most recently emitted event
 for each grouping. For example, if you had a pipeline aggregating daily energy consumption
 grouped by meter_id::
@@ -54,4 +54,40 @@ grouped by meter_id::
       },
       ...
     ]
+
+
+Index of Endpoints
+------------------
+
++---------------------------------------------------------------------------+---------------------------------------------------------------+
+| Endpoint URL                                                              | Description                                                   |
++===========================================================================+===============================================================+
+| $ENVIRONMENT.pipelines.tepomiq.com/...                                    | the root url for all of your environment's endpoints.         |
++---------------------------------------------------------------------------+---------------------------------------------------------------+
+| .../channels/``<channel_id>``/                                            | the endpoints for a given channel, routed by id.              |
++---------------------------------------------------------------------------+---------------------------------------------------------------+
+| .../channels/``<channel_id>``/event/                                      | POST an <event> to channel_id.                                |
++---------------------------------------------------------------------------+---------------------------------------------------------------+
+| .../channels/``<channel_id>``/events/                                     | POST a <bulk_write> to <channel_id>.                          |
++---------------------------------------------------------------------------+---------------------------------------------------------------+
+| .../channels/``<channel_id>``/pipelines/                                  | GET the configurations of your pipelines. POST new pipelines. |
++---------------------------------------------------------------------------+---------------------------------------------------------------+
+| .../channels/``<channel_id>``/pipelines/``<pipeline_id>``/                | GET the configurations of your pipelines. POST new pipelines. |
++---------------------------------------------------------------------------+---------------------------------------------------------------+
+| .../channels/``<channel_id>``/pipelines/``<pipeline_id>``/latest/         | GET the latest values for a given pipeline.                   |
++---------------------------------------------------------------------------+---------------------------------------------------------------+
+| .../channels/``<channel_id>``/pipelines/``<pipeline_id>``/ui/``<name>``   | Render the html for a gui view of a given pipeline.           |
++---------------------------------------------------------------------------+---------------------------------------------------------------+
+
+Where <channel_id>s and <pipeline_id>s are system generated strings, 
+<event>s are valid as described above,
+<gui> refers to the name of a given web-widget,
+and <bulk_write>s are simply a JSON object of the form ``{ 'data':[(<event>,)* <event>] }``.
+
+A Quick Note on Channels
+-------------------------
+
+In this document, we refer obliquely to "channels". 
+Channels are conceptually just uniquely-identified buckets of pipelines. 
+They namespace which data applies to which pipeline.
 
