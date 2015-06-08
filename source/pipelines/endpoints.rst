@@ -79,10 +79,10 @@ Index of Endpoints
 | .../channels/``<channel_id>``/pipelines/``<pipeline_id>``/ui/``<name>``   | Render the html for a gui view of a given pipeline.           |
 +---------------------------------------------------------------------------+---------------------------------------------------------------+
 
-Where <channel_id>s and <pipeline_id>s are system generated strings, 
-<event>s are valid as described above,
-<gui> refers to the name of a given web-widget,
-and <bulk_write>s are simply a JSON object of the form ``{ 'data':[(<event>,)* <event>] }``.
+Where ``<channel_id>`` and ``<pipeline_id>`` are system generated strings, 
+``<event>`` is a valid event as described above,
+``<gui>`` refers to the name of a given web-widget,
+and a ``<bulk_write>`` is simply a JSON object of the form ``{ 'data':[(<event>,)* <event>] }``.
 
 A Quick Note on Channels
 -------------------------
