@@ -72,7 +72,7 @@ Index of Endpoints
 +---------------------------------------------------------------------------+---------------------------------------------------------------+
 | .../channels/``<channel_id>``/pipelines/                                  | GET the configurations of your pipelines. POST new pipelines. |
 +---------------------------------------------------------------------------+---------------------------------------------------------------+
-| .../channels/``<channel_id>``/pipelines/``<pipeline_id>``/                | GET the configurations of your pipelines. POST new pipelines. |
+| .../channels/``<channel_id>``/pipelines/``<pipeline_id>``/                | GET the configuration of a given pipeline.                    |
 +---------------------------------------------------------------------------+---------------------------------------------------------------+
 | .../channels/``<channel_id>``/pipelines/``<pipeline_id>``/latest/         | GET the latest values for a given pipeline.                   |
 +---------------------------------------------------------------------------+---------------------------------------------------------------+
