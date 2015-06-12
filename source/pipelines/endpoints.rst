@@ -74,6 +74,8 @@ Index of Endpoints
 +---------------------------------------------------------------------------+---------------------------------------------------------------+
 | .../channels/``<channel_id>``/pipelines/``<pipeline_id>``/                | GET the configuration of a given pipeline.                    |
 +---------------------------------------------------------------------------+---------------------------------------------------------------+
+| .../channels/``<channel_id>``/pipelines/``<pipeline_id>``/ws/             | Connect to the websockets from <pipeline_id>                  |
++---------------------------------------------------------------------------+---------------------------------------------------------------+
 | .../channels/``<channel_id>``/pipelines/``<pipeline_id>``/latest/         | GET the latest values for a given pipeline.                   |
 +---------------------------------------------------------------------------+---------------------------------------------------------------+
 | .../channels/``<channel_id>``/pipelines/``<pipeline_id>``/ui/``<name>``   | Render the html for a gui view of a given pipeline.           |
