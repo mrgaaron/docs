@@ -64,21 +64,19 @@ Index of Endpoints
 +===========================================================================+===============================================================+
 | $ENVIRONMENT.pipelines.tepomiq.com/...                                    | the root url for all of your environment's endpoints.         |
 +---------------------------------------------------------------------------+---------------------------------------------------------------+
-| .../channels/``<channel_id>``/                                            | the endpoints for a given channel, routed by id.              |
+| .../channels/``<channel_id>``                                             | the endpoints for a given channel, routed by id.              |
 +---------------------------------------------------------------------------+---------------------------------------------------------------+
-| .../channels/``<channel_id>``/event/                                      | POST an <event> to channel_id.                                |
+| .../channels/``<channel_id>``/event                                       | POST an <event> to channel_id.                                |
 +---------------------------------------------------------------------------+---------------------------------------------------------------+
-| .../channels/``<channel_id>``/events/                                     | POST a <bulk_write> to <channel_id>.                          |
+| .../channels/``<channel_id>``/events                                      | POST a <bulk_write> to <channel_id>.                          |
 +---------------------------------------------------------------------------+---------------------------------------------------------------+
-| .../channels/``<channel_id>``/pipelines/                                  | GET the configurations of your pipelines. POST new pipelines. |
+| .../channels/``<channel_id>``/pipelines                                   | GET the configurations of your pipelines. POST new pipelines. |
 +---------------------------------------------------------------------------+---------------------------------------------------------------+
-| .../channels/``<channel_id>``/pipelines/``<pipeline_id>``/                | GET the configuration of a given pipeline.                    |
+| .../channels/``<channel_id>``/pipelines/``<pipeline_id>``                 | GET the configuration of a given pipeline.                    |
 +---------------------------------------------------------------------------+---------------------------------------------------------------+
-| .../channels/``<channel_id>``/pipelines/``<pipeline_id>``/ws/             | Connect to the websockets from <pipeline_id>                  |
+| .../channels/``<channel_id>``/pipelines/``<pipeline_id>``/ws              | Connect to the websockets from <pipeline_id>                  |
 +---------------------------------------------------------------------------+---------------------------------------------------------------+
-| .../channels/``<channel_id>``/pipelines/``<pipeline_id>``/latest/         | GET the latest values for a given pipeline.                   |
-+---------------------------------------------------------------------------+---------------------------------------------------------------+
-| .../channels/``<channel_id>``/pipelines/``<pipeline_id>``/ui/``<name>``   | Render the html for a gui view of a given pipeline.           |
+| .../channels/``<channel_id>``/pipelines/``<pipeline_id>``/latest          | GET the latest values for a given pipeline.                   |
 +---------------------------------------------------------------------------+---------------------------------------------------------------+
 
 Where ``<channel_id>`` and ``<pipeline_id>`` are system generated strings, 
@@ -89,7 +87,9 @@ and a ``<bulk_write>`` is simply a JSON object of the form ``{ 'data':[(<event>,
 A Quick Note on Channels
 -------------------------
 
-In this document, we refer obliquely to "channels". 
-Channels are conceptually just uniquely-identified buckets of pipelines. 
+In this document, we refer obliquely to "channels". Channels are conceptually
+just uniquely-identified buckets of pipelines that satisfy the following invariant:
+"All pipelines for a given channel observe the events posted to that channel".
+For now, that's exactly one possible channel with one pipeline subscribed to it,but keep an eye out for multiple channels and pipelines.
 They namespace which data applies to which pipeline.
 
