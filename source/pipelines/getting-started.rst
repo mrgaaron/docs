@@ -50,7 +50,7 @@ you can use ``curl``:
 
 .. code-block:: bash
 
-    curl -X POST -i 
+    curl -X POST -i \
         -u "$KEY:$SECRET" \
         -d '{"field1": "val1", "field2": 1.3}' \
         "http://ingest-$ENVIRONMENT.tempoiq.com/users/$KEY/event"
@@ -115,6 +115,9 @@ This is best illustrated with the example above. If we want to view the graph of
 
 To view the output for a different meter, simply change the value of the *meter_id=* argument in the URL. 
 You shouldn't ever need to modify any other parts of the URL.
+
+.. image:: /images/pipelines_viz.png
+   
 
 Embedding Graphs
 ~~~~~~~~~~~~~~~~
