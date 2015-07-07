@@ -38,22 +38,18 @@ Domains
 To use your pipelines environment, you'll get two domains to work with. Both are formed by
 adding a prefix to your environment name.
 
-* Ingest (where you write data): ``ingest-$ENVIRONMENT.tempoiq.com``
-* Web (where you go to view the graphs): ``app-$ENVIRONMENT.tempoiq.com``
+* Ingest (where you write data): ``$ENVIRONMENT.tempoiq.com``
+* Web (where you go to view the graphs): ``$ENVIRONMENT.tempoiq.com``
 
 Channels
 --------
 
-Channels, in short, namespace which data applies to which pipeline.
-Channels are conceptually just uniquely-identified buckets of pipelines 
-that satisfy the following invariant:
-"All pipelines for a given channel observe the events posted to that channel".
-For now, that's exactly one possible channel with one pipeline subscribed to it,but keep an eye out for multiple channels and pipelines.
+Channels are namespaces for events. Currently, all events that you write get routed to channel ID 0. In the future we may support multiple ingest channels, or channels for computed values.
 
 Writing Events
 --------------
 
-To write an event, POST a JSON object to ``http://ingest-$ENVIRONMENT.tempoiq.com/channels/$CHANNEL/event``. 
+To write an event, POST a JSON object to ``http://$ENVIRONMENT.tempoiq.com/channels/$CHANNEL/event``. 
 Authenticate to the endpoint by providing your key and secret as the username 
 and password via HTTP Basic Authentication. To send an event from the command line, 
 you can use ``curl``:
@@ -63,7 +59,7 @@ you can use ``curl``:
     curl -X POST -i \
         -u "$KEY:$SECRET" \
         -d '{"field1": "val1", "field2": 1.3}' \
-        "http://ingest-$ENVIRONMENT.tempoiq.com/channels/$CHANNEL/event"
+        "http://$ENVIRONMENT.tempoiq.com/channels/$CHANNEL/event"
 
 For example:
 
@@ -111,14 +107,14 @@ the graph is:
 
 .. code-block:: none
 
-    http://app-$ENVIRONMENT.tempoiq.com/index.html?groupBy=$GROUPFIELD&valueField=$VALUEFIELD&$GROUPFIELD=$GROUPVAL
+    http://$ENVIRONMENT.tempoiq.com/index.html?groupBy=$GROUPFIELD&valueField=$VALUEFIELD&$GROUPFIELD=$GROUPVAL
 
 This is best illustrated with the example above. If we want to view the graph of max power for
 *house1*, the URL would be:
 
 .. code-block:: none
 
-    http://app-abc1.tempoiq.com/index.html?groupBy=meter_id&valueField=power&meter_id=house1
+    http://abc1.tempoiq.com/index.html?groupBy=meter_id&valueField=power&meter_id=house1
 
 To view the output for a different meter, simply change the value of the *meter_id=* argument in the URL. 
 You shouldn't ever need to modify any other parts of the URL.

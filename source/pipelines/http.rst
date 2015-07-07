@@ -18,6 +18,8 @@ Writing Events
 --------------
 
 To write an event, POST a valid event to ``http://$ENVIRONMENT.tempoiq.com/channels/$CHANNEL/event/``.
+
+Channels are namespaces for events. Currently, all events that you write get routed to channel ID 0.
 A valid event is a JSON object. In addition, events must have a key matching the measurement
 field you provided TempoIQ, mapped to a numeric value. In addition, except for the optional timestamp
 field ``_$_ts``, TempoIQ reserves all keys beginning with the prefix ``_$_``.
@@ -35,7 +37,7 @@ with a JSON object representing the error ::
 
     {
       "error": "invalid json"
-      "reason": "<Whatever linting information we can derive>"
+      "reason": "(Whatever linting information we can derive)"
     }
 
 Latest Values
@@ -68,22 +70,21 @@ Index of Endpoints
         - Description
       * - $ENVIRONMENT.pipelines.tepomiq.com/...
         - the root url for all of your environment's endpoints.
-      * - .../channels/``<channel_id>``
+      * - .../channels/``$CHANNEL``
         - the endpoints for a given channel, routed by id.
-      * - .../channels/``<channel_id>``/event
+      * - .../channels/``$CHANNEL``/event
         - POST an ``<event>`` to channel_id.
-      * - .../channels/``<channel_id>``/events
-        - POST a ``<bulk_write>`` to <channel_id>.
-      * - .../channels/``<channel_id>``/pipelines
+      * - .../channels/``$CHANNEL``/events
+        - POST a ``<bulk_write>`` to $CHANNEL.
+      * - .../channels/``$CHANNEL``/pipelines
         - GET the configurations of your pipelines. POST new pipelines.
-      * - .../channels/``<channel_id>``/pipelines/``<pipeline_id>``
+      * - .../channels/``$CHANNEL``/pipelines/``$PIPELINE``
         - GET the configuration of a given pipeline.
-      * - .../channels/``<channel_id>``/pipelines/``<pipeline_id>``/ws
-        - Connect to the websockets from <pipeline_id>
-      * - .../channels/``<channel_id>``/pipelines/``<pipeline_id>``/latest
+      * - .../channels/``$CHANNEL``/pipelines/``$PIPELINE``/ws
+        - Connect to the websockets from $PIPELINE
+      * - .../channels/``$CHANNEL``/pipelines/``$PIPELINE``/latest
         - GET the latest values for a given pipeline.
 
-Where ``<channel_id>`` and ``<pipeline_id>`` are system generated strings, 
+Where ``$CHANNEL`` and ``$PIPELINE`` are system generated strings ( ``$CHANNEL`` is currently always 0),
 ``<event>`` is a valid event as described above,
-``<gui>`` refers to the name of a given web-widget,
 and a ``<bulk_write>`` is simply a JSON object of the form ``{ 'data':[(<event>,)* <event>] }``.

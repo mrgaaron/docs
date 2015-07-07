@@ -22,6 +22,7 @@ Writing Events
 
 To write an event, publish a valid event to ``tcp://$ENVIRONMENT.tempoiq.com:1883``,
 under the topic ``/tempoiq/channels/$CHANNEL/event``.
+Channels are namespaces for events. Currently, all events that you write get routed to channel ID 0.
 A valid event is a JSON object. In addition, events must have a key matching the measurement
 field you provided TempoIQ, mapped to a numeric value. In addition, except for the optional timestamp
 field ``_$_ts``, TempoIQ reserves all keys beginning with the prefix ``_$_``.
@@ -47,12 +48,10 @@ Index of Endpoints
         - Description
       * - tcp://$ENVIRONMENT.pipelines.tepomiq.com:1883
         - the root url for your environment's MQTT broker.
-      * - .../channels/``<channel_id>``/event
+      * - .../channels/``$CHANNEL``/event
         - publish an ``<event>`` to channel_id.
 
-Where ``<channel_id>`` and ``<pipeline_id>`` are system generated strings, 
+Where ``$CHANNEL`` is a system generated string (currently 0),
 ``<event>`` is a valid event as described above,
-``<gui>`` refers to the name of a given web-widget,
 and a ``<bulk_write>`` is simply a JSON object of the form ``{ 'data':[(<event>,)* <event>] }``.
-
 
