@@ -11,6 +11,9 @@ For a guide to getting started with Pipelines, see :doc:`getting-started`.
 
 For a reference of Pipelines endpoints and responses, see :doc:`http`.
 
+For more information about MQTT client libraries and brokers,
+we recommend `Mosquitto <http://mosquitto.org/>`_ and `Paho <http://www.eclipse.org/paho/>`_ .
+
 .. contents::
    :local:
 
