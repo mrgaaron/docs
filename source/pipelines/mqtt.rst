@@ -1,5 +1,5 @@
 ===============================
-Pipelines MQQT Input and Topics
+Pipelines MQTT Input and Topics
 ===============================
 
 Thanks for participating in our Pipelines research project! This reference 
