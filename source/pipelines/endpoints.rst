@@ -9,6 +9,8 @@ For a higher-level overview of Pipelines concepts, see :doc:`index`.
 
 For a guide to getting started with Pipelines, see :doc:`getting-started`.
 
+For a guide to our MQTT interface for Pipelines, see :doc:`mqtt`.
+
 .. contents::
    :local:
 
@@ -66,9 +68,9 @@ Index of Endpoints
 +---------------------------------------------------------------------------+---------------------------------------------------------------+
 | .../channels/``<channel_id>``                                             | the endpoints for a given channel, routed by id.              |
 +---------------------------------------------------------------------------+---------------------------------------------------------------+
-| .../channels/``<channel_id>``/event                                       | POST an <event> to channel_id.                                |
+| .../channels/``<channel_id>``/event                                       | POST an ``<event>`` to channel_id.                            |
 +---------------------------------------------------------------------------+---------------------------------------------------------------+
-| .../channels/``<channel_id>``/events                                      | POST a <bulk_write> to <channel_id>.                          |
+| .../channels/``<channel_id>``/events                                      | POST a ``<bulk_write>`` to <channel_id>.                      |
 +---------------------------------------------------------------------------+---------------------------------------------------------------+
 | .../channels/``<channel_id>``/pipelines                                   | GET the configurations of your pipelines. POST new pipelines. |
 +---------------------------------------------------------------------------+---------------------------------------------------------------+
