@@ -4,11 +4,13 @@ Getting Started with Pipelines
 
 Thanks for participating in our Pipelines research project! This guide 
 describes how to start working with your Pipelines environment: writing
-events and subscribing to analytics.
+events and subscribing to analytics via HTTP.
 
 For a higher-level overview of Pipelines concepts, see :doc:`index`.
 
-For a reference of Pipelines endpoints and responses, see :doc:`endpoints`.
+For a reference of Pipelines endpoints and responses, see :doc:`http`.
+
+For a guide to our MQTT interface for Pipelines, see :doc:`mqtt`.
 
 .. contents::
    :local:
@@ -39,11 +41,19 @@ adding a prefix to your environment name.
 * Ingest (where you write data): ``ingest-$ENVIRONMENT.tempoiq.com``
 * Web (where you go to view the graphs): ``app-$ENVIRONMENT.tempoiq.com``
 
+Channels
+--------
+
+Channels, in short, namespace which data applies to which pipeline.
+Channels are conceptually just uniquely-identified buckets of pipelines 
+that satisfy the following invariant:
+"All pipelines for a given channel observe the events posted to that channel".
+For now, that's exactly one possible channel with one pipeline subscribed to it,but keep an eye out for multiple channels and pipelines.
 
 Writing Events
 --------------
 
-To write an event, POST a JSON object to ``http://ingest-$ENVIRONMENT.tempoiq.com/users/$KEY/event``. 
+To write an event, POST a JSON object to ``http://ingest-$ENVIRONMENT.tempoiq.com/channels/$CHANNEL/event``. 
 Authenticate to the endpoint by providing your key and secret as the username 
 and password via HTTP Basic Authentication. To send an event from the command line, 
 you can use ``curl``:
@@ -53,7 +63,7 @@ you can use ``curl``:
     curl -X POST -i \
         -u "$KEY:$SECRET" \
         -d '{"field1": "val1", "field2": 1.3}' \
-        "http://ingest-$ENVIRONMENT.tempoiq.com/users/$KEY/event"
+        "http://ingest-$ENVIRONMENT.tempoiq.com/channels/$CHANNEL/event"
 
 For example:
 
@@ -62,10 +72,7 @@ For example:
     curl -X POST -i \
         -u "1234567890abcdef1234567890abcdef:fedcba0987654321fedcba0987654321" \
         -d '{"field1": "val1", "field2": 1.3}' \
-        "http://ingest-abc1.tempoiq.com/users/1234567890abcdef1234567890abcdef/event"
-
-Note that currently we only support plain HTTP; HTTPS endpoints will be added shortly.
-
+        "http://ingest-abc1.tempoiq.com/channels/0/event"
 
 Pipeline Calculation
 --------------------

@@ -1,6 +1,6 @@
-========================
-Pipelines Input via MQTT
-========================
+===============================
+Pipelines MQQT Input and Topics
+===============================
 
 Thanks for participating in our Pipelines research project! This reference 
 describs the MQTT brokering configuration in your Pipelines environment.
@@ -9,7 +9,7 @@ For a higher-level overview of Pipelines concepts, see :doc:`index`.
 
 For a guide to getting started with Pipelines, see :doc:`getting-started`.
 
-For a reference of Pipelines endpoints and responses, see :doc:`endpoints`.
+For a reference of Pipelines endpoints and responses, see :doc:`http`.
 
 .. contents::
    :local:
@@ -52,12 +52,4 @@ Where ``<channel_id>`` and ``<pipeline_id>`` are system generated strings,
 ``<gui>`` refers to the name of a given web-widget,
 and a ``<bulk_write>`` is simply a JSON object of the form ``{ 'data':[(<event>,)* <event>] }``.
 
-A Quick Note on Channels
--------------------------
-
-In this document, we refer obliquely to "channels". Channels are conceptually
-just uniquely-identified buckets of pipelines that satisfy the following invariant:
-"All pipelines for a given channel observe the events posted to that channel".
-For now, that's exactly one possible channel with one pipeline subscribed to it,but keep an eye out for multiple channels and pipelines.
-They namespace which data applies to which pipeline.
 

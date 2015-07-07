@@ -1,6 +1,6 @@
-==============================
-Pipelines Input and Endpoints
-==============================
+==================================
+Pipelines HTTP Input and Endpoints
+==================================
 
 Thanks for participating in our Pipelines research project! This reference 
 describes the endpoints present in your Pipelines environment.
@@ -87,13 +87,3 @@ Where ``<channel_id>`` and ``<pipeline_id>`` are system generated strings,
 ``<event>`` is a valid event as described above,
 ``<gui>`` refers to the name of a given web-widget,
 and a ``<bulk_write>`` is simply a JSON object of the form ``{ 'data':[(<event>,)* <event>] }``.
-
-A Quick Note on Channels
--------------------------
-
-In this document, we refer obliquely to "channels". Channels are conceptually
-just uniquely-identified buckets of pipelines that satisfy the following invariant:
-"All pipelines for a given channel observe the events posted to that channel".
-For now, that's exactly one possible channel with one pipeline subscribed to it,but keep an eye out for multiple channels and pipelines.
-They namespace which data applies to which pipeline.
-
