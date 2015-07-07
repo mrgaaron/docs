@@ -61,25 +61,27 @@ grouped by meter_id::
 Index of Endpoints
 ------------------
 
-+---------------------------------------------------------------------------+---------------------------------------------------------------+
-| Endpoint URL                                                              | Description                                                   |
-+===========================================================================+===============================================================+
-| $ENVIRONMENT.pipelines.tepomiq.com/...                                    | the root url for all of your environment's endpoints.         |
-+---------------------------------------------------------------------------+---------------------------------------------------------------+
-| .../channels/``<channel_id>``                                             | the endpoints for a given channel, routed by id.              |
-+---------------------------------------------------------------------------+---------------------------------------------------------------+
-| .../channels/``<channel_id>``/event                                       | POST an ``<event>`` to channel_id.                            |
-+---------------------------------------------------------------------------+---------------------------------------------------------------+
-| .../channels/``<channel_id>``/events                                      | POST a ``<bulk_write>`` to <channel_id>.                      |
-+---------------------------------------------------------------------------+---------------------------------------------------------------+
-| .../channels/``<channel_id>``/pipelines                                   | GET the configurations of your pipelines. POST new pipelines. |
-+---------------------------------------------------------------------------+---------------------------------------------------------------+
-| .../channels/``<channel_id>``/pipelines/``<pipeline_id>``                 | GET the configuration of a given pipeline.                    |
-+---------------------------------------------------------------------------+---------------------------------------------------------------+
-| .../channels/``<channel_id>``/pipelines/``<pipeline_id>``/ws              | Connect to the websockets from <pipeline_id>                  |
-+---------------------------------------------------------------------------+---------------------------------------------------------------+
-| .../channels/``<channel_id>``/pipelines/``<pipeline_id>``/latest          | GET the latest values for a given pipeline.                   |
-+---------------------------------------------------------------------------+---------------------------------------------------------------+
+   .. list-table::
+      :header-rows: 1
+
+      * - Endpoint URL
+        - Description
+      * - $ENVIRONMENT.pipelines.tepomiq.com/...
+        - the root url for all of your environment's endpoints.
+      * - .../channels/``<channel_id>``
+        - the endpoints for a given channel, routed by id.
+      * - .../channels/``<channel_id>``/event
+        - POST an ``<event>`` to channel_id.
+      * - .../channels/``<channel_id>``/events
+        - POST a ``<bulk_write>`` to <channel_id>.
+      * - .../channels/``<channel_id>``/pipelines
+        - GET the configurations of your pipelines. POST new pipelines.
+      * - .../channels/``<channel_id>``/pipelines/``<pipeline_id>``
+        - GET the configuration of a given pipeline.
+      * - .../channels/``<channel_id>``/pipelines/``<pipeline_id>``/ws
+        - Connect to the websockets from <pipeline_id>
+      * - .../channels/``<channel_id>``/pipelines/``<pipeline_id>``/latest
+        - GET the latest values for a given pipeline.
 
 Where ``<channel_id>`` and ``<pipeline_id>`` are system generated strings, 
 ``<event>`` is a valid event as described above,

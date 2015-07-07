@@ -37,13 +37,15 @@ At this time, Pipelines does not support authorization, TLS, bulk-writes, or rea
 Index of Endpoints
 ------------------
 
-+---------------------------------------------------------------------------+---------------------------------------------------------------+
-| Endpoint URL                                                              | Description                                                   |
-+===========================================================================+===============================================================+
-| tcp://$ENVIRONMENT.pipelines.tepomiq.com:1883                             | the root url for your environment's MQTT broker.              |
-+---------------------------------------------------------------------------+---------------------------------------------------------------+
-| .../channels/``<channel_id>``/event                                       | publish an ``<event>`` to channel_id.                         |
-+---------------------------------------------------------------------------+---------------------------------------------------------------+
+   .. list-table::
+      :header-rows: 1
+
+      * - Endpoint URL
+        - Description
+      * - tcp://$ENVIRONMENT.pipelines.tepomiq.com:1883
+        - the root url for your environment's MQTT broker.
+      * - .../channels/``<channel_id>``/event
+        - publish an ``<event>`` to channel_id.
 
 Where ``<channel_id>`` and ``<pipeline_id>`` are system generated strings, 
 ``<event>`` is a valid event as described above,
