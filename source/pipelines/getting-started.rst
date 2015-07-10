@@ -35,11 +35,7 @@ are how we know which data in the events we are using in the computation.
 Domains
 ~~~~~~~
 
-To use your pipelines environment, you'll get two domains to work with. Both are formed by
-adding a prefix to your environment name.
-
-* Ingest (where you write data): ``$ENVIRONMENT.tempoiq.com``
-* Web (where you go to view the graphs): ``$ENVIRONMENT.tempoiq.com``
+To use your pipelines environment, you'll send requests to: ``$ENVIRONMENT.tempoiq.com``
 
 Channels
 --------
@@ -68,7 +64,7 @@ For example:
     curl -X POST -i \
         -u "1234567890abcdef1234567890abcdef:fedcba0987654321fedcba0987654321" \
         -d '{"field1": "val1", "field2": 1.3}' \
-        "http://ingest-abc1.tempoiq.com/channels/0/event"
+        "http://abc1.tempoiq.com/channels/0/event"
 
 Pipeline Calculation
 --------------------
@@ -128,5 +124,5 @@ Embedding Graphs
 This graph can also be embedded in a larger web application using an iframe. Simply replace ``index.html`` with
 ``widget.html``, and set that URL as the iframe source. For example::
 
-    <iframe src="http://app-abc1.tempoiq.com/widget.html?..." frameborder="0" scrolling="no"></iframe>
+    <iframe src="http://abc1.tempoiq.com/widget.html?..." frameborder="0" scrolling="no"></iframe>
 
