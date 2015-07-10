@@ -146,5 +146,5 @@ Next steps
 
    getting-started
    http
-   mqqt
+   mqtt
    konekt
