@@ -147,3 +147,4 @@ Next steps
    getting-started
    http
    mqqt
+   konekt
