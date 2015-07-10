@@ -4,11 +4,13 @@ Getting Started with Pipelines
 
 Thanks for participating in our Pipelines research project! This guide 
 describes how to start working with your Pipelines environment: writing
-events and subscribing to analytics.
+events and subscribing to analytics via HTTP.
 
 For a higher-level overview of Pipelines concepts, see :doc:`index`.
 
-For a reference of Pipelines endpoints and responses, see :doc:`endpoints`.
+For a reference of Pipelines endpoints and responses, see :doc:`http`.
+
+For a guide to our MQTT interface for Pipelines, see :doc:`mqtt`.
 
 .. contents::
    :local:
@@ -33,17 +35,17 @@ are how we know which data in the events we are using in the computation.
 Domains
 ~~~~~~~
 
-To use your pipelines environment, you'll get two domains to work with. Both are formed by
-adding a prefix to your environment name.
+To use your pipelines environment, you'll send requests to: ``$ENVIRONMENT.tempoiq.com``
 
-* Ingest (where you write data): ``ingest-$ENVIRONMENT.tempoiq.com``
-* Web (where you go to view the graphs): ``app-$ENVIRONMENT.tempoiq.com``
+Channels
+--------
 
+Channels are namespaces for events. Currently, all events that you write get routed to channel ID 0. In the future we may support multiple ingest channels, or channels for computed values.
 
 Writing Events
 --------------
 
-To write an event, POST a JSON object to ``http://ingest-$ENVIRONMENT.tempoiq.com/users/$KEY/event``. 
+To write an event, POST a JSON object to ``http://$ENVIRONMENT.tempoiq.com/channels/$CHANNEL/event``. 
 Authenticate to the endpoint by providing your key and secret as the username 
 and password via HTTP Basic Authentication. To send an event from the command line, 
 you can use ``curl``:
@@ -53,7 +55,7 @@ you can use ``curl``:
     curl -X POST -i \
         -u "$KEY:$SECRET" \
         -d '{"field1": "val1", "field2": 1.3}' \
-        "http://ingest-$ENVIRONMENT.tempoiq.com/users/$KEY/event"
+        "http://$ENVIRONMENT.tempoiq.com/channels/$CHANNEL/event"
 
 For example:
 
@@ -62,10 +64,7 @@ For example:
     curl -X POST -i \
         -u "1234567890abcdef1234567890abcdef:fedcba0987654321fedcba0987654321" \
         -d '{"field1": "val1", "field2": 1.3}' \
-        "http://ingest-abc1.tempoiq.com/users/1234567890abcdef1234567890abcdef/event"
-
-Note that currently we only support plain HTTP; HTTPS endpoints will be added shortly.
-
+        "http://abc1.tempoiq.com/channels/0/event"
 
 Pipeline Calculation
 --------------------
@@ -104,14 +103,14 @@ the graph is:
 
 .. code-block:: none
 
-    http://app-$ENVIRONMENT.tempoiq.com/index.html?groupBy=$GROUPFIELD&valueField=$VALUEFIELD&$GROUPFIELD=$GROUPVAL
+    http://$ENVIRONMENT.tempoiq.com/index.html?groupBy=$GROUPFIELD&valueField=$VALUEFIELD&$GROUPFIELD=$GROUPVAL
 
 This is best illustrated with the example above. If we want to view the graph of max power for
 *house1*, the URL would be:
 
 .. code-block:: none
 
-    http://app-abc1.tempoiq.com/index.html?groupBy=meter_id&valueField=power&meter_id=house1
+    http://abc1.tempoiq.com/index.html?groupBy=meter_id&valueField=power&meter_id=house1
 
 To view the output for a different meter, simply change the value of the *meter_id=* argument in the URL. 
 You shouldn't ever need to modify any other parts of the URL.
@@ -125,5 +124,5 @@ Embedding Graphs
 This graph can also be embedded in a larger web application using an iframe. Simply replace ``index.html`` with
 ``widget.html``, and set that URL as the iframe source. For example::
 
-    <iframe src="http://app-abc1.tempoiq.com/widget.html?..." frameborder="0" scrolling="no"></iframe>
+    <iframe src="http://abc1.tempoiq.com/widget.html?..." frameborder="0" scrolling="no"></iframe>
 

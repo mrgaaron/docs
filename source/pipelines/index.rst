@@ -145,4 +145,5 @@ Next steps
    :titlesonly:
 
    getting-started
-   endpoints
+   http
+   mqqt
