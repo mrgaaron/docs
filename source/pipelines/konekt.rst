@@ -58,3 +58,14 @@ Below is a sample of a validly completed form:
 Once the new app has been installed, your devices' messages to the specified 
 Konekt topics should automatically begin to be forwarded to your TempoIQ 
 Pipelines environment.
+
+Expected Input
+--------------
+
+The TempoIQ Konekt plugin will extract the `data` field from the JSON blob that 
+Konekt sends and base64 decode it.  The plugin assumes that the decoded payload 
+from this field is a valid JSON event as described in :doc:`getting-started`.  
+If it is not, your environment will return a 400-class status code describing 
+the specific problem encountered in parsing your message.  For example, an 
+invalid JSON blob will return a 400, while a valid JSON blob with fields of 
+invalid types will return a 422.
